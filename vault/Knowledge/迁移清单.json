@@ -1,0 +1,400 @@
+{
+  "migration_date": "2026-10-21",
+  "source_root": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana",
+  "destination_root": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design",
+  "source_git_root": null,
+  "source_branch": null,
+  "source_HEAD": null,
+  "copy_status": "verified",
+  "copied_files": [
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\add_scheme_two.py",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\add_scheme_two.py",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\add_scheme_two.py",
+      "bytes": 27251,
+      "sha256": "498f2d9897e33ce19714bc0e870edf15a357ea74f8055bd7f92c6d4d0cad9266"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\修改前完整稿.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\修改前完整稿.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\修改前完整稿.pptx",
+      "bytes": 6500610,
+      "sha256": "e23283da24c65b8fe9f53ed001dc84d79027b359f2abecf7dc1b132dd7e443c3"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\修改前核验.pdf",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\修改前核验.pdf",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\修改前核验.pdf",
+      "bytes": 682675,
+      "sha256": "ef66d646a855707c919a6208c422c63e7dbc8020241f07006e269e0ea752b952"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二完整核验稿.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二完整核验稿.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二完整核验稿.pptx",
+      "bytes": 6526312,
+      "sha256": "e1a761fef9a7efb829645e9a188d966140873a61740fd8cb0889182b39fe3512"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二新增五页.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二新增五页.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二新增五页.pptx",
+      "bytes": 54251,
+      "sha256": "7df0707aa79544686158c29621cd2faa0baa08d0ea52121ac7a8fd08f142db36"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二第12页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二第12页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二第12页.png",
+      "bytes": 162622,
+      "sha256": "33e3ddbbf6a5d062098cad91da4fd69da9e3fb836925412e154ab517c1607633"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二第13页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二第13页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二第13页.png",
+      "bytes": 86918,
+      "sha256": "68b7fe34afe8fb9cf06ca570b0e6726bbdbe551e71aa864797545fb41b229c50"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二第14页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二第14页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二第14页.png",
+      "bytes": 88920,
+      "sha256": "04a4b3b1edbad342d1809c74768e6852e9166e4b58a87ebbc25ed06ea49bb90f"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二第15页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二第15页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二第15页.png",
+      "bytes": 151361,
+      "sha256": "44ca2ea50ddef5420ef7f42cf79a6abda5b1a4aad17f00ba4471cae0722a7431"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\方案二第16页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\方案二第16页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\方案二第16页.png",
+      "bytes": 179779,
+      "sha256": "d4b842d0f13b179fb563d8bc5d06b590a951cb873b5d4d7eab25dcdee747d316"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\检查记录.md",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\检查记录.md",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\检查记录.md",
+      "bytes": 4673,
+      "sha256": "eea309ad34e54ef5f7d7a219c9907773bc7a856b3541835065dae002893a0e2b"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\调整后核验.pdf",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\调整后核验.pdf",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\调整后核验.pdf",
+      "bytes": 766171,
+      "sha256": "15914277f830dbbed2d69ecd86c29f88fd1c31b9c35eba16bce47b3b53af047e"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\调整后第17页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\调整后第17页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\调整后第17页.png",
+      "bytes": 82287,
+      "sha256": "7ceb3c19f7ce7ba761a0c6f3c0f69143ff6e66cf004eaaded8ffa598baa4e46c"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021\\调整后第18页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021\\调整后第18页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_20261021\\调整后第18页.png",
+      "bytes": 75449,
+      "sha256": "9a57d983c0907e1c0c1b257f2a69d8d203f147fbc6910d19b32126365bf07bbf"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\match_previous_layout.py",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\match_previous_layout.py",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\match_previous_layout.py",
+      "bytes": 10182,
+      "sha256": "761dd48adefda1c88f72abc861570660f35771975ccbc735ae705bedfa48a537"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\两页版核验.pdf",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\两页版核验.pdf",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\两页版核验.pdf",
+      "bytes": 719232,
+      "sha256": "059892459cbe357e095f35725eb64c9b82162090244d8420e097973e4bb5f2d4"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\方案二两页完整稿.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\方案二两页完整稿.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\方案二两页完整稿.pptx",
+      "bytes": 6514110,
+      "sha256": "4195e242d9885c8728b5f59cd3e9a9ecd91c12df89ba3df9d6fd7927a76d23e1"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\检查记录.md",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\检查记录.md",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\检查记录.md",
+      "bytes": 3552,
+      "sha256": "e8a746c771c72b7fb90b6d925349f493e270cb3fb1c95b8ac8fd79376755612d"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\第12页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\第12页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\第12页.png",
+      "bytes": 101948,
+      "sha256": "74915b8f27c95e8f2797340fa15be80a7e7ec9048b696260559e6b2725bfb829"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\第13页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\第13页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\第13页.png",
+      "bytes": 134217,
+      "sha256": "44bb8a46063b8602f6bc939c25cf377d4a33788cb9d958023c5a1c514947f223"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\第14页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\第14页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\第14页.png",
+      "bytes": 56780,
+      "sha256": "9a42083d792d65bd2d08caa6f19b8f3e58b2c227789565c0e60b0ab5bbbb2266"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\第15页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\第15页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\第15页.png",
+      "bytes": 60705,
+      "sha256": "71d3c082919aced4bc01f5f302724904b3688511e33cc57d35e1358e2ca07dfa"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021\\调整前18页备份.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021\\调整前18页备份.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_match_20261021\\调整前18页备份.pptx",
+      "bytes": 6526312,
+      "sha256": "aeebe2e04971efab6a0836d99228c62cf3a0896c55f73df8c4ee776372b6c111"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\correct_evaluator_role.py",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\correct_evaluator_role.py",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\correct_evaluator_role.py",
+      "bytes": 6727,
+      "sha256": "4f7837519be8c9c05efac385069d9a703c4f4b2711e33dc0b93b09899e1ef85b"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\修正前备份.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\修正前备份.pptx",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\修正前备份.pptx",
+      "bytes": 6514112,
+      "sha256": "cc8645c12a9463bc11faec1fdc82f69669f6ae947a1ea46d4fad234bce9229f5"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\修正后完整稿.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\修正后完整稿.pptx",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\修正后完整稿.pptx",
+      "bytes": 6514180,
+      "sha256": "67c3a2e7af916da167cdad393829f324fe2effc3edc4a8282d8760977e5d506e"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\检查记录.md",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\检查记录.md",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\检查记录.md",
+      "bytes": 1882,
+      "sha256": "10ba5f120404867cbc4dfddffb43a8716bdc1c598f543f35d0602a6c2555f3f8"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\第12页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\第12页.png",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\第12页.png",
+      "bytes": 92492,
+      "sha256": "4ada5835589e80d559a1ae5bfa446a4350f3051bca57abe5e631baa84653b477"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021\\第13页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021\\第13页.png",
+      "relative_destination": "outputs\\migrated_materials\\evaluator_module_20261021\\第13页.png",
+      "bytes": 135393,
+      "sha256": "29e39c44be6f3695f0c5b51d0fa1956417f032bf71a75eecc434a1369a702082"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021\\slim_slide13.py",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021\\slim_slide13.py",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_slim_20261021\\slim_slide13.py",
+      "bytes": 8929,
+      "sha256": "f61940839c6dac3b500f8ea2bf064221d024151702f524ac2b07f2bae5f41fd4"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021\\修改前备份_135009.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021\\修改前备份_135009.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_slim_20261021\\修改前备份_135009.pptx",
+      "bytes": 6514180,
+      "sha256": "cadc76ad50370ff5bd5618a93a8506ac43ad85bc16ceab75bce3b507db1c0565"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021\\修改前第13页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021\\修改前第13页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_slim_20261021\\修改前第13页.png",
+      "bytes": 135393,
+      "sha256": "29e39c44be6f3695f0c5b51d0fa1956417f032bf71a75eecc434a1369a702082"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021\\第13页精简核验稿.pptx",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021\\第13页精简核验稿.pptx",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_slim_20261021\\第13页精简核验稿.pptx",
+      "bytes": 6514680,
+      "sha256": "71979e97433be88a7136364d6a470c7013323ee8ec0853f991ce16ec054b0a01"
+    },
+    {
+      "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021\\精简后第13页.png",
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021\\精简后第13页.png",
+      "relative_destination": "outputs\\migrated_materials\\scheme_two_slim_20261021\\精简后第13页.png",
+      "bytes": 45299,
+      "sha256": "caff92aa4da21f72f4be53721afe39087e3f01ef239ac162496bbe5cdbd389be"
+    }
+  ],
+  "copied_count": 34,
+  "copied_bytes": 55999584,
+  "shared_presentation_snapshot": {
+    "source": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\vault\\Writing\\面向卫星任务调度的多智能体协作研究.pptx",
+    "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migration_20261021\\共享汇报迁移快照.pptx",
+    "source_slides": 17,
+    "snapshot_sha256": "bed73262ec0b258bb39eec1a6b841f67e78f57b3075713105f1d509db0662aab"
+  },
+  "dedicated_presentation": {
+    "path": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\vault\\Writing\\多智能体协作设计混合算法_方案二.pptx",
+    "slides": 2,
+    "source_pages": [
+      {
+        "source_page": 12,
+        "slide_id": 291,
+        "title": "方案二：面向组合优化的混合算法自动设计（角色分工）"
+      },
+      {
+        "source_page": 13,
+        "slide_id": 287,
+        "title": "方案二：面向组合优化的混合算法自动设计（总体框架）"
+      }
+    ],
+    "sha256": "a025d7a85f2de78b0fa4c25d6b5a17bd63e8c5b835451c52dcfae44d4652dd76",
+    "render_comparison": "与共享汇报对应页相比仅页码变化"
+  },
+  "history": {
+    "session_id": "01a15852-efcc-7bc1-a476-a0d218ebd6c1",
+    "thread_title": "查找混合算法多智能体方法",
+    "source_project": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana",
+    "destination_project": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design",
+    "source_rollout_path": "C:\\Users\\a_wei\\.codex\\sessions\\2026\\10\\20\\rollout-2026-10-20T15-59-52-01a15852-efcc-7bc1-a476-a0d218ebd6c1.jsonl",
+    "source_snapshot_bytes": 14235341,
+    "source_snapshot_sha256": "2b804c293ea5c113acfecbd76b616681ad5b99063064d6d3c51c2e868b38ee6f",
+    "created_at": "2026-10-20T07:59:52.783Z",
+    "exported_at_utc": "2026-10-21T15:33:45.195893+08:00",
+    "exported_at_asia_shanghai": "2026-10-21T15:33:45.195893+08:00",
+    "git_root": null,
+    "branch": null,
+    "HEAD": null,
+    "messages": 132,
+    "roles": {
+      "user": 39,
+      "assistant": 93
+    },
+    "assistant_phases": {
+      "commentary": 60,
+      "final_answer": 33
+    },
+    "export_scope": "全部用户消息与助手可见回复，包含用户上下文与图片引用；不导出其他内部记录",
+    "application_thread_membership_moved": true,
+    "application_project_registered": true,
+    "source_evidence_status": "原卫星问题模板证据未迁入，本项目暂无算法性能Evidence",
+    "status": "confirmed_export; application_membership_confirmed",
+    "application_status_updated_on": "2026-10-21",
+    "export_metadata_snapshot_preserved": true
+  },
+  "application_membership": {
+    "checked_on": "2026-10-21",
+    "project_id": "0e152a07-78e5-42cf-a31e-3535ffd1115c",
+    "project_name": "agentic_hybrid_design",
+    "project_registered": true,
+    "threads": [
+      {
+        "thread_id": "01a15852-efcc-7bc1-a476-a0d218ebd6c1",
+        "title": "查找混合算法多智能体方法",
+        "project_id": "0e152a07-78e5-42cf-a31e-3535ffd1115c",
+        "confirmation": "application_api_readback_and_user_sidebar_screenshot",
+        "cwd": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana"
+      },
+      {
+        "thread_id": "01a15d6a-ce0c-7580-baee-f95bdc0748fe",
+        "title": "查询项目状态",
+        "project_id": "0e152a07-78e5-42cf-a31e-3535ffd1115c",
+        "confirmation": "move_tool_success_and_user_sidebar_screenshot",
+        "list_threads_project_id_at_check": null,
+        "cwd": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design"
+      }
+    ],
+    "evidence_note": "用户侧栏截图确认两个聊天均在新项目中。当前聊天列表接口仍返回空projectId，保留该差异，不再要求重复移动。原会话工作目录与历史导出快照未改写。"
+  },
+  "source_removal_candidates": [
+    {
+      "path": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_20261021",
+      "target_type": "directory",
+      "files": 14,
+      "bytes": 15389279,
+      "contains_reparse_points": false,
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_20261021",
+      "removal_authorized": true,
+      "removed": true
+    },
+    {
+      "path": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_match_20261021",
+      "target_type": "directory",
+      "files": 9,
+      "bytes": 14127038,
+      "contains_reparse_points": false,
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_match_20261021",
+      "removal_authorized": true,
+      "removed": true
+    },
+    {
+      "path": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\evaluator_module_20261021",
+      "target_type": "directory",
+      "files": 6,
+      "bytes": 13264786,
+      "contains_reparse_points": false,
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\evaluator_module_20261021",
+      "removal_authorized": true,
+      "removed": true
+    },
+    {
+      "path": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana\\outputs\\satellite_multiagent_briefing\\scheme_two_slim_20261021",
+      "target_type": "directory",
+      "files": 5,
+      "bytes": 13218481,
+      "contains_reparse_points": false,
+      "destination": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migrated_materials\\scheme_two_slim_20261021",
+      "removal_authorized": true,
+      "removed": true
+    }
+  ],
+  "source_removal_status": "deleted_and_verified",
+  "source_removal_manifest": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migration_20261021\\原目录清理待确认清单.json",
+  "onedrive_sync_status": "删除前后OneDrive.exe运行，PID=70788；同步队列状态未读取；同步开关未修改；本次删除可能传播到云端",
+  "excluded": [
+    "卫星调度源码、数据与问题模板Evidence",
+    "方案一和方案三专属工作目录",
+    "原项目Git或运行环境",
+    "Codex应用内部数据库与全局配置"
+  ],
+  "verification": {
+    "copied_files_sha256": "pass",
+    "history_message_count": 132,
+    "history_image_count": 1,
+    "authored_local_links": 32,
+    "presentation_slide_count": 2,
+    "presentation_visual_match_except_page_numbers": true,
+    "source_removed": true,
+    "source_shared_presentation_modified": false,
+    "application_project_registered": true,
+    "application_thread_membership_moved": true,
+    "source_removal_manifest_prepared": true,
+    "source_removal_authorized": true,
+    "retained_copy_count_after_cleanup": 34,
+    "protected_presentations_checked_after_cleanup": 3,
+    "all_removed_targets_absent": true
+  },
+  "source_removal_completed_at_asia_shanghai": "2026-10-21T16:09:21+08:00",
+  "source_removal_execution_script": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design\\outputs\\migration_20261021\\execute_approved_cleanup.py"
+}

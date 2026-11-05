@@ -1,0 +1,4 @@
+{
+  "description": "计划交付检查已迁到用户级 hooks.json 与 planning-with-files skill；此处不再重复注册。",
+  "hooks": {}
+}

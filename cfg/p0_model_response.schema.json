@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "thought": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    }
+  },
+  "required": ["thought", "code"],
+  "additionalProperties": false
+}

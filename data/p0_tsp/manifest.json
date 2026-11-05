@@ -1,0 +1,37 @@
+{
+  "format": "P0 TSP 坐标数据，JSON 三维数组",
+  "coordinates": "有限的 IEEE 754 binary64 数值，范围 [0, 1)，使用未取整的欧氏距离",
+  "source_identity": "公开仓库中的 RoCo 规格参考数据，未确认与论文作者的实际实验文件相同",
+  "conversion": "NumPy 数组转为 Python 列表，以 UTF-8 紧凑 JSON 序列化，末尾保留一个 LF",
+  "reported_upstream_repository": "https://github.com/9gkmv5yckj-ai/RoCo-main",
+  "reported_upstream_commit": "4ad8cfc55056f2d2da94689366ac346eaa620505",
+  "upstream_note": "2026-11-05 通过 GitHub API 核验公开仓库固定提交中两份文件的 Git blob，均与本地来源文件一致。",
+  "generator_repository": "https://github.com/ai4co/reevo",
+  "generator_commit": "e7d4ba97cccf4677e4a4292f0be805cccc909cbd",
+  "generator_verification": "核对该版本公开生成器的参数，使用各自种子重建的坐标与本地来源逐位一致。",
+  "local_generator": "../../scripts/generate_p0_tsp.py",
+  "local_generator_note": "使用 CPython 标准库重建 NumPy RandomState 的 MT19937 序列；已在 CPython 3.13.12 和 NumPy 2.4.4 下核对完整坐标。现有 JSON 快照最初由来源数组转换，内容与本地生成结果逐字节一致。",
+  "verification_numpy_version": "2.4.4",
+  "datasets": [
+    {
+      "file": "train50.json",
+      "sha256": "56e109bc69c145779555da56649794643e3fbc2b085f82b063f601a4e85d3de3",
+      "shape": [5, 50, 2],
+      "instance_id_prefix": "tsp50-",
+      "source_file": "../../../agentic_heuristic_design/problems/tsp_aco/dataset/train50_dataset.npy",
+      "source_sha256": "49cfd10c6d21efd39736e5baf57510b4ce6945c3a057cdbe8dcad398c728599a",
+      "source_git_blob": "3b7bb10195da3a7b815790c2191ead0bb742f365",
+      "verified_random_state_seed": 1234
+    },
+    {
+      "file": "train200.json",
+      "sha256": "a64babca6b3a12c436e95267f87c31096cf8c1d97e38ae81f68e3e2c4d6dbbf9",
+      "shape": [10, 200, 2],
+      "instance_id_prefix": "tsp200-",
+      "source_file": "../../../agentic_heuristic_design/problems/tsp_gls/dataset/train200_dataset.npy",
+      "source_sha256": "f8da974c2a9e935b86c05991f0ed722d01bd1e3a4a18ddde65c381b224086235",
+      "source_git_blob": "8fef7b54548a15fd942baaaad7d005312d1ef67d",
+      "verified_random_state_seed": 5
+    }
+  ]
+}

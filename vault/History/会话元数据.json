@@ -1,0 +1,29 @@
+{
+  "session_id": "01a15852-efcc-7bc1-a476-a0d218ebd6c1",
+  "thread_title": "查找混合算法多智能体方法",
+  "source_project": "E:\\OneDrive\\project\\static_determine\\roco_paperbanana",
+  "destination_project": "E:\\OneDrive\\project\\static_determine\\agentic_hybrid_design",
+  "source_rollout_path": "C:\\Users\\a_wei\\.codex\\sessions\\2026\\10\\20\\rollout-2026-10-20T15-59-52-01a15852-efcc-7bc1-a476-a0d218ebd6c1.jsonl",
+  "source_snapshot_bytes": 14235341,
+  "source_snapshot_sha256": "2b804c293ea5c113acfecbd76b616681ad5b99063064d6d3c51c2e868b38ee6f",
+  "created_at": "2026-10-20T07:59:52.783Z",
+  "exported_at_utc": "2026-10-21T07:33:45.195893+00:00",
+  "exported_at_asia_shanghai": "2026-10-21T15:33:45.195893+08:00",
+  "git_root": null,
+  "branch": null,
+  "HEAD": null,
+  "messages": 132,
+  "roles": {
+    "user": 39,
+    "assistant": 93
+  },
+  "assistant_phases": {
+    "commentary": 60,
+    "final_answer": 33
+  },
+  "export_scope": "全部用户消息与助手可见回复，包含用户上下文与图片引用；不导出其他内部记录",
+  "application_thread_membership_moved": false,
+  "application_project_registered": false,
+  "source_evidence_status": "原卫星问题模板证据未迁入，本项目暂无算法性能Evidence",
+  "status": "confirmed_export; application_membership_unresolved"
+}

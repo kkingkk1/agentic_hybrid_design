@@ -1,0 +1,3 @@
+# P0实例快照按字节校验；检出时保持LF。
+/data/p0_tsp/train50.json text eol=lf
+/data/p0_tsp/train200.json text eol=lf
