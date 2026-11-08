@@ -17,6 +17,12 @@
 - 此 PDF 为 2021-03-10 的会议发表版，采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。ALG-005 当初核对的是 [arXiv 作者稿 v3](https://arxiv.org/abs/2010.02583v3)，不能将本目录的发表版误称为该作者稿。
 - PDF SHA-256：`5a40968dd9cae72476cdf71cb83f8f4cc2ea25e8456fb2346dcf0510d83ec5d5`。
 
-其他两篇论文的正文入口及本目录未收录的原因见[校准样例审阅资料入口](../../vault/Knowledge/P1-只读知识库校准/审阅资料入口.md)。
+## HGS-CVRP
+
+- [MinerU 解析全文](HGS_MinerU/full.md)及同目录的结构化 JSON 和图片来自 Thibaut Vidal 的 [arXiv:2012.10384v2 作者稿](https://arxiv.org/abs/2012.10384v2)，用于 ALG-002 和 CASE-001。原稿 PDF 为 24 页；解析资料含 17 张图片。
+- 研究者于 2026-11-08 确认已取得将该作者稿全文及其 MinerU 解析文本公开发布的权利人授权。该确认不代表向其他使用者另行授予许可。
+- MinerU 对公式、表格和图片的识别可能有误，关键内容须与作者稿核对。
+
+ALNS 的正文入口与解析状态见[校准样例审阅资料入口](../../vault/Knowledge/P1-只读知识库校准/审阅资料入口.md)。
 
 GitHub 的原始 PDF 下载链接可能返回 `application/octet-stream`，部分网页工具不能直接解析。遇到此限制时，可使用 Split 的[作者稿 HTML](https://arxiv.org/html/1508.02759v3)，以及上面的 2-Opt 文字版或[出版方 PDF](https://drops.dagstuhl.de/storage/00lipics/lipics-vol187-stacs2021/LIPIcs.STACS.2021.18/LIPIcs.STACS.2021.18.pdf)。
