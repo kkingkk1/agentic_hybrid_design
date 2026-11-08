@@ -1,0 +1,1331 @@
+[
+  {
+    "id": "ref_30",
+    "content": {
+      "Therapy Sessions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "Therapy Technique 1": [
+        2.1,
+        2.5,
+        3.2,
+        3.8,
+        4.1
+      ],
+      "Therapy Technique 2": [
+        1.0,
+        1.8,
+        2.4,
+        2.9,
+        3.6
+      ],
+      "Therapy Technique 3": [
+        1.5,
+        1.7,
+        2.5,
+        2.8,
+        3.2
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots, titled Effectiveness of Different Therapy Techniques Over Sessions: (1) a line chart about therapy sessions and effectiveness, titled Comparison of Techniques, (2) a line chart about therapy sessions and trend, titled Polynomial Trend Analysis(size of the desired plot: width=12.0, height=6.0)",
+    "path_to_gt_image": "images/line_196.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\n# Generate data related to psychology domain\nnp.random.seed(0)\nsessions = np.array([1, 2, 3, 4, 5])\ntherapy_1_values = np.array([2.1, 2.5, 3.2, 3.8, 4.1])\ntherapy_2_values = np.array([1.0, 1.8, 2.4, 2.9, 3.6])\ntherapy_3_values = np.array([1.5, 1.7, 2.5, 2.8, 3.2])\ntrend_values = np.poly1d(np.polyfit(sessions, therapy_2_values, 3))(sessions)\n\n# Axes Limits and Labels\nxlabel_value = \"Therapy Sessions\"\nylabel_value_1 = \"Effectiveness (Scale 1-5)\"\nylabel_value_2 = \"Trend\"\nyticks_values_1 = np.arange(1, 5.1, 1)\nyticks_values_2 = np.arange(min(trend_values), max(trend_values) + 0.1, 0.5)\n\n# Labels\nlabel_1 = \"Therapy Technique 1\"\nlabel_2 = \"Therapy Technique 2\"\nlabel_3 = \"Therapy Technique 3\"\nlabel_4 = \"Polynomial Trend (from Technique 2)\"\n\nsuptitle=\"Effectiveness of Different Therapy Techniques Over Sessions\"\ntitle =[\"Comparison of Techniques\",\"Polynomial Trend Analysis\"]\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create subplots\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))\n\n# First subplot\nax1.plot(sessions, therapy_1_values, \"o-\", color=\"#1f77b4\", label=label_1, linewidth=2)\nax1.plot(sessions, therapy_2_values, \"s--\", color=\"#2ca02c\", label=label_2, linewidth=2)\nax1.plot(sessions, therapy_3_values, \"^:\", color=\"#d62728\", label=label_3, linewidth=2)\nax1.set_xlabel(xlabel_value, fontsize=12)\nax1.set_ylabel(ylabel_value_1, fontsize=12)\nax1.set_xticks(sessions)\nax1.set_yticks(yticks_values_1)\nax1.legend(loc=\"upper left\", fontsize=10)\nax1.grid(True)\n\n# Second subplot\nax2.plot(sessions, therapy_3_values, \"d-.\", color=\"#9467bd\", label=label_3, linewidth=2)\nax2.plot(sessions, trend_values, \"*-m\", label=label_4, linewidth=2)\nax2.set_xlabel(xlabel_value, fontsize=12)\nax2.set_ylabel(ylabel_value_2, fontsize=12)\nax2.set_xticks(sessions)\nax2.set_yticks(yticks_values_2)\nax2.legend(loc=\"upper right\", fontsize=10)\nax2.grid(True)\n\n# Annotations and styling\nfor ax in (ax1, ax2):\n    ax.spines[\"left\"].set_position((\"outward\", 10))\n    ax.spines[\"bottom\"].set_position((\"outward\", 10))\n    ax.spines[\"right\"].set_color(\"none\")\n    ax.spines[\"top\"].set_color(\"none\")\nfor x, y in zip(sessions, therapy_1_values):\n    ax1.annotate(\n        f\"{y:.1f}\", xy=(x, y), textcoords=\"offset points\", xytext=(0, 10), ha=\"center\"\n    )\nfor x, y in zip(sessions, trend_values):\n    ax2.annotate(\n        f\"{y:.1f}\", xy=(x, y), textcoords=\"offset points\", xytext=(0, 10), ha=\"center\"\n    )\n\n# Add titles\nfig.suptitle(suptitle, fontsize=14)\nax1.set_title(title[0], fontsize=12)\nax2.set_title(title[1], fontsize=12)\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.tight_layout(rect=[0, 0, 1, 0.95])\nplt.savefig(\"line_196.pdf\", bbox_inches=\"tight\")\n",
+      "width": 12.0,
+      "height": 6.0,
+      "rounded_ratio": "16:9"
+    },
+    "difficulty": "hard",
+    "category": "line"
+  },
+  {
+    "id": "ref_31",
+    "content": {
+      "Classes": [
+        "spotlight",
+        "sliding",
+        "wool",
+        "weasel",
+        "space",
+        "partridge",
+        "mushroom",
+        "bighorn"
+      ],
+      "Majority Accuracy": [
+        0.95,
+        0.7,
+        0.55,
+        0.5,
+        0.4,
+        0.4,
+        0.35,
+        0.3
+      ],
+      "Minority Accuracy": [
+        0.1,
+        0.22,
+        0.35,
+        0.4,
+        0.5,
+        0.55,
+        0.6,
+        0.6
+      ]
+    },
+    "visual_intent": "A scatter plot about Classes and Accuracy comparing Majority and Minority groups, titled Accuracies for the ImageNet Classes (ClarifAI)(size of the desired plot: width=6.0, height=3.0)",
+    "path_to_gt_image": "images/scatter_14.jpg",
+    "original_category": "scatter",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Data for plotting\ncategories = [\n    \"spotlight\",\n    \"sliding\",\n    \"wool\",\n    \"weasel\",\n    \"space\",\n    \"partridge\",\n    \"mushroom\",\n    \"bighorn\",\n]\nmajority_accuracy = [0.95, 0.70, 0.55, 0.50, 0.40, 0.40, 0.35, 0.30]\nminority_accuracy = [0.10, 0.22, 0.35, 0.40, 0.50, 0.55, 0.60, 0.60]\nxlabel = \"Classes\"\nylabel = \"Accuracy\"\nlabels = [\"Majority\", \"Minority\"]\ntitle = \"Accuracies for the ImageNet Classes (ClarifAI)\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Set figure size to match the original image's dimensions\nplt.figure(figsize=(6, 3))\n\n# Plotting the data without error bars\nplt.scatter(categories, majority_accuracy, color=\"blue\", label=labels[0])\nplt.scatter(categories, minority_accuracy, color=\"red\", label=labels[1])\n\n# Adding labels and title\nplt.xlabel(xlabel)\nplt.ylabel(ylabel)\nplt.title(title)\n\n# Adding grid\nplt.grid(True, linestyle=\"--\", linewidth=0.5)\n\n# Rotate x-axis labels for better readability\nplt.xticks(rotation=90)\nplt.ylim(0, 1.5)\n# Adjusting legend placement to match the reference picture\nplt.legend(loc=\"upper right\")\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show plot with tight layout to match the reference picture\nplt.tight_layout()\nplt.savefig(\"scatter_14.pdf\", bbox_inches=\"tight\")\n",
+      "width": 6.0,
+      "height": 3.0,
+      "rounded_ratio": "16:9"
+    },
+    "difficulty": "easy",
+    "category": "scatter"
+  },
+  {
+    "id": "ref_32",
+    "content": {
+      "Label": [
+        "Cloud Services 35%",
+        "Artificial Intelligence 30%",
+        "Blockchain 20%",
+        "IoT 15%"
+      ],
+      "Value": [
+        35,
+        30,
+        20,
+        15
+      ]
+    },
+    "visual_intent": "A donut chart about technology adoption percentages across different sectors, titled Technology Adoption Distribution 2023(size of the desired plot: width=8.0, height=8.0)",
+    "path_to_gt_image": "images/pie_73.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\nlabels = [\"Cloud Services 35%\", \"Artificial Intelligence 30%\", \"Blockchain 20%\", \"IoT 15%\"]\nsizes = [35, 30, 20, 15]\ntitle = \"Technology Adoption Distribution 2023\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nautopct_format = \"%1.1f%%\"\nstartangle = 140\npctdistance = 0.85\ncentre_circle_radius = 0.70\nfig, ax = plt.subplots(figsize=(8, 8))\ncolors = [\n    \"#1f77b4\",  # Blue\n    \"#ff7f0e\",  # Orange\n    \"#2ca02c\",  # Green\n    \"#d62728\",  # Red\n]\nhatches = ['/', '\\\\', '|', '-']\nax.pie(\n    sizes,\n    labels=labels,\n    colors=colors,\n    autopct=autopct_format,\n    startangle=startangle,\n    hatch=hatches,\n    shadow=True,\n    pctdistance=pctdistance,\n)\nplt.title(title, fontsize=14, fontweight='bold')\n\n# Draw center circle for a donut effect\ncentre_circle = plt.Circle((0, 0), centre_circle_radius, fc=\"white\")\nfig.gca().add_artist(centre_circle)\n\n# Ensure that pie is drawn as a circle.\nax.axis(\"equal\")\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.tight_layout()\nplt.savefig(\"pie_73.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_33",
+    "content": {
+      "Decomposition IO Norm": [
+        0,
+        20,
+        40,
+        60,
+        80
+      ],
+      "coco (10k)": [
+        0.6,
+        0.7,
+        0.72,
+        0.73,
+        0.74
+      ],
+      "laion (10k)": [
+        0.58,
+        0.67,
+        0.7,
+        0.71,
+        0.73
+      ],
+      "coco (5k)": [
+        0.56,
+        0.66,
+        0.67,
+        0.68,
+        null
+      ],
+      "laion (5k)": [
+        0.55,
+        0.61,
+        0.64,
+        0.65,
+        null
+      ]
+    },
+    "visual_intent": "A line chart about Decomposition IO Norm and Accuracy, titled Effect of Vocab on Zero Shot Accuracy(size of the desired plot: width=6.0, height=6.0)",
+    "path_to_gt_image": "images/line_11.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Approximated data points based on the image\ndecomposition_IO_norm = [0, 20, 40, 60, 80]\ncoco_10k = [0.60, 0.70, 0.72, 0.73, 0.74]\nlaion_10k = [0.58, 0.67, 0.70, 0.71, 0.73]\ncoco_5k = [0.56, 0.66, 0.67, 0.68, None]\nlaion_5k = [0.55, 0.61, 0.64, 0.65, None]\nclip_y = [0.75, 0.75]\nclip_x = [-10, 90]\n\n# Axes Limits and Labels\nxlabel_value = \"Decomposition IO Norm\"\nxlim_values = [-10, 90]\n\nylabel_value = \"Accuracy\"\nylim_values = [0.53, 0.76]\nyticks_values = [0.55, 0.60, 0.65, 0.70, 0.75]\n\n# Labels\nlabel_1=\"coco (10k)\"\nlabel_2=\"laion (10k)\"\nlabel_3 = \"coco (5k)\"\nlabel_4=\"laion (5k)\"\nlabel_5=\"CLIP\"\n\n# Titles\ntitle_1 = \"Effect of Vocab on Zero Shot Accuracy\"\ntitle_2 = \"Dictionary\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create the plot\nplt.figure(figsize=(6, 6))  # Adjust figure size to match original image dimensions\nplt.plot(decomposition_IO_norm, coco_10k, label=label_1, color=\"red\", marker=\"o\")\nplt.plot(\n    decomposition_IO_norm, laion_10k, label=label_2, color=\"green\", marker=\"o\"\n)\nplt.plot(decomposition_IO_norm, coco_5k, label=label_3, color=\"blue\", marker=\"o\")\nplt.plot(\n    decomposition_IO_norm, laion_5k, label=label_4, color=\"orange\", marker=\"o\"\n)\nplt.plot(clip_x, clip_y, label=label_5, color=\"black\", linestyle=\"--\")\n\n# Add title and labels\nplt.title(title_1)\nplt.xlabel(xlabel_value)\nplt.ylabel(ylabel_value)\nplt.xticks(decomposition_IO_norm)\nplt.xlim(xlim_values)\nplt.yticks(yticks_values)\nplt.ylim(ylim_values)\n# Add legend with additional entry\nplt.legend(title=title_2,loc=\"lower right\")\n\n# Adding the white grid manually\nplt.grid(color=\"white\", linestyle=\"-\", linewidth=0.5)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"line_11.pdf\", bbox_inches=\"tight\")\n",
+      "width": 6.0,
+      "height": 6.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "easy",
+    "category": "line"
+  },
+  {
+    "id": "ref_34",
+    "content": {
+      "Subject": [
+        "Physics",
+        "Chemistry",
+        "Biology"
+      ],
+      "Consistency Score": [
+        0.4,
+        0.25,
+        0.35
+      ],
+      "Theory Validation": [
+        0.6,
+        -0.1,
+        0.3
+      ],
+      "Experimental Error": [
+        -0.3,
+        0.45,
+        0.1
+      ],
+      "Publication Rate": [
+        0.4,
+        -0.2,
+        -0.5
+      ],
+      "Impact Factor": [
+        0.2,
+        0.3,
+        0.6
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots: (1) a bar chart about scientific subjects and their consistency scores, (2) a heatmap showing various performance metrics for the same subjects, titled Scientific Research Consistency and Correlation Analysis(size of the desired plot: width=12.0, height=5.0)",
+    "path_to_gt_image": "images/multidiff_70.jpg",
+    "original_category": "multidiff",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n\n# Data for bar plot\ncategories = [\"Physics\", \"Chemistry\", \"Biology\"]\nvalues = [0.40, 0.25, 0.35]\n\n# Data for heatmap\ndata = np.array(\n    [[0.6, -0.3, 0.4, 0.2], [-0.1, 0.45, -0.2, 0.3], [0.3, 0.1, -0.5, 0.6]]\n)\nrows = [\"Physics\", \"Chemistry\", \"Biology\"]\ncolumns = [\"Theory Validation\", \"Experimental Error\", \"Publication Rate\", \"Impact Factor\"]\nylabel = \"Consistency Score\"\nylim = [0, 0.5]\nsuptitle=\"Scientific Research Consistency and Correlation Analysis\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create the bar plot on the left\nplt.figure(figsize=(12, 5))\n\nplt.subplot(1, 2, 1)\nbars = plt.bar(categories, values, color=[\"#4C72B0\", \"#55A868\", \"#C44E52\"])\nplt.ylabel(ylabel, fontsize=12)\nplt.ylim(ylim)\nfor bar, value in zip(bars, values):\n    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() - 0.05, f\"{value:.2f}\", \n             ha='center', va='center', color='white', fontsize=10, fontweight='bold')\n\n# Create the heatmap on the right\nplt.subplot(1, 2, 2)\nheatmap = plt.imshow(data, cmap=\"coolwarm\", interpolation=\"nearest\", vmin=-1.0, vmax=1.0)\nplt.xticks(np.arange(len(columns)), columns, rotation=30, ha=\"right\", fontsize=10)\nplt.yticks(np.arange(len(rows)), rows, fontsize=10)\nplt.colorbar(heatmap)\n\n# Annotate the heatmap with text\nfor i in range(len(rows)):\n    for j in range(len(columns)):\n        plt.text(j, i, f\"{data[i, j]:.2f}\", ha=\"center\", va=\"center\", color=\"black\", fontsize=10)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout to prevent overlap\nplt.suptitle(suptitle, fontsize=14, fontweight='bold')\nplt.tight_layout(rect=[0, 0, 1, 0.95])\n\nplt.savefig(\"multidiff_70.pdf\", bbox_inches=\"tight\")\n",
+      "width": 12.0,
+      "height": 5.0,
+      "rounded_ratio": "21:9"
+    },
+    "difficulty": "hard",
+    "category": "misc"
+  },
+  {
+    "id": "ref_35",
+    "content": {
+      "Metric": [
+        "[1] Crop Yield",
+        "[2] Soil Quality",
+        "[3] Water Availability",
+        "[4] Pest Resistance",
+        "[5] Climate Adaptability",
+        "[6] Nutrient Absorption",
+        "[7] Harvest Frequency",
+        "[8] Market Value",
+        "[9] Disease Resistance",
+        "[10] Growth Rate"
+      ],
+      "Traditional Methods": [
+        70,
+        85,
+        80,
+        65,
+        90,
+        75,
+        70,
+        80,
+        85,
+        95
+      ],
+      "New Technology": [
+        85,
+        90,
+        75,
+        80,
+        95,
+        85,
+        75,
+        90,
+        90,
+        100
+      ]
+    },
+    "visual_intent": "A radar chart comparing agricultural metrics across ten categories between traditional methods and new technology(size of the desired plot: width=8.0, height=8.0)",
+    "path_to_gt_image": "images/radar_34.jpg",
+    "original_category": "radar",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(42)\n\n# Data for the radar chart\nlabels = np.array(\n    [\n        \"[1] Crop Yield\",\n        \"[2] Soil Quality\",\n        \"[3] Water Availability\",\n        \"[4] Pest Resistance\",\n        \"[5] Climate Adaptability\",\n        \"[6] Nutrient Absorption\",\n        \"[7] Harvest Frequency\",\n        \"[8] Market Value\",\n        \"[9] Disease Resistance\",\n        \"[10] Growth Rate\",\n    ]\n)\nbaseline_values = np.array([70, 85, 80, 65, 90, 75, 70, 80, 85, 95])\nnew_tech_values = np.array([85, 90, 75, 80, 95, 85, 75, 90, 90, 100])\nyticks = [20, 40, 60, 80, 100]\nytickslabel = [\"20\", \"40\", \"60\", \"80\", \"100\"]\nylim = [0, 120]\nlabels2 = [\"Traditional Methods\", \"New Technology\"]\nrgrids = [40, 60, 80, 100]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Size of the figure\n\nfig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))\n\n# Number of variables\nnum_vars = len(labels)\n\n# Compute angle for each axis\nangles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()\n\n# The plot is circular, so we need to \"complete the loop\" and append the start to the end.\nbaseline_values = np.concatenate((baseline_values, [baseline_values[0]]))\nnew_tech_values = np.concatenate((new_tech_values, [new_tech_values[0]]))\nangles += angles[:1]\n\n# Draw one axe per variable and add labels\nplt.xticks(angles[:-1], [], color=\"black\", size=8, ha=\"right\")\nfor angle, label in zip(angles[:-1], labels):  # Remove the appended first element\n    if (\n        angle < np.pi / 2 or angle > 3 * np.pi / 2\n    ):  # If the text is at the bottom or right side of the chart\n        ax.text(\n            angle,\n            125,\n            label,\n            horizontalalignment=\"left\",\n            size=8,\n            verticalalignment=\"bottom\",\n        )\n    else:  # If the text is at the top or left side of the chart\n        ax.text(\n            angle,\n            125,\n            label,\n            horizontalalignment=\"right\",\n            size=8,\n            verticalalignment=\"bottom\",\n        )\n\n# Draw ylabels\nax.set_rlabel_position(0)\nplt.yticks(\n    yticks,\n    ytickslabel,\n    color=\"grey\",\n    size=8,\n)\nplt.ylim(ylim)\n\n# Plot data\nax.plot(\n    angles,\n    baseline_values,\n    linewidth=1,\n    linestyle=\"dashed\",\n    label=labels2[0],\n    color=\"brown\",\n    marker='o',\n    markersize=5,\n)\nax.fill(angles, baseline_values, \"brown\", alpha=0.1)\n\nax.plot(\n    angles,\n    new_tech_values,\n    linewidth=2,\n    linestyle=\"solid\",\n    label=labels2[1],\n    color=\"green\",\n    marker='s',\n    markersize=5,\n)\nax.fill(angles, new_tech_values, \"green\", alpha=0.1)\n\n# Add legend\nplt.legend(loc=\"upper right\", bbox_to_anchor=(0.1, 0.1))\n\n# Adjust gridlines\nax.set_rgrids(\n    rgrids,\n    labels=rgrids,\n    angle=0,\n    color=\"black\",\n)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout for better fit and save the plot\nplt.tight_layout()\nplt.savefig(\"radar_34.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "radar"
+  },
+  {
+    "id": "ref_36",
+    "content": {
+      "Department": [
+        "Sales",
+        "Marketing",
+        "Finance"
+      ],
+      "Start_Value": [
+        8.0,
+        7.5,
+        9.0
+      ],
+      "Bias": [
+        -3.5,
+        -2.75,
+        -4.0
+      ]
+    },
+    "visual_intent": "An arrow chart about departments and performance metrics showing out-group bias, titled Departmental Performance and Bias(size of the desired plot: width=5.0, height=4.0)",
+    "path_to_gt_image": "images/quiver_25.jpg",
+    "original_category": "quiver",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\nimport matplotlib.lines as mlines\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n\n# New Business Data for the plot\ndepartments = [\"Sales\", \"Marketing\", \"Finance\"]\nout_start_business = [8.0, 7.5, 9.0]\nout_group_bias_business = [-3.5, -2.75, -4.0]\nin_start_business = [7.0, 6.5, 8.5]\nin_group_bias_business = [+2.5, +2.0, +3.0]\n\n# Axes Limits and Labels\nxlim_business = [0, 10]\nlabel_business = \"Out-group bias\\n(Department)\"\n\n# Chart title and axis labels\nchart_title = \"Departmental Performance and Bias\"\nxlabel = \"Performance Metrics\"\nylabel = \"Departments\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create figure with a single subplot\nfig, ax1 = plt.subplots(figsize=(5, 4))\n\n# Set the y-axis offsets to be in the middle of each grid\noffset = 0.5\n\n# First subplot (departments)\nfor i, dept in enumerate(departments):\n    # Out-group bias line with arrow and black dots at start and end\n    ax1.annotate(\n        \"\",\n        xy=(out_start_business[i], i + offset * 3 / 2),\n        xytext=(out_start_business[i] + out_group_bias_business[i], i + offset * 3 / 2),\n        arrowprops=dict(arrowstyle=\"<-\", color=\"blue\"),\n    )\n    ax1.scatter(\n        [out_start_business[i], out_start_business[i] + out_group_bias_business[i]],\n        [i + offset * 3 / 2, i + offset * 3 / 2],\n        color=\"black\",\n        s=10,\n    )\n    ax1.annotate(\n        f\"{out_group_bias_business[i]:.2f}\",\n        (out_start_business[i] + out_group_bias_business[i], i + offset * 1.75),\n        color=\"blue\",\n        ha=\"right\",\n        va=\"center\",\n    )\n\n# Set y-axis limits\nax1.set_ylim(0, len(departments))\n\n# Set x-axis limits uniformly\nax1.set_xlim(xlim_business)\n\n# Adjust the y-axis tick positions\nax1.set_yticks([i + offset for i in range(len(departments))])\nax1.set_yticklabels(departments)\n\n# Offset grid lines on the y-axis\nax1.set_yticks([i for i in range(len(departments))], minor=True)\n\nax1.yaxis.grid(True, which=\"minor\", linewidth=0.5, alpha=0.7, color=\"black\")\n\n# Add x-axis grid lines and set the gap to be 1\nax1.xaxis.set_major_locator(plt.MultipleLocator(1))\n\nax1.grid(axis=\"x\", linestyle=\"--\", linewidth=0.5)\n\n# Create arrow-shaped legend entries with a line that aligns with the arrowhead\nblue_arrow = mlines.Line2D(\n    [],\n    [],\n    color=\"blue\",\n    marker=\">\",\n    linestyle=\"-\",\n    markersize=8,\n    label=label_business,\n    linewidth=2,\n    markeredgewidth=2,\n    markevery=(1, 1),\n)\n\nfig.legend(handles=[blue_arrow], bbox_to_anchor=(0.45, 0), ncol=2)\n\n# Add title and labels\nax1.set_title(chart_title)\nax1.set_xlabel(xlabel)\nax1.set_ylabel(ylabel)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout and save the plot\nplt.tight_layout()\nplt.savefig(\"quiver_25.pdf\", bbox_inches=\"tight\")\n",
+      "width": 5.0,
+      "height": 4.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "misc"
+  },
+  {
+    "id": "ref_37",
+    "content": {
+      "Player": [
+        "Player A",
+        "Player B",
+        "Player C",
+        "Player D",
+        "Player E",
+        "Player F"
+      ],
+      "Performance Time (minutes)": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "Average Score": [
+        7.8,
+        8.2,
+        7.5,
+        8.0,
+        7.1,
+        8.5
+      ],
+      "Bubble Size (Number of Games Played)": [
+        200,
+        400,
+        600,
+        800,
+        1000,
+        1200
+      ]
+    },
+    "visual_intent": "A bubble chart about performance time and average scores, titled Player Performance Analysis(size of the desired plot: width=10.0, height=8.0)",
+    "path_to_gt_image": "images/scatter_57.jpg",
+    "original_category": "scatter",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\n\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as ticker\nimport numpy as np\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Data for plotting\nplayers = [\"Player A\", \"Player B\", \"Player C\", \"Player D\", \"Player E\", \"Player F\"]\nperformance_time = [15, 30, 45, 60, 75, 90]\naverage_scores = [7.8, 8.2, 7.5, 8.0, 7.1, 8.5]\nsizes = [200, 400, 600, 800, 1000, 1200]\n\n# Plot and legend labels\nscatter_label = \"Bubble Size: Number of Games Played\"\n\n# Axis limits\nxlim_values = None  # Not explicitly set in the code\nylim_values = (6.5, 9.0)\n\n# Axis labels\nxlabel_value = \"Performance Time (minutes)\"\nylabel_value = \"Average Score\"\n\n# Axis ticks\nxticks_values = performance_time  # Set by FixedLocator\nyticks_values = None  # Not explicitly set in the code\n\n# Axis ticks labels\nxtickslabel_values = None  # Not explicitly set in the code\nytickslabel_values = None  # Not explicitly set in the code\n\n# Title\ntitle_value = \"Player Performance Analysis\"\n\n# Horizontal and vertical lines\naxhline_values = None  # Not explicitly set in the code\naxvline_values = None  # Not explicitly set in the code\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create a scatter plot\nfig, ax = plt.subplots(figsize=(10, 8))\ncolors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\nscatter = ax.scatter(\n    performance_time,\n    average_scores,\n    s=sizes,\n    c=colors,\n    alpha=0.6,\n    edgecolors=\"w\",\n    label=scatter_label,\n    linewidth=2,\n)\n\n# Add labels for each bubble\nfor i, txt in enumerate(players):\n    ax.annotate(\n        txt,\n        (performance_time[i], average_scores[i]),\n        ha=\"center\",\n        va=\"center\",\n        fontsize=10,\n    )\n\n# Set the x-axis to a logarithmic scale\nax.set_xscale(\"log\")\nax.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f\"{int(x):d}\"))\nax.xaxis.set_major_locator(ticker.FixedLocator(performance_time))\n\n# Set axis labels\nax.set_xlabel(xlabel_value, fontsize=12)\nax.set_ylabel(ylabel_value, fontsize=12)\nax.set_ylim(ylim_values)\n\n# Add grid\nax.grid(True, which=\"both\", linestyle=\"--\", linewidth=0.5)\n\n# Set background color to white\nfig.patch.set_facecolor(\"white\")\nax.set_facecolor(\"white\")\n\n# Add a title\nplt.title(title_value, fontsize=14, fontweight=\"bold\")\n\n# Add legend\nlegend = ax.legend()\n\nfor legend_handle in legend.legendHandles:\n    legend_handle._sizes = [80]\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"scatter_57.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "easy",
+    "category": "scatter"
+  },
+  {
+    "id": "ref_38",
+    "content": {
+      "Tech Field": [
+        "Artificial Intelligence",
+        "Cybersecurity",
+        "Blockchain",
+        "Quantum Computing",
+        "Cloud Computing",
+        "Internet of Things"
+      ],
+      "Unique speaker count mean": [
+        50,
+        45,
+        40,
+        38,
+        48,
+        42
+      ],
+      "Unique speaker count error": [
+        5,
+        4,
+        3,
+        4.5,
+        4,
+        3.5
+      ],
+      "Unique shouter count mean": [
+        20,
+        18,
+        15,
+        17,
+        22,
+        19
+      ],
+      "Unique shouter count error": [
+        2,
+        2.5,
+        2,
+        2.25,
+        2.5,
+        2.75
+      ]
+    },
+    "visual_intent": "An errorbar plot about unique speaker and shouter counts across different tech fields, titled Average Number of Unique Speakers and Shouters in Different Tech Fields(size of the desired plot: width=12.0, height=8.0)",
+    "path_to_gt_image": "images/errorpoint_14.jpg",
+    "original_category": "errorpoint",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Data (example values, replace with actual data)\ncategories = [\n    \"Artificial Intelligence\",\n    \"Cybersecurity\",\n    \"Blockchain\",\n    \"Quantum Computing\",\n    \"Cloud Computing\",\n    \"Internet of Things\",\n]\nunique_speaker_mean = [\n    50,\n    45,\n    40,\n    38,\n    48,\n    42,\n]  # Replace with actual mean values for unique speakers\nunique_shouter_mean = [\n    20,\n    18,\n    15,\n    17,\n    22,\n    19,\n]  # Replace with actual mean values for unique shouters\nunique_speaker_error = [\n    5,\n    4,\n    3,\n    4.5,\n    4,\n    3.5,\n]  # Replace with actual error values for unique speakers\nunique_shouter_error = [\n    2,\n    2.5,\n    2,\n    2.25,\n    2.5,\n    2.75,\n]  # Replace with actual error values for unique shouters\nlabels = [\"Unique speaker count mean\", \"Unique shouter count mean\"]\nylabel = \"Number of Unique Speakers\"\naxlabel = \"Average Unique Shouter Count\"\ntitle = \"Average Number of Unique Speakers and Shouters in Different Tech Fields\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Plotting\nfig, ax = plt.subplots(\n    figsize=(12, 8)\n)  # Adjust the size to match the original image's dimensions\nax.errorbar(\n    categories,\n    unique_speaker_mean,\n    yerr=unique_speaker_error,\n    fmt=\"^\",\n    color=\"navy\",\n    label=labels[0],\n    capsize=10,\n    markersize=8,\n    elinewidth=2,\n    markeredgewidth=2,\n)\nax.errorbar(\n    categories,\n    unique_shouter_mean,\n    yerr=unique_shouter_error,\n    fmt=\"*\",\n    color=\"olivedrab\",\n    label=labels[1],\n    capsize=10,\n    markersize=8,\n    elinewidth=2,\n    markeredgewidth=2,\n)\n\n# Customization\nax.set_ylabel(ylabel)\nax.set_xticklabels(categories, rotation=45, ha=\"right\")\nax.axhline(\n    y=sum(unique_shouter_mean) / len(unique_shouter_mean),\n    color=\"grey\",\n    linestyle=\"--\",\n    linewidth=2,\n    label=axlabel,\n)\nax.legend()\nax.set_title(title)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show plot\nplt.tight_layout()\nplt.savefig(\"errorpoint_14.pdf\", bbox_inches=\"tight\")\n",
+      "width": 12.0,
+      "height": 8.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "scatter"
+  },
+  {
+    "id": "ref_39",
+    "content": {
+      "Category": [
+        "Materials",
+        "Labor",
+        "Marketing",
+        "Technology",
+        "Miscellaneous"
+      ],
+      "Art Project Expenses": [
+        500,
+        300,
+        100,
+        150,
+        50
+      ],
+      "Design Project Expenses": [
+        200,
+        150,
+        80,
+        100,
+        40
+      ]
+    },
+    "visual_intent": "A nested pie chart about Art Project expenses and Design Project expenses across different categories, titled Expenses - Art Project vs. Design Project(size of the desired plot: width=8.0, height=8.0)",
+    "path_to_gt_image": "images/pie_51.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nlabels = [\"Materials\", \"Labor\", \"Marketing\", \"Technology\", \"Miscellaneous\"]\nouter_sizes = [500, 300, 100, 150, 50]  # Art project expenses\ninner_sizes = [200, 150, 80, 100, 40]  # Design project expenses\n\ntitle = \"Expenses - Art Project vs. Design Project\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nfig, ax = plt.subplots(figsize=(8, 8))\n\nouter_colors = [\"#FFB6C1\", \"#87CEFA\", \"#98FB98\", \"#FFD700\", \"#D8BFD8\"]\ninner_colors = [\"#FF69B4\", \"#4682B4\", \"#ADFF2F\", \"#FFA500\", \"#DA70D6\"]\nouter_hatch = [\"/\", \"\\\\\", \"|\", \"-\", \"+\"]  # Different hatching for outer ring\ninner_hatch = [\"x\", \"*\", \"o\", \"O\", \".\"]  # Different hatching for inner ring\n\nexplode_outer = (0.1, 0, 0, 0, 0)  # only explode the 1st slice (Materials)\n\n# Outer ring\nwedges, texts, autotexts = ax.pie(\n    outer_sizes,\n    labels=labels,\n    radius=1.2,\n    colors=outer_colors,\n    explode=explode_outer,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.85,\n    startangle=160,\n    wedgeprops=dict(width=0.3, edgecolor=\"w\", hatch=\"*\"),\n)\n\n# Inner ring\nwedges2, texts2, autotexts2 = ax.pie(\n    inner_sizes,\n    radius=0.9,\n    colors=inner_colors,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.75,\n    startangle=160,\n    wedgeprops=dict(width=0.3, edgecolor=\"w\", hatch=\"o\"),\n)\n\n# Customizing the autotexts for better visibility\nfor autotext in autotexts + autotexts2:\n    autotext.set_color(\"black\")\n    autotext.set_fontsize(10)\n\n# Title for the double layer pie chart\nax.set_title(title, fontsize=16, y=1.05)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Improve layout to make room for legend or labels if necessary\nplt.tight_layout()\n\n# Show the plot\nplt.savefig(\"pie_51.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_40",
+    "content": {
+      "Quarter": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4"
+      ],
+      "Team_A_Performance": [
+        75,
+        85,
+        78,
+        88
+      ],
+      "Team_A_Average": [
+        70,
+        80,
+        75,
+        83
+      ],
+      "Team_B_Performance": [
+        65,
+        75,
+        70,
+        80
+      ],
+      "Team_B_Average": [
+        60,
+        70,
+        65,
+        78
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots: (1) a line chart comparing Team A performance and average scores over quarters, titled Team A Performance, (2) a line chart comparing Team B performance and average scores over quarters, titled Team B Performance(size of the desired plot: width=10.0, height=5.0)",
+    "path_to_gt_image": "images/line_80.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n# Data for plotting\nquarters = [\"Q1\", \"Q2\", \"Q3\", \"Q4\"]  # Update for categorical x-axis\nteam_a_performance = [75, 85, 78, 88]\nteam_a_avg = [70, 80, 75, 83]\nteam_b_performance = [65, 75, 70, 80]\nteam_b_avg = [60, 70, 65, 78]\n\n# Axes Limits and Labels\nxticks_values = range(len(quarters))\nylabel_value = \"Performance Score (%)\"\n\n# Labels\nlabel_performance = \"Performance\"\nlabel_avg = \"Average\"\n\n# Titles\ntitle_team_a = \"Team A Performance\"\ntitle_team_b = \"Team B Performance\"\n\n# Texts\ntext_team_a = \"Top Performer\"\ntext_team_b = \"Improved Performance\"\n\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create figure and axes\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))\n\n# Plotting for Team A\nax1.set_xticks(xticks_values)  # Setting categorical x-axis\nax1.plot(\n    quarters,\n    team_a_performance,\n    marker=\"s\",\n    color=\"#FF5733\",\n    label=label_performance,\n    linewidth=3,\n    markersize=9,\n)\nax1.plot(\n    quarters,\n    team_a_avg,\n    marker=\"^\",\n    linestyle=\"--\",\n    color=\"#1F618D\",\n    label=label_avg,\n    linewidth=3,\n    markersize=9,\n)\nax1.set_title(title_team_a, fontsize=16)\nax1.set_ylabel(ylabel_value, fontsize=16)\nax1.legend(loc=\"lower left\", fontsize=14)\nax1.set_xticklabels(quarters, fontsize=12)\nax1.grid(True, which=\"both\", ls=\"--\", color=\"grey\", linewidth=1, axis=\"y\", alpha=0.5)\nax1.annotate(\n    text_team_a,\n    xy=(2, team_a_performance[2]),\n    xytext=(2, team_a_performance[2] + 5),\n    arrowprops=dict(color=\"green\", shrink=0.05, width=1.5, headwidth=8),\n)\nax1.text(\n    2.5,\n    team_a_avg[2] - 5,\n    f\"{team_a_performance[2]}%\",\n    ha=\"left\",\n    va=\"center\",\n    fontsize=12,\n    color=\"black\",\n)\n\n# Plotting for Team B\nax2.plot(\n    quarters,\n    team_b_performance,\n    marker=\"o\",\n    color=\"#33FF57\",\n    label=label_performance,\n    linewidth=3,\n    markersize=9,\n)\nax2.plot(\n    quarters,\n    team_b_avg,\n    marker=\"x\",\n    linestyle=\"--\",\n    color=\"#8E44AD\",\n    label=label_avg,\n    linewidth=3,\n    markersize=9,\n)\nax2.set_title(title_team_b, fontsize=16)\nax2.legend(loc=\"lower left\", fontsize=14)\nax2.set_xticklabels(quarters, fontsize=12)\nax2.grid(True, which=\"both\", ls=\"--\", color=\"grey\", linewidth=1, axis=\"y\", alpha=0.5)\nax2.annotate(\n    text_team_b,\n    xy=(3, team_b_performance[3]),\n    xytext=(3, team_b_performance[3] + 5),\n    arrowprops=dict(color=\"green\", shrink=0.05, width=1.5, headwidth=8),\n)\n\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout and add common annotation for quarters\nplt.tight_layout()\nplt.savefig(\"line_80.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 5.0,
+      "rounded_ratio": "16:9"
+    },
+    "difficulty": "hard",
+    "category": "line"
+  },
+  {
+    "id": "ref_41",
+    "content": {
+      "Author": [
+        "This work*",
+        "Shah et al.",
+        "Shah et al.",
+        "Banerjee et al.",
+        "Favale et al.",
+        "Favale et al.",
+        "Gomez-Valent",
+        "Gomez-Valent",
+        "Benisty et al.",
+        "Benisty et al."
+      ],
+      "M_B": [
+        -19.353,
+        -19.257,
+        -19.394,
+        -19.404,
+        -19.314,
+        -19.344,
+        -19.362,
+        -19.374,
+        -19.22,
+        -19.38
+      ],
+      "Method": [
+        "CC+Pantheon+",
+        "${θ_{BAO}+r_{CMB}+d_{Pantheon}}$",
+        "${α_{BAO}+r_CMB+d_{Pantheon}}$",
+        "CC+${r_{BAO}}$+Pantheon+ (Ωk ≠ 0)",
+        "CC+BAO+Pantheon+ (Ωk ≠ 0)",
+        "CC+Pantheon+ (Ωk ≠ 0)",
+        "CC+BAO+Pantheon (Ωk ≠ 0)",
+        "CC+BAO+Pantheon",
+        "${α_{BAO}+r_{SHOES}+Pantheon}$",
+        "${α_{BAO}+r_{CMB}+d_{Pantheon}}$"
+      ],
+      "Error_Upper": [
+        0.073,
+        0.028,
+        0.018,
+        0.099,
+        0.05,
+        0.116,
+        0.078,
+        0.08,
+        0.2,
+        0.2
+      ],
+      "Error_Lower": [
+        -0.078,
+        -0.027,
+        -0.017,
+        -0.104,
+        0.108,
+        -0.09,
+        -0.067,
+        -0.08,
+        -0.2,
+        -0.2
+      ]
+    },
+    "visual_intent": "A horizontal error bar plot about M_B values comparing various authors and methods(size of the desired plot: width=10.0, height=8.0)",
+    "path_to_gt_image": "images/errorpoint_3.jpg",
+    "original_category": "errorpoint",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n\n# Data for plotting\nauthors = [\n    \"This work*\",\n    \"Shah et al.\",\n    \"Shah et al.\",\n    \"Banerjee et al.\",\n    \"Favale et al.\",\n    \"Favale et al.\",\n    \"Gomez-Valent\",\n    \"Gomez-Valent\",\n    \"Benisty et al.\",\n    \"Benisty et al.\",\n]\nvalues = [\n    -19.353,\n    -19.257,\n    -19.394,\n    -19.404,\n    -19.314,\n    -19.344,\n    -19.362,\n    -19.374,\n    -19.220,\n    -19.380,\n]\nerrors = [\n    [0.073, -0.078],\n    [0.028, -0.027],\n    [0.018, -0.017],\n    [0.099, -0.104],\n    [0.05, 0.108],\n    [0.116, -0.090],\n    [0.078, -0.067],\n    [0.080, -0.080],\n    [0.200, -0.200],\n    [0.200, -0.200],\n]\nmethods = [\n    \"CC+Pantheon+\",\n    r\"${θ_{BAO}+r_{CMB}+d_{Pantheon}}$\",\n    r\"${α_{BAO}+r_CMB+d_{Pantheon}}$\",\n    r\"CC+${r_{BAO}}$+Pantheon+ (Ωk ≠ 0)\",\n    \"CC+BAO+Pantheon+ (Ωk ≠ 0)\",\n    \"CC+Pantheon+ (Ωk ≠ 0)\",\n    \"CC+BAO+Pantheon (Ωk ≠ 0)\",\n    \"CC+BAO+Pantheon\",\n    r\"${α_{BAO}+r_{SHOES}+Pantheon}$\",\n    r\"${α_{BAO}+r_{CMB}+d_{Pantheon}}$\",\n]\nxticks = np.arange(-19.6, -19.0, 0.1)\nxlim = [-19.6, -19.0]\nxvline = -19.219\nxvspan = [-19.187, -19.251]\n\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Plotting\nfig, ax = plt.subplots(\n    figsize=(10, 8)\n)  # Adjust the figsize to match the original image's dimensions\n\n# Error bars with different positive and negative values\nfor i, (author, value, error) in enumerate(zip(authors, values, errors)):\n    ax.errorbar(\n        value,\n        i,\n        xerr=[[abs(error[1])], [error[0]]],\n        fmt=\"o\",\n        color=\"black\",\n        ecolor=\"black\",\n        capsize=3,\n    )\n    ax.text(\n        value,\n        i - 0.15,\n        r\"$%.3f^{+%.3f} _{-%.3f}$\" % (value, error[0], abs(error[1])),\n        va=\"center\",\n        ha=\"center\",\n        fontsize=9,\n    )\n# Highlighted region with adjusted color and alpha\nax.axvspan(xvspan[0], xvspan[1], color=\"purple\", alpha=0.3)\n\n# Text for methods with adjusted font size\nfor i, method in enumerate(methods):\n    ax.text(-19.0, i, method, va=\"center\", ha=\"left\", fontsize=11)\n\n# Set labels and title\nax.set_yticks(range(len(authors)))\nax.set_yticklabels(authors)\nax.set_xlabel(r\"$M_B$\", fontsize=12)\nax.set_xlim(xlim)\nax.invert_yaxis()  # Invert y-axis to match the original image\nax.axvline(x=xvline, linestyle=\"--\", color=\"red\")\n# Adjust x-axis ticks and labels\nax.set_xticks(xticks)\nax.set_xticklabels([f\"{x:.1f}\" for x in xticks])\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout and save/show the plot\nplt.tight_layout()\nplt.savefig(\"errorpoint_3.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "scatter"
+  },
+  {
+    "id": "ref_42",
+    "content": {
+      "Energy Source": [
+        "Nuclear",
+        "Natural Gas",
+        "Biomass",
+        "Geothermal",
+        "Other"
+      ],
+      "National Consumption": [
+        220,
+        280,
+        180,
+        200,
+        120
+      ],
+      "Project Consumption": [
+        90,
+        110,
+        70,
+        80,
+        50
+      ]
+    },
+    "visual_intent": "A double-layer pie chart comparing national and project-level energy consumption sources, titled Energy Consumption - National vs. Project(size of the desired plot: width=6.0, height=6.0)",
+    "path_to_gt_image": "images/pie_46.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\n# New data for energy consumption example\nlabels = [\"Nuclear\", \"Natural Gas\", \"Biomass\", \"Geothermal\", \"Other\"]\nouter_sizes = [220, 280, 180, 200, 120]  # National energy sources distribution\ninner_sizes = [90, 110, 70, 80, 50]  # Project-level energy sources distribution\n\n# Text and title settings\ntitle = \"Energy Consumption - National vs. Project\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nfig, ax = plt.subplots(figsize=(6, 6))\n\nouter_colors = [\"#4B0082\", \"#800080\", \"#9ACD32\", \"#32CD32\", \"#F0E68C\"]\ninner_colors = [\"#8A2BE2\", \"#9370DB\", \"#ADFF2F\", \"#00FA9A\", \"#FAFAD2\"]\n\nexplode_outer = (0.1, 0, 0, 0, 0)  # only explode the 1st slice (Nuclear)\n\n# Outer ring\nwedges, texts, autotexts = ax.pie(\n    outer_sizes,\n    labels=labels,\n    radius=1.2,\n    colors=outer_colors,\n    explode=explode_outer,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.85,\n    startangle=160,\n)\n\n# Inner ring\nwedges2, texts2, autotexts2 = ax.pie(\n    inner_sizes,\n    radius=0.8,\n    colors=inner_colors,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.75,\n    startangle=160,\n)\n\n# Equal aspect ratio ensures that pie chart is drawn as a circle\nax.axis(\"equal\")\n\n# Title for the double-layer pie chart\nax.set_title(title, fontsize=20, y=1.05)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"pie_46.pdf\", bbox_inches=\"tight\")\n",
+      "width": 6.0,
+      "height": 6.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_43",
+    "content": {
+      "Service Category": [
+        "Hospital Care\n35%",
+        "Physician Services\n20%",
+        "Prescription Drugs\n18%",
+        "Dental Services\n12%",
+        "Nursing Care\n10%",
+        "Other Services\n5%"
+      ],
+      "Expenditure Share": [
+        0.35,
+        0.2,
+        0.18,
+        0.12,
+        0.1,
+        0.05
+      ]
+    },
+    "visual_intent": "A treemap about health services and expenditure percentages, titled Health Expenditure Distribution(size of the desired plot: width=12.0, height=8.0)",
+    "path_to_gt_image": "images/tree_47.jpg",
+    "original_category": "tree",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\nimport squarify\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\n# Data: Expenditure percentages for different health services\nsizes = [0.35, 0.20, 0.18, 0.12, 0.10, 0.05]\nlabels = [\n    \"Hospital Care\\n35%\",\n    \"Physician Services\\n20%\",\n    \"Prescription Drugs\\n18%\",\n    \"Dental Services\\n12%\",\n    \"Nursing Care\\n10%\",\n    \"Other Services\\n5%\",\n]\n\ntitle = \"Health Expenditure Distribution\"\nsupertitle = \"Distribution of Expenses in Healthcare Sector\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create a figure with the specified size\nfig = plt.figure(figsize=(12, 8))\n\n# Style parameters\ncolors = [\"#4f83cc\", \"#76a5af\", \"#9fc5e8\", \"#cfe2f3\", \"#3c78d8\", \"#6d9eeb\"]\n\n# Create a treemap\nsquarify.plot(\n    sizes=sizes,\n    label=labels,\n    color=colors,\n    text_kwargs={\"fontsize\": 18, \"color\": \"black\"},\n    pad=0.3,\n)\n\n# Remove axes\nplt.axis(\"off\")\n\n# Add title\nplt.title(title, fontsize=20, fontweight=\"bold\")\nplt.suptitle(supertitle, fontsize=24, fontweight=\"bold\")\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Displaying the plot with tight layout to minimize white space\nplt.tight_layout()\n# Save plot\nplt.savefig(\"tree_47.pdf\", bbox_inches=\"tight\")\n",
+      "width": 12.0,
+      "height": 8.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_44",
+    "content": {
+      "Age Group": [
+        "0-18",
+        "19-35",
+        "36-50",
+        "51-65",
+        "66-80",
+        "80+"
+      ],
+      "Population Distribution": [
+        15,
+        25,
+        35,
+        10,
+        8,
+        7
+      ]
+    },
+    "visual_intent": "A pie chart about age groups and population distribution, titled Population Distribution by Age Group(size of the desired plot: width=7.0, height=7.0)",
+    "path_to_gt_image": "images/pie_23.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n\n# Data to plot\nsizes = [15, 25, 35, 10, 8, 7]\nlabels = ['0-18', '19-35', '36-50', '51-65', '66-80', '80+']\ncolors = [\"#e41a1c\", \"#377eb8\", \"#4daf4a\", \"#984ea3\", \"#ff7f00\", \"#ffff33\"]\n\ntitle = \"Population Distribution by Age Group\"\nlegendlabels = labels\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nexplode = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1)  # add explode parameter to separate slices\n# Plot\nfig, ax = plt.subplots(figsize=(7, 7))\nax.pie(\n    sizes,\n    colors=colors,\n    labels=labels,\n    autopct=\"%1.1f%%\",\n    startangle=140,\n    wedgeprops=dict(edgecolor=\"w\"),\n    explode=explode,\n)\n\n# Add title\nplt.title(title, fontsize=16)\n\n# Add legend\nax.legend(legendlabels, loc=\"upper left\")\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show plot with tight layout\nplt.tight_layout()\nplt.savefig(\"pie_23.pdf\", bbox_inches=\"tight\")\n\n",
+      "width": 7.0,
+      "height": 7.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_45",
+    "content": {
+      "Practice Area": [
+        "Corporate Law",
+        "Criminal Law",
+        "Family Law",
+        "Intellectual Property",
+        "Environmental Law"
+      ],
+      "Distribution": [
+        40,
+        25,
+        15,
+        10,
+        10
+      ]
+    },
+    "visual_intent": "A pie chart about legal practice areas and their distribution, titled Distribution of Legal Practice Areas(size of the desired plot: width=10.0, height=7.0)",
+    "path_to_gt_image": "images/pie_80.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(1)\n# Data to plot\nlabels = [\"Corporate Law\", \"Criminal Law\", \"Family Law\", \"Intellectual Property\", \"Environmental Law\"]\nsizes = [40, 25, 15, 10, 10]\n\n\n# Extracted variables\nplot_title = \"Distribution of Legal Practice Areas\"\n\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\ncolors = [\"#2E8B57\", \"#556B2F\", \"#8FBC8F\", \"#4682B4\", \"#B0C4DE\"]\nexplode = (0.1, 0, 0, 0, 0)  # Highlight the largest segment (Corporate Law)\nautopct_format = \"%1.1f%%\"\nshadow_option = True\nstart_angle = 140\nlegend_location = \"upper left\"\nlegend_fontsize = 12\ntitle_fontsize = 18\ntitle_y_position = 1.03\n\n# Plot\nplt.figure(figsize=(10, 7))\nplt.pie(\n    sizes,\n    explode=explode,\n    colors=colors,\n    autopct=autopct_format,\n    shadow=shadow_option,  # Add shadow for depth\n    startangle=start_angle,\n)\nplt.axis(\"equal\")\n\n# Add legend\nplt.legend(labels, loc=legend_location, fontsize=legend_fontsize)\nplt.title(plot_title, fontsize=title_fontsize, y=title_y_position)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Displaying the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"pie_80.pdf\", bbox_inches=\"tight\")\n\n",
+      "width": 10.0,
+      "height": 7.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_46",
+    "content": {
+      "Policy Areas": [
+        "Healthcare",
+        "Economy",
+        "Education",
+        "Defense",
+        "Environment",
+        "Infrastructure"
+      ],
+      "Strategy A": [
+        75,
+        80,
+        70,
+        60,
+        55,
+        65
+      ],
+      "Strategy B": [
+        55,
+        55,
+        55,
+        50,
+        50,
+        45
+      ]
+    },
+    "visual_intent": "A radar chart comparing the performance of Strategy A and Strategy B across different policy areas, titled Political Strategies Performance in Different Policy Areas(size of the desired plot: width=8.0, height=7.0)",
+    "path_to_gt_image": "images/radar_47.jpg",
+    "original_category": "radar",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n\n# Data\ncategories = [\n    \"Healthcare\",\n    \"Economy\",\n    \"Education\",\n    \"Defense\",\n    \"Environment\",\n    \"Infrastructure\",\n]\nvalues1 = [75, 80, 70, 60, 55, 65]\nvalues2 = [55, 55, 55, 50, 50, 45]\nlabels = [\"Strategy A\", \"Strategy B\"]\n\n# Titles and labels\nxlabel = \"Policy Areas\"\nylabel = \"Performance\"\ntitle = \"Political Strategies Performance in Different Policy Areas\"\nlegendlabels = [\"Strategy A\", \"Strategy B\"]\nannotate_text1 = [str(val) for val in values1]\nannotate_text2 = [str(val) for val in values2]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Number of variables\nnum_vars = len(categories)\n\n# Compute angle for each category\nangles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()\n\n# The plot is circular, so we need to \"complete the loop\" and append the start to the end.\nvalues1 += values1[:1]\nvalues2 += values2[:1]\nangles += angles[:1]\n\n# Plot\nfig, ax = plt.subplots(figsize=(8, 7), subplot_kw=dict(polar=True))\nax.fill(angles, values1, color=\"#1f77b4\", alpha=0.25)  # Dark blue fill\nax.fill(angles, values2, color=\"#ff7f0e\", alpha=0.25)  # Dark red fill\nax.plot(\n    angles,\n    values1,\n    color=\"#1f77b4\",\n    linewidth=2,\n    linestyle=\"solid\",\n    marker=\"o\",\n    label=labels[0],\n)\nax.plot(\n    angles,\n    values2,\n    color=\"#ff7f0e\",\n    linewidth=2,\n    linestyle=\"dashed\",\n    marker=\"s\",\n    label=labels[1],\n)\n\n# Labels and annotations for each point\nfor angle, value1, value2 in zip(angles[:-1], values1[:-1], values2[:-1]):\n    ax.annotate(\n        f\"{value1}\", xy=(angle, value1), xytext=(5, 5), textcoords=\"offset points\"\n    )\n    ax.annotate(\n        f\"{value2}\", xy=(angle, value2), xytext=(5, -15), textcoords=\"offset points\"\n    )\n\n# Labels for each point\nax.set_xticks(angles[:-1])\nax.set_xticklabels(categories)\n\n# Remove y-tick labels\nax.set_yticklabels([])\n\n# Legend\nax.legend(\n    loc=\"lower center\",\n    bbox_to_anchor=(0.5, -0.1),\n    ncol=2,\n    frameon=True,\n    facecolor=\"#f2f2f2\",\n    edgecolor=\"#f2f2f2\",\n)\n\n# Title\nplt.title(title, size=15, color=\"#333333\")\n\nax.xaxis.set_tick_params(pad=25)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout for better fit and save the plot\nplt.tight_layout()\nplt.savefig(\"radar_47.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 7.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "radar"
+  },
+  {
+    "id": "ref_47",
+    "content": {
+      "Political Figures": [
+        "Figure 1",
+        "Figure 2",
+        "Figure 3",
+        "Figure 4",
+        "Figure 5",
+        "Figure 6",
+        "Figure 7",
+        "Figure 8"
+      ],
+      "Approval Ratings": [
+        0.45,
+        0.52,
+        0.55,
+        0.6,
+        0.35,
+        0.5,
+        0.7,
+        0.65
+      ],
+      "Disapproval Ratings": [
+        0.4,
+        0.35,
+        0.3,
+        0.25,
+        0.55,
+        0.4,
+        0.25,
+        0.3
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots: (1) a heatmap displaying approval ratings for political figures, (2) a heatmap displaying disapproval ratings for political figures, titled Political Approval and Disapproval Ratings(size of the desired plot: width=10.0, height=4.0)",
+    "path_to_gt_image": "images/heatmap_99.jpg",
+    "original_category": "heatmap",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n\n# Define the data for the approval and disapproval ratings\napproval_ratings = [0.45, 0.52, 0.55, 0.60, 0.35, 0.50, 0.70, 0.65]\ndisapproval_ratings = [0.40, 0.35, 0.30, 0.25, 0.55, 0.40, 0.25, 0.30]\n\n# Text labels and parameters\ntitles = [\"Approval Ratings\", \"Disapproval Ratings\"]\nxlabel = \"Political Figures\"\nylabel = \"Ratings\"\nfig_suptitle = \"Political Approval and Disapproval Ratings\"\nfilepath = \"heatmap_23_9.pdf\"\n\n# Define figure labels for annotation\nfigure_labels = [\"Figure \" + str(i + 1) for i in range(len(approval_ratings))]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create a figure with two subplots (one for approval and one for disapproval ratings)\nfig, axs = plt.subplots(2, 1, figsize=(10, 4), sharex=True)\nplt.suptitle(fig_suptitle)\n\n# Define the color palettes\ncmap_approval = plt.get_cmap(\"Blues\")\ncmap_disapproval = plt.get_cmap(\"Reds\")\n\n# Plot heatmap for approval ratings\nim1 = axs[0].imshow(pd.DataFrame([approval_ratings], index=[\"\"]), cmap=cmap_approval)\naxs[0].set_title(titles[0])\naxs[0].set_xticks(range(len(figure_labels)))\naxs[0].set_xticklabels(figure_labels)\naxs[0].set_yticks([])\n\n# Add annotations for approval ratings\nfor j in range(len(approval_ratings)):\n    color = \"white\" if approval_ratings[j] > np.mean(approval_ratings) else \"black\"\n    axs[0].text(j, 0, f\"{approval_ratings[j]:.2f}\", ha=\"center\", va=\"center\", color=color)\n\n# Plot heatmap for disapproval ratings\nim2 = axs[1].imshow(pd.DataFrame([disapproval_ratings], index=[\"\"]), cmap=cmap_disapproval)\naxs[1].set_title(titles[1])\naxs[1].set_xticks(range(len(figure_labels)))\naxs[1].set_xticklabels(figure_labels)\naxs[1].set_yticks([])\n\n# Add annotations for disapproval ratings\nfor j in range(len(disapproval_ratings)):\n    color = \"white\" if disapproval_ratings[j] > np.mean(disapproval_ratings) else \"black\"\n    axs[1].text(j, 0, f\"{disapproval_ratings[j]:.2f}\", ha=\"center\", va=\"center\", color=color)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Display the figure with tight layout to minimize white space\nplt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust rect to account for suptitle\nplt.savefig(\"heatmap_99.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 4.0,
+      "rounded_ratio": "21:9"
+    },
+    "difficulty": "hard",
+    "category": "heatmap"
+  },
+  {
+    "id": "ref_48",
+    "content": {
+      "Category": [
+        "Pulwama-Balakot",
+        "CAA",
+        "Kashmir",
+        "Religion",
+        "Politics"
+      ],
+      "Incivility (Fraction of Videos)": [
+        0.24,
+        0.22,
+        0.2,
+        0.19,
+        0.18
+      ],
+      "Error": [
+        0.04,
+        0.03,
+        0.02,
+        0.02,
+        0.02
+      ]
+    },
+    "visual_intent": "A horizontal dot plot with error bars about sociopolitical categories and incivility fractions(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/errorpoint_2.jpg",
+    "original_category": "errorpoint",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Data for plotting\ncategories = [\"Pulwama-Balakot\", \"CAA\", \"Kashmir\", \"Religion\", \"Politics\"]\nmeans = [0.24, 0.22, 0.20, 0.19, 0.18]\nerrors = [0.04, 0.03, 0.02, 0.02, 0.02]\ndataset_mean = [0.162]\nxlabel = \"Incivility (Fraction of Videos)\"\nlabel = \"Dataset mean\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Plotting the data\nplt.figure(figsize=(8, 6))  # Adjusting figure size to match original image's dimensions\nplt.errorbar(\n    means,\n    categories,\n    xerr=errors,\n    fmt=\"o\",\n    color=\"#bc4949\",\n    ecolor=\"#bc4949\",\n    capsize=0,\n    label=\"Mean\",\n)\nplt.axvline(dataset_mean, linestyle=\"--\", label=label)\n\n# Customizing the plot\nplt.xlabel(xlabel)\nplt.legend()\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjusting the layout and saving the figure\nplt.tight_layout()\nplt.savefig(\"errorpoint_2.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "scatter"
+  },
+  {
+    "id": "ref_49",
+    "content": {
+      "Energy Source": [
+        "Solar",
+        "Wind",
+        "Hydro",
+        "Coal",
+        "Other"
+      ],
+      "National Distribution": [
+        200,
+        300,
+        150,
+        250,
+        100
+      ],
+      "Project Distribution": [
+        80,
+        120,
+        60,
+        180,
+        40
+      ]
+    },
+    "visual_intent": "A nested pie chart about energy source distributions for national and project levels, titled Energy Consumption - National vs. Project(size of the desired plot: width=6.0, height=6.0)",
+    "path_to_gt_image": "images/pie_9.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Different data for another example\nlabels = [\"Solar\", \"Wind\", \"Hydro\", \"Coal\", \"Other\"]\nouter_sizes = [200, 300, 150, 250, 100]  # Energy sources distribution in a country\ninner_sizes = [\n    80,\n    120,\n    60,\n    180,\n    40,\n]  # Energy sources distribution for a specific project\n\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nfig, ax = plt.subplots(figsize=(6, 6))\n\nouter_colors = [\"#ffcc00\", \"#00cc99\", \"#0066cc\", \"#cc3300\", \"#999966\"]\ninner_colors = [\"#ffd700\", \"#66ffcc\", \"#3399ff\", \"#ff6666\", \"#cccc99\"]\n\nexplode_outer = (0.1, 0, 0, 0, 0)  # only explode the 1st slice (Solar)\n\n# Outer ring\nwedges, texts, autotexts = ax.pie(\n    outer_sizes,\n    labels=labels,\n    radius=1.2,\n    colors=outer_colors,\n    explode=explode_outer,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.85,\n    startangle=160,\n)\n\n# Inner ring\nwedges2, texts2, autotexts2 = ax.pie(\n    inner_sizes,\n    radius=0.8,\n    colors=inner_colors,\n    autopct=\"%1.1f%%\",\n    pctdistance=0.75,\n    startangle=160,\n)\n\n# Equal aspect ratio ensures that pie chart is drawn as a circle\nax.axis(\"equal\")\n\n# Title for the double layer pie chart\nax.set_title(\"Energy Consumption - National vs. Project\", fontsize=20, y=1.05)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Show the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"pie_9.pdf\", bbox_inches=\"tight\")\n",
+      "width": 6.0,
+      "height": 6.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_50",
+    "content": {
+      "Resolutions": [
+        "224",
+        "128",
+        "64",
+        "32"
+      ],
+      "ImageNet-1k": [
+        82,
+        60,
+        40,
+        35
+      ],
+      "PAC-FNO (ImageNet-1k Stack)": [
+        0,
+        2,
+        10,
+        30
+      ],
+      "ImageNet (F)": [
+        59,
+        50,
+        30,
+        10
+      ],
+      "PAC-FNO (ImageNet (F) Stack)": [
+        5,
+        10,
+        20,
+        20
+      ]
+    },
+    "visual_intent": "A grouped and stacked bar chart about Resolutions and Top-1 Acc. (%), titled Top-1 Accuracy by Resolution and Method(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/bar_49.jpg",
+    "original_category": "bar",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n\n# Data\nresolutions = [\"224\", \"128\", \"64\", \"32\"]\nimagenet_1k = [82, 60, 40, 35]\nimagenet_f = [59, 50, 30, 10]\npac_fno_imagenet_1k = [0, 2, 10, 30]\npac_fno_imagenet_f = [5, 10, 20, 20]\n\nlabels = [\"ImageNet-1k\", \"PAC-FNO\", \"ImageNet (F)\", \"PAC-FNO\"]\nxlabel = \"Resolutions\"\nylabel = \"Top-1 Acc. (%)\"\ntitle = \"Top-1 Accuracy by Resolution and Method\"\nyaxhline = 82\nylim = [0, 90]\nyticks = np.arange(0, 100, 20)\n\n# Positions of bars on x-axis\nind = np.arange(len(resolutions))\n\ntexts = [\"29%\", \"29%\", \"87%\", \"180%\"]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Bar width\nbar_width = 0.2\n\n# Figure size\nplt.figure(figsize=(8, 6))\n\n# Plotting\nplt.bar(ind, imagenet_1k, width=bar_width, label=labels[0], color=\"#65bae7\")\nplt.bar(\n    ind,\n    pac_fno_imagenet_1k,\n    width=bar_width,\n    label=labels[1],\n    color=\"#acdcf2\",\n    hatch=\"//\",\n    bottom=imagenet_1k,\n)\nplt.bar(ind + bar_width, imagenet_f, width=bar_width, label=labels[2], color=\"#eaa86b\")\nplt.bar(\n    ind + bar_width,\n    pac_fno_imagenet_f,\n    width=bar_width,\n    label=labels[3],\n    color=\"#f4d3b4\",\n    hatch=\"/\",\n    bottom=imagenet_f,\n)\n# Highlighting the most significant improvement\ndistance = 0.05\nplt.annotate(\n    \"\",\n    xy=(ind[0] + bar_width, 59),\n    xytext=(ind[0] + bar_width, 82),\n    arrowprops=dict(facecolor=\"black\", shrink=0.02),\n)\nplt.text(ind[0] + bar_width + distance, 70, texts[0])\nplt.annotate(\n    \"\",\n    xy=(ind[3], 35),\n    xytext=(ind[3], 82),\n    arrowprops=dict(facecolor=\"black\", shrink=0.02),\n    va=\"center\",\n)\nplt.text(ind[3] - distance * 6, 70, texts[1])\nplt.annotate(\n    \"\",\n    xy=(ind[3] + bar_width, 10),\n    xytext=(ind[3] + bar_width, 82),\n    arrowprops=dict(facecolor=\"black\", shrink=0.02),\n)\nplt.text(ind[3] + bar_width + distance, 70, texts[2])\nplt.annotate(\n    \"\",\n    xy=(ind[3] + bar_width * 2, 30),\n    xytext=(ind[3] + bar_width * 2, 10),\n    arrowprops=dict(facecolor=\"red\", shrink=0.02),\n    ha=\"center\",\n)\nplt.text(ind[3] + bar_width * 2 + distance, 20, texts[3])\nplt.axhline(y=yaxhline, color=\"blue\", linestyle=\"--\", linewidth=2)\n# X-axis labels\nplt.xticks(ind + bar_width / 2, resolutions)\n\n# Y-axis labels\nplt.ylim(ylim)\nplt.yticks(yticks)\n\n# Legend\nplt.legend(loc=\"upper center\", bbox_to_anchor=(0.5, 1.2), ncol=2)\n\n# Grid lines\nplt.grid(axis=\"y\")\n\n# Labels and Title\nplt.xlabel(xlabel)\nplt.ylabel(ylabel)\nplt.title(title)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Displaying the plot with tight layout to minimize white space\nplt.tight_layout()\nplt.savefig(\"bar_49.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "hard",
+    "category": "bar"
+  },
+  {
+    "id": "ref_51",
+    "content": {
+      "Clicks_Weeks": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "Clicks_Engagement": [
+        120,
+        135,
+        150,
+        160,
+        170
+      ],
+      "Clicks_Error": [
+        10,
+        5,
+        15,
+        10,
+        10
+      ],
+      "Shares_Weeks": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "Shares_Engagement": [
+        50,
+        60,
+        58,
+        65
+      ],
+      "Shares_Error": [
+        5,
+        3,
+        4,
+        5
+      ],
+      "Views_Weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "Views_Engagement": [
+        300,
+        320,
+        305,
+        310,
+        325,
+        330
+      ],
+      "Views_Error": [
+        15,
+        20,
+        10,
+        12,
+        18,
+        15
+      ],
+      "Likes_Weeks": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "Likes_Engagement": [
+        80,
+        90,
+        85,
+        88,
+        92
+      ],
+      "Likes_Error": [
+        8,
+        5,
+        10,
+        7,
+        6
+      ]
+    },
+    "visual_intent": "A figure with 4 subplots: (1) a line chart with error bars about weekly clicks, titled (a) Weekly Clicks, (2) a line chart with error bars about weekly shares, titled (b) Weekly Shares, (3) a line chart with error bars about weekly views, titled (c) Weekly Views, and (4) a line chart with error bars about weekly likes, titled (d) Weekly Likes(size of the desired plot: width=10.0, height=8.0)",
+    "path_to_gt_image": "images/line_226.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(1)\n\n# Sample data representing \"Media Analytics\"\n# x-axis: Time in weeks\n# y-axis: Various engagement metrics\n\n# Data for clicks\nx1 = np.array([1, 2, 3, 4, 5])\ny1 = np.array([120, 135, 150, 160, 170])\ne1 = np.array([10, 5, 15, 10, 10])\n\n# Data for shares\nx2 = np.array([1, 2, 3, 4])\ny2 = np.array([50, 60, 58, 65])\ne2 = np.array([5, 3, 4, 5])\n\n# Data for views\nx3 = np.array([1, 2, 3, 4, 5, 6])\ny3 = np.array([300, 320, 305, 310, 325, 330])\ne3 = np.array([15, 20, 10, 12, 18, 15])\n\n# Data for likes\nx4 = np.array([1, 2, 3, 4, 5])\ny4 = np.array([80, 90, 85, 88, 92])\ne4 = np.array([8, 5, 10, 7, 6])\n\n# Titles\ntitles = [\n    \"(a) Weekly Clicks\",\n    \"(b) Weekly Shares\",\n    \"(c) Weekly Views\",\n    \"(d) Weekly Likes\",\n]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create 2x2 subplots\nfig, axs = plt.subplots(2, 2, figsize=(10, 8))\n\n# Flatten the axis array for easy iteration\naxs = axs.flatten()\n\n# Setting data for each subplot\ndata = [(x1, y1, e1), (x2, y2, e2), (x3, y3, e3), (x4, y4, e4)]\n\n# Custom colors and styles\ncolors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\"]\nmarkers = [\"o\", \"s\", \"D\", \"^\"]\n\n# Plot with error bars in each subplot\nfor ax, (x, y, e), title, color, marker in zip(axs, data, titles, colors, markers):\n    ax.errorbar(\n        x, y, yerr=e, fmt=f\"-{marker}\", color=color, ecolor=\"gray\", \n        elinewidth=1, capsize=5, markersize=7, linestyle='-', linewidth=2\n    )\n    ax.set_title(title, fontsize=16)\n    ax.set_xlabel('Weeks', fontsize=12)\n    ax.set_ylabel('Engagement', fontsize=12)\n    ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.7)\n    ax.set_xticks(np.arange(min(x), max(x) + 1, 1))\n    ax.set_yticks(np.linspace(min(y) - min(e), max(y) + max(e), num=5, endpoint=True))\n\n# Adjust layout and save the figure\nplt.tight_layout()\nplt.savefig(\"line_226.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 8.0,
+      "rounded_ratio": "1:1"
+    },
+    "difficulty": "hard",
+    "category": "line"
+  },
+  {
+    "id": "ref_52",
+    "content": {
+      "Score Range Proportion": [
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9
+      ],
+      "Public School": [
+        150,
+        240,
+        320,
+        480,
+        540,
+        600,
+        750,
+        820,
+        950,
+        1750,
+        8800
+      ],
+      "Private School": [
+        120,
+        210,
+        310,
+        370,
+        510,
+        760,
+        950,
+        1800,
+        2600,
+        3300,
+        6800
+      ]
+    },
+    "visual_intent": "A stacked bar chart with an inset zoom displaying the number of students in Public and Private schools across score range proportions, titled Comparison of Student Scores in Public and Private Schools(size of the desired plot: width=10.0, height=6.0)",
+    "path_to_gt_image": "images/PIP_26.jpg",
+    "original_category": "PIP",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n# Generate new dummy data for the education domain\npublic_school_scores = [\n    150,\n    240,\n    320,\n    480,\n    540,\n    600,\n    750,\n    820,\n    950,\n    1750,\n    8800,\n]  # Public School\nprivate_school_scores = [\n    120,\n    210,\n    310,\n    370,\n    510,\n    760,\n    950,\n    1800,\n    2600,\n    3300,\n    6800,\n]  # Private School\nbins = [0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9]\nlabels = [\"Public School\", \"Private School\"]\nxlabel = \"Score Range Proportion\"\nxlim = [-0.1, 1.1]\nylim = [0, 20000]\nylabel = \"Number of Students\"\nxticks = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]\nyticks = [0, 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000]\nleft, bottom, width, height = [0.3, 0.3, 0.3, 0.4]\ninsetxlim = [0.35, 0.7]\ninsetxticks = [0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70]\ninsetylim = [0, 1500]\ninsetyticks = [0, 250, 500, 750, 1000, 1250, 1500]\nmainpointleft = [0.39, 0.74]\nmainpointright = [0.74, 820]\ninsetleft = [0.35, 0]\ninsetright = [0.7, 0]\n\n# Text labels\nsuptitle = \"Comparison of Student Scores in Public and Private Schools\"\ntitle = \"Score Distribution by Type of School\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create main plot with adjusted bar widths and white borders\nfig, ax_main = plt.subplots(figsize=(10, 6))\nbar_width = 0.045  # Slightly less than the bin width to create a gap\n\nax_main.bar(\n    bins,\n    public_school_scores,\n    width=bar_width,\n    color=\"orange\",\n    align=\"center\",\n    label=labels[0],\n    edgecolor=\"white\",\n    alpha=0.8\n)\nax_main.bar(\n    bins,\n    private_school_scores,\n    width=bar_width,\n    color=\"steelblue\",\n    align=\"center\",\n    bottom=public_school_scores,\n    label=labels[1],\n    edgecolor=\"white\",\n    alpha=0.8\n)\nax_main.set_xlabel(xlabel)\nax_main.set_xlim(xlim)\nax_main.set_xticks(xticks)\nax_main.set_ylabel(ylabel)\nax_main.set_ylim(ylim)\nax_main.set_yticks(yticks)\nax_main.legend(loc=\"upper right\", prop={\"size\": 14})\nax_main.grid(True)\n\n# Create inset plot with adjusted bar widths and white borders\n\nax_inset = fig.add_axes([left, bottom, width, height])\nax_inset.bar(\n    bins[:6],\n    public_school_scores[:6],\n    width=bar_width,\n    color=\"orange\",\n    align=\"center\",\n    edgecolor=\"white\",\n    alpha=0.8\n)\nax_inset.bar(\n    bins[:6],\n    private_school_scores[:6],\n    width=bar_width,\n    color=\"steelblue\",\n    align=\"center\",\n    bottom=public_school_scores[:6],\n    edgecolor=\"white\",\n    alpha=0.8\n)\nax_inset.set_xlim(insetxlim)  # Zoom in on the right part of the data\nax_inset.set_xticks(insetxticks)  # Zoom in on the right part of the data\nax_inset.set_ylim(insetylim)\nax_inset.set_yticks(insetyticks)\nax_inset.grid(True)\n\n# Adding lines to connect the plots.\n# Coordinates of the main plot corners\nmain_plot_left = ax_main.transData.transform_point(mainpointleft)\nmain_plot_right = ax_main.transData.transform_point(mainpointright)\n\n# Coordinates of the inset corners\ninset_left = ax_inset.transData.transform_point(insetleft)\ninset_right = ax_inset.transData.transform_point(insetright)\n\n# Transform to figure coordinates for annotation\nmain_plot_left = fig.transFigure.inverted().transform(main_plot_left)\nmain_plot_right = fig.transFigure.inverted().transform(main_plot_right)\ninset_left = fig.transFigure.inverted().transform(inset_left)\ninset_right = fig.transFigure.inverted().transform(inset_right)\n\n# Draw lines connecting corners\nfig.add_artist(\n    plt.Line2D(\n        (main_plot_left[0], inset_left[0]),\n        (main_plot_left[1], inset_left[1]),\n        color=\"gray\",\n    )\n)\nfig.add_artist(\n    plt.Line2D(\n        (main_plot_right[0], inset_right[0]),\n        (main_plot_right[1], inset_right[1]),\n        color=\"gray\",\n    )\n)\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.suptitle(suptitle, fontsize=16)\nplt.tight_layout(rect=[0, 0.03, 1, 0.95])\nplt.savefig(\"PIP_26.pdf\", bbox_inches=\"tight\")\n",
+      "width": 10.0,
+      "height": 6.0,
+      "rounded_ratio": "16:9"
+    },
+    "difficulty": "hard",
+    "category": "misc"
+  },
+  {
+    "id": "ref_53",
+    "content": {
+      "Company": [
+        "Tesla",
+        "BYD",
+        "Volkswagen",
+        "Nio",
+        "Ford",
+        "Others"
+      ],
+      "Market Share": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+      ]
+    },
+    "visual_intent": "A treemap about car brands and their market share, titled Car Market Share(size of the desired plot: width=14.0, height=10.0)",
+    "path_to_gt_image": "images/tree_8.jpg",
+    "original_category": "tree",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\nimport squarify\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# New data for cloud service provider usage\nsizes = [0.35, 0.25, 0.15, 0.10, 0.10, 0.05]\nlabels = [\n    \"Tesla\\n35%\",\n    \"BYD\\n25%\",\n    \"Volkswagen\\n15%\",\n    \"Nio\\n10%\",\n    \"Ford\\n10%\",\n    \"Others\\n5%\",\n]\ntitle = \"Car Market Share\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\ncolors = [\"#003f5c\", \"#2f4b7c\", \"#665191\", \"#a05195\", \"#d45087\", \"#f95d6a\"]\n# Create a figure with the specified size\nfig = plt.figure(figsize=(14, 10))\n\n# Create a treemap\nsquarify.plot(\n    sizes=sizes,\n    label=labels,\n    color=colors,\n    text_kwargs={\"fontsize\": 20, \"color\": \"white\"},\n    pad=0.3,\n)\n\n# Add a title\nplt.title(title, fontsize=24)\n\n# Remove axes\nplt.axis(\"off\")\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Displaying the plot with tight layout to minimize white space\nplt.tight_layout()\n# Save the plot\nplt.savefig(\"tree_8.pdf\", bbox_inches=\"tight\")\n",
+      "width": 14.0,
+      "height": 10.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_54",
+    "content": {
+      "Indicator": [
+        "Education",
+        "Health",
+        "Employment",
+        "Housing",
+        "Safety"
+      ],
+      "Urban": [
+        0.8,
+        0.7,
+        0.9,
+        0.6,
+        0.85
+      ],
+      "Suburban": [
+        0.6,
+        0.65,
+        0.7,
+        0.8,
+        0.75
+      ],
+      "Rural": [
+        0.4,
+        0.5,
+        0.3,
+        0.7,
+        0.6
+      ]
+    },
+    "visual_intent": "A radar chart comparing Quality of Life Indicators across Urban, Suburban, and Rural areas, titled Quality of Life Indicators Comparison(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/radar_54.jpg",
+    "original_category": "radar",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n# Data values\nvalues_urban = [0.8, 0.7, 0.9, 0.6, 0.85]\nvalues_suburban = [0.6, 0.65, 0.7, 0.8, 0.75]\nvalues_rural = [0.4, 0.5, 0.3, 0.7, 0.6]\ncategories = [\"Education\", \"Health\", \"Employment\", \"Housing\", \"Safety\"]\nlabels = [\"Urban\", \"Suburban\", \"Rural\"]\ntitle = \"Quality of Life Indicators Comparison\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Initialise the radar plot\nfig, ax = plt.subplots(figsize=(8, 6), subplot_kw=dict(polar=True))\n\n# Number of variables\nN = len(categories)\n\n# What will be the angle of each axis in the plot\nangles = [n / float(N) * 2 * np.pi for n in range(N)]\nangles += angles[:1]\n\n# Draw one axis per variable and add labels\nplt.xticks(angles[:-1], categories, fontsize=12)\n\n# Draw ylabels\nax.set_rlabel_position(0)\nplt.yticks([0.2, 0.4, 0.6, 0.8], [\"0.2\", \"0.4\", \"0.6\", \"0.8\"], color=\"grey\", size=7)\nplt.ylim(0, 1)\n\n# Plot data\nax.plot(\n    angles,\n    values_urban + values_urban[:1],\n    color=\"#1f77b4\",\n    linewidth=1.5,\n    linestyle=\"solid\",\n    label=labels[0],\n    marker=\"o\",\n)\nax.fill(angles, values_urban + values_urban[:1], color=\"#1f77b4\", alpha=0.1)\n\nax.plot(\n    angles,\n    values_suburban + values_suburban[:1],\n    color=\"#2ca02c\",\n    linewidth=1.5,\n    linestyle=\"solid\",\n    label=labels[1],\n    marker=\"s\",\n)\nax.fill(angles, values_suburban + values_suburban[:1], color=\"#2ca02c\", alpha=0.1)\n\nax.plot(\n    angles,\n    values_rural + values_rural[:1],\n    color=\"#d62728\",\n    linewidth=1.5,\n    linestyle=\"solid\",\n    label=labels[2],\n    marker=\"d\",\n)\nax.fill(angles, values_rural + values_rural[:1], color=\"#d62728\", alpha=0.1)\n\n\n# Add legend\nplt.legend(loc=\"upper left\", bbox_to_anchor=(1, 1), fontsize=10)\nax.xaxis.set_tick_params(pad=20)\n\n# Add title\nplt.title(title, size=15, y=1.1)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout for better fit and save the plot\nplt.tight_layout()\nplt.savefig(\"radar_54.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "hard",
+    "category": "radar"
+  },
+  {
+    "id": "ref_55",
+    "content": {
+      "Season": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "Sensor A": [
+        30,
+        35,
+        25,
+        20
+      ],
+      "Sensor B": [
+        28,
+        33,
+        24,
+        19
+      ],
+      "Sensor C": [
+        32,
+        37,
+        29,
+        22
+      ],
+      "Error": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots: (1) a line chart with error bars comparing pollution levels of three sensors across seasons, annotated with a threshold level, (2) a duplicate line chart with error bars showing the same data and annotations.(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/line_143.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\n# Seasons\nseasons = np.array([1, 2, 3, 4])\nseason_labels = ['Spring', 'Summer', 'Fall', 'Winter']\n\n# Pollution Measurements for Three Sensors\nsensor_a = np.array([30, 35, 25, 20])\nsensor_b = np.array([28, 33, 24, 19])\nsensor_c = np.array([32, 37, 29, 22])\n\n# Error\nerror = np.array([1, 1, 1, 1])\n\n# Axes Limits and Labels\nylabel_value_1 = \"Pollution Level (µg/m³)\"\nylabel_value_2 = \"Pollution Level (µg/m³)\"\nylim_values_1 = [15, 40]\nyticks_values_1 = [20, 25, 30, 35, 40]\nylim_values_2 = [15, 40]\nyticks_values_2 = [20, 25, 30, 35, 40]\n\n# Labels\nlabel_Sensor_A = \"Sensor A\"\nlabel_Sensor_B = \"Sensor B\"\nlabel_Sensor_C = \"Sensor C\"\n\n# Texts\ntext_1 = \"Seasons\"\ntext_2 = \"Average Pollution Level\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create two subplots and unpack the output array immediately\nf, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(8, 6))\n\n# First subplot\nax1.errorbar(\n    seasons,\n    sensor_a,\n    yerr=error,\n    label=label_Sensor_A,\n    color=\"#2ca02c\",\n    marker=\"o\",\n    linestyle='--',\n)\nax1.errorbar(\n    seasons,\n    sensor_b,\n    yerr=error,\n    label=label_Sensor_B,\n    color=\"#1f77b4\",\n    marker=\"s\",\n    linestyle='-',\n)\nax1.errorbar(\n    seasons,\n    sensor_c,\n    yerr=error,\n    label=label_Sensor_C,\n    color=\"#8c564b\",\n    marker=\"^\",\n    linestyle=':',\n)\nax1.set_ylabel(ylabel_value_1)\n# Set grid\nax1.grid(True)\nax1.set_ylim(ylim_values_1)\nax1.set_yticks(yticks_values_1)\n\n# Second subplot\nax2.errorbar(\n    seasons,\n    sensor_a,\n    yerr=error,\n    label=label_Sensor_A,\n    color=\"#2ca02c\",\n    marker=\"o\",\n    linestyle='--',\n)\nax2.errorbar(\n    seasons,\n    sensor_b,\n    yerr=error,\n    label=label_Sensor_B,\n    color=\"#1f77b4\",\n    marker=\"s\",\n    linestyle='-',\n)\nax2.errorbar(\n    seasons,\n    sensor_c,\n    yerr=error,\n    label=label_Sensor_C,\n    color=\"#8c564b\",\n    marker=\"^\",\n    linestyle=':',\n)\nax2.set_ylabel(ylabel_value_2)\n# Set grid\nax2.grid(True)\nax2.set_ylim(ylim_values_2)\nax2.set_yticks(yticks_values_2)\n\n# Only show ticks on the bottom subplot\nplt.setp(ax1.get_xticklabels(), visible=False)\n\n# Create legend above the second subplot\nax2.legend(loc=\"upper center\", bbox_to_anchor=(0.5, 1.2), ncol=3)\n\n# Set the figure's layout so there is space for the xlabel at the bottom\nplt.tight_layout()\n\n# Now adjust the subplot to give space for the ylabel on the left\nf.subplots_adjust(left=0.15, bottom=0.12)\n\nax2.legend(loc=\"upper center\", bbox_to_anchor=(0.5, 1.2), ncol=3)\n\n# Add horizontal line at y=30 for reference\nfor ax in [ax1, ax2]:\n    ax.axhline(y=30, color='gray', linestyle='--', linewidth=1, alpha=0.7)\n    # Add annotation for the horizontal line\n    ax.annotate('Threshold Level', xy=(0.02, 30), xytext=(0.02, 31),\n                arrowprops=dict(facecolor='black', shrink=0.05))\n\nf.text(0.55, 0.05, text_1, ha=\"center\", va=\"center\")\nf.text(\n    0.05,\n    0.5,\n    text_2,\n    ha=\"center\",\n    va=\"center\",\n    rotation=\"vertical\",\n)\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.savefig(\"line_143.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "hard",
+    "category": "line"
+  },
+  {
+    "id": "ref_56",
+    "content": {
+      "Philosophy Domain": [
+        "Ethics",
+        "Logic",
+        "Metaphysics",
+        "Epistemology",
+        "Aesthetics",
+        "Political Philosophy"
+      ],
+      "Out-group Start Score": [
+        7.2,
+        8.0,
+        6.5,
+        7.7,
+        6.9,
+        8.1
+      ],
+      "Out-group Bias Change": [
+        -2.1,
+        -2.7,
+        -1.9,
+        -2.4,
+        -1.8,
+        -3.0
+      ],
+      "In-group Start Score": [
+        6.8,
+        7.4,
+        6.0,
+        7.1,
+        6.3,
+        7.5
+      ],
+      "In-group Bias Change": [
+        1.8,
+        1.6,
+        2.0,
+        1.4,
+        2.1,
+        1.8
+      ]
+    },
+    "visual_intent": "A figure with 2 subplots: (1) an arrow chart illustrating out-group and in-group bias changes for Ethics, Logic, and Metaphysics, (2) an arrow chart illustrating the same for Epistemology, Aesthetics, and Political Philosophy, titled 'Comparison of Out-group and In-group Biases in Various Philosophy Domains'(size of the desired plot: width=14.0, height=6.0)",
+    "path_to_gt_image": "images/quiver_37.jpg",
+    "original_category": "quiver",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\nimport matplotlib.lines as mlines\n\n# ===================\n# Part 2: Data Preparation\n# ===================\n# Data for the plot\nsubjects_1 = [\"Ethics\", \"Logic\", \"Metaphysics\"]\nout_start_1 = [7.2, 8.0, 6.5]\nout_group_bias_1 = [-2.1, -2.7, -1.9]\nin_start_1 = [6.8, 7.4, 6.0]\nin_group_bias_1 = [+1.8, +1.6, +2.0]\nxlabel = \"Scores\"\nylabel_1 = \"Philosophy Domains (Out-group Bias)\"\nylabel_2 = \"Philosophy Domains (In-group Bias)\"\nax1_labels = [\"Out-group bias\\n(Logics)\", \"In-group bias\\n(Logics)\"]\n\nsubjects_2 = [\"Epistemology\", \"Aesthetics\", \"Political Philosophy\"]\nout_start_2 = [7.7, 6.9, 8.1]\nout_group_bias_2 = [-2.4, -1.8, -3.0]\nin_start_2 = [7.1, 6.3, 7.5]\nin_group_bias_2 = [+1.4, +2.1, +1.8]\nax2_labels = [\"Out-group bias\\n(Aesthetics)\", \"In-group bias\\n(Aesthetics)\"]\n\ntitle = \"Bias Trends in Philosophy Domains\"\nsupertitle = \"Comparison of Out-group and In-group Biases in Various Philosophy Domains\"\nlegend_labels_1 = [\"Out-group Bias (Logics)\", \"In-group Bias (Logics)\"]\nlegend_labels_2 = [\"Out-group Bias (Aesthetics)\", \"In-group Bias (Aesthetics)\"]\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create figure with two subplots\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))\n\n# Set the y-axis offsets to be in the middle of each grid\noffset = 0.5\n\n# First subplot (subjects_1)\nfor i, subject in enumerate(subjects_1):\n    # Out-group bias line with arrow and black dots at start and end\n    ax1.annotate(\n        \"\",\n        xy=(out_start_1[i], i + offset * 3 / 2),\n        xytext=(out_start_1[i] + out_group_bias_1[i], i + offset * 3 / 2),\n        arrowprops=dict(arrowstyle=\"<-\", color=\"seagreen\"),\n    )\n    ax1.scatter(\n        [out_start_1[i], out_start_1[i] + out_group_bias_1[i]],\n        [i + offset * 3 / 2, i + offset * 3 / 2],\n        color=\"black\",\n        s=15,\n    )\n    ax1.annotate(\n        f\"{out_group_bias_1[i]:.2f}\",\n        (out_start_1[i] + out_group_bias_1[i], i + offset * 1.75),\n        color=\"seagreen\",\n        ha=\"right\",\n        va=\"center\",\n    )\n\n    # In-group bias line with arrow and black dots at start and end\n    ax1.annotate(\n        \"\",\n        xy=(in_start_1[i], i + offset / 2),\n        xytext=(in_start_1[i] + in_group_bias_1[i], i + offset / 2),\n        arrowprops=dict(arrowstyle=\"<-\", color=\"darkolivegreen\"),\n    )\n    ax1.scatter(\n        [in_start_1[i], in_start_1[i] + in_group_bias_1[i]],\n        [i + offset / 2, i + offset / 2],\n        color=\"black\",\n        s=15,\n    )\n    ax1.annotate(\n        f\"{in_group_bias_1[i]:.2f}\",\n        (in_start_1[i] + in_group_bias_1[i], i + offset * 0.75),\n        color=\"darkolivegreen\",\n        ha=\"left\",\n        va=\"center\",\n    )\n\n# Second subplot (subjects_2)\nfor i, subject in enumerate(subjects_2):\n    ax2.annotate(\n        \"\",\n        xy=(out_start_2[i], i + offset * 3 / 2),\n        xytext=(out_start_2[i] + out_group_bias_2[i], i + offset * 3 / 2),\n        arrowprops=dict(arrowstyle=\"<-\", color=\"royalblue\"),\n    )\n    ax2.scatter(\n        [out_start_2[i], out_start_2[i] + out_group_bias_2[i]],\n        [i + offset * 3 / 2, i + offset * 3 / 2],\n        color=\"black\",\n        s=15,\n    )\n    ax2.annotate(\n        f\"{out_group_bias_2[i]:.2f}\",\n        (out_start_2[i] + out_group_bias_2[i], i + offset * 1.75),\n        color=\"royalblue\",\n        ha=\"right\",\n        va=\"center\",\n    )\n\n    ax2.annotate(\n        \"\",\n        xy=(in_start_2[i], i + offset / 2),\n        xytext=(in_start_2[i] + in_group_bias_2[i], i + offset / 2),\n        arrowprops=dict(arrowstyle=\"<-\", color=\"steelblue\"),\n    )\n    ax2.scatter(\n        [in_start_2[i], in_start_2[i] + in_group_bias_2[i]],\n        [i + offset / 2, i + offset / 2],\n        color=\"black\",\n        s=15,\n    )\n    ax2.annotate(\n        f\"{in_group_bias_2[i]:.2f}\",\n        (in_start_2[i] + in_group_bias_2[i], i + offset * 0.75),\n        color=\"steelblue\",\n        ha=\"left\",\n        va=\"center\",\n    )\n\n# Set titles and labels\nax1.set_ylabel(ylabel_1)\nax2.set_ylabel(ylabel_2)\nax1.set_xlabel(xlabel)\nax2.set_xlabel(xlabel)\nfig.suptitle(supertitle, fontsize=14)\n\n# Set y-axis limits\nax1.set_ylim(0, len(subjects_1))\nax2.set_ylim(0, len(subjects_2))\n\n# Set x-axis limits uniformly\nax1.set_xlim(2, 12)\nax2.set_xlim(2, 12)\n\n# Adjust the y-axis tick positions\nax1.set_yticks([i + offset for i in range(len(subjects_1))])\nax1.set_yticklabels(subjects_1)\nax2.set_yticks([i + offset for i in range(len(subjects_2))])\nax2.set_yticklabels(subjects_2)\nax2.yaxis.tick_right()\nax2.yaxis.set_label_position(\"right\")\n\n# Offset grid lines on the y-axis\nax1.set_yticks([i for i in range(len(subjects_1))], minor=True)\nax2.set_yticks([i for i in range(len(subjects_2))], minor=True)\nax1.yaxis.grid(True, which=\"minor\", linewidth=0.5, alpha=0.7, color=\"black\")\nax2.yaxis.grid(True, which=\"minor\", linewidth=0.5, alpha=0.7, color=\"black\")\n\n# Add x-axis grid lines and set gap is 1\nax1.xaxis.set_major_locator(plt.MultipleLocator(1))\nax2.xaxis.set_major_locator(plt.MultipleLocator(1))\nax1.grid(axis=\"x\", linestyle=\"--\", linewidth=0.5)\nax2.grid(axis=\"x\", linestyle=\"--\", linewidth=0.5)\n\n# Create arrow-shaped legend entries with a line that aligns with the arrowhead\nseagreen_arrow = mlines.Line2D(\n    [],\n    [],\n    color=\"seagreen\",\n    marker=\">\",\n    linestyle=\"-\",\n    markersize=8,\n    label=ax1_labels[0],\n    linewidth=2,\n    markeredgewidth=2,\n    markevery=(1, 1),\n)\ndarkolivegreen_arrow = mlines.Line2D(\n    [],\n    [],\n    color=\"darkolivegreen\",\n    marker=\">\",\n    linestyle=\"-\",\n    markersize=8,\n    label=ax1_labels[1],\n    linewidth=2,\n    markeredgewidth=2,\n    markevery=(1, 1),\n)\nfig.legend(\n    handles=[seagreen_arrow, darkolivegreen_arrow], bbox_to_anchor=(0.45, 0), ncol=2\n)\n\nroyalblue_arrow = mlines.Line2D(\n    [],\n    [],\n    color=\"royalblue\",\n    marker=\">\",\n    linestyle=\"-\",\n    markersize=8,\n    label=ax2_labels[0],\n    linewidth=2,\n    markeredgewidth=2,\n    markevery=(1, 1),\n)\nsteelblue_arrow = mlines.Line2D(\n    [],\n    [],\n    color=\"steelblue\",\n    marker=\">\",\n    linestyle=\"-\",\n    markersize=8,\n    label=ax2_labels[1],\n    linewidth=2,\n    markeredgewidth=2,\n    markevery=(1, 1),\n)\nfig.legend(handles=[royalblue_arrow, steelblue_arrow], bbox_to_anchor=(0.85, 0), ncol=2)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout and save the plot\nplt.tight_layout()\nplt.savefig(\"quiver_37.pdf\", bbox_inches=\"tight\")\n",
+      "width": 14.0,
+      "height": 6.0,
+      "rounded_ratio": "21:9"
+    },
+    "difficulty": "hard",
+    "category": "misc"
+  },
+  {
+    "id": "ref_57",
+    "content": {
+      "Product": [
+        "400 kg Wheat",
+        "300 kg Corn",
+        "250 kg Rice",
+        "150 kg Soybeans",
+        "100 kg Barley",
+        "50 kg Oats"
+      ],
+      "Quantity": [
+        400,
+        300,
+        250,
+        150,
+        100,
+        50
+      ]
+    },
+    "visual_intent": "A donut chart about agriculture products and their quantities, titled Agriculture Product Distribution: A Donut(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/pie_48.jpg",
+    "original_category": "pie",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\nagriculture_products = [\n    \"400 kg Wheat\",\n    \"300 kg Corn\",\n    \"250 kg Rice\",\n    \"150 kg Soybeans\",\n    \"100 kg Barley\",\n    \"50 kg Oats\",\n]\n\ndata = [400, 300, 250, 150, 100, 50]\ntitle = \"Agriculture Product Distribution: A Donut\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\nfig, ax = plt.subplots(figsize=(8, 6), subplot_kw=dict(aspect=\"equal\"))\ncolors = plt.cm.Paired(np.linspace(0, 1, len(data)))\nwedges, texts = ax.pie(data, wedgeprops=dict(width=0.5, edgecolor='w'), startangle=-40, colors=colors, shadow=True)\n\nbbox_props = dict(boxstyle=\"square,pad=0.3\", fc=\"w\", ec=\"k\", lw=0.72)\nkw = dict(arrowprops=dict(arrowstyle=\"->\"), bbox=bbox_props, zorder=0, va=\"center\")\n\nfor i, p in enumerate(wedges):\n    ang = (p.theta2 - p.theta1) / 2.0 + p.theta1\n    y = np.sin(np.deg2rad(ang))\n    x = np.cos(np.deg2rad(ang))\n    horizontalalignment = {-1: \"right\", 1: \"left\"}[int(np.sign(x))]\n    connectionstyle = f\"angle,angleA=0,angleB={ang}\"\n    kw[\"arrowprops\"].update({\"connectionstyle\": connectionstyle})\n    ax.annotate(\n        agriculture_products[i],\n        xy=(x, y),\n        xytext=(1.35 * np.sign(x), 1.4 * y),\n        horizontalalignment=horizontalalignment,\n        **kw,\n    )\n\nax.set_title(title, fontsize=14, fontweight='bold')\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.tight_layout()\nplt.savefig(\"pie_48.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "hard",
+    "category": "tree_pie"
+  },
+  {
+    "id": "ref_58",
+    "content": {
+      "Age Groups": [
+        "0-18",
+        "19-35",
+        "36-50",
+        "51+"
+      ],
+      "Region A Population": [
+        25.3,
+        35.8,
+        20.4,
+        18.5
+      ],
+      "Region B Population": [
+        22.1,
+        30.7,
+        25.0,
+        22.2
+      ]
+    },
+    "visual_intent": "A bar chart about Age Groups, Region A Population, and Region B Population, titled Population Distribution by Age Group(size of the desired plot: width=8.0, height=6.0)",
+    "path_to_gt_image": "images/bar_304.jpg",
+    "original_category": "bar",
+    "additional_info": {
+      "gt_code": "\n# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\nnp.random.seed(0)\n\n# Data for the bar charts\nregion_a_population = [25.3, 35.8, 20.4, 18.5]\nregion_b_population = [22.1, 30.7, 25.0, 22.2]\nx = np.arange(len(region_a_population))  # x-coordinates for the bars\nlabels = [\"Region A Population\", \"Region B Population\"]  # Labels for the legend\ntitle = \"Population Distribution by Age Group\"  # Title for the plot\nxlabel = \"Age Groups\"\nage_groups = [\"0-18\", \"19-35\", \"36-50\", \"51+\"]\nylim1 = [0, 40]  # y-axis limits for the first subplot\nylim2 = [0, 40]  # y-axis limits for the second subplot\nyticks1 = [0, 10, 20, 30, 40]  # y-ticks for the first subplot\nyticks2 = [0, 10, 20, 30, 40]  # y-ticks for the second subplot\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Set the figure size to match the original image's dimensions\nfig, ax1 = plt.subplots(figsize=(8, 6))\n\n# Create the first subplot for 'region_a_population' using the left y-axis\nax1.bar(\n    x - 0.2,\n    region_a_population,\n    width=0.4,\n    label=labels[0],\n    color=\"#2a9d8f\",\n    align=\"center\",\n)\nax1.set_ylabel(labels[0], color=\"#2a9d8f\")\nax1.tick_params(axis=\"y\", labelcolor=\"#2a9d8f\")\n\n# Create the second y-axis for 'region_b_population'\nax2 = ax1.twinx()\nax2.bar(\n    x + 0.2,\n    region_b_population,\n    width=0.4,\n    label=labels[1],\n    color=\"#e76f51\",\n    align=\"center\",\n)\nax2.set_ylabel(labels[1], color=\"#e76f51\")\nax2.tick_params(axis=\"y\", labelcolor=\"#e76f51\")\n\n# Title for the plot\nax1.set_title(title)\n\n# Set x-axis labels\nax1.set_xticks(x)\nax1.set_xticklabels(age_groups)\nax1.set_xlabel(xlabel)\n\n# Drawing a horizontal line at y=0 (if required, but not usually necessary for positive population data)\n\n# Annotate bars with their values\nfor j in range(len(region_a_population)):\n    ax1.text(\n        x[j] - 0.2,\n        region_a_population[j] + 1,\n        f\"{region_a_population[j]}%\",\n        ha=\"center\",\n        color=\"black\",\n    )\n    ax2.text(\n        x[j] + 0.2,\n        region_b_population[j] + 1,\n        f\"{region_b_population[j]}%\",\n        ha=\"center\",\n        color=\"black\",\n    )\n\nax1.set_ylim(ylim1)\nax1.set_yticks(yticks1)\n\nax2.set_ylim(ylim2)\nax2.set_yticks(yticks2)\nax2.set_yticklabels(yticks2)\n# Add legend to the subplot\nax1.legend(loc=\"upper left\", bbox_to_anchor=(0.0, 1.15))\nax1.grid(axis=\"y\", linestyle=\"--\")\nax1.set_axisbelow(True)\nax2.legend(loc=\"upper right\", bbox_to_anchor=(1.0, 1.15))\nax2.grid(axis=\"y\", linestyle=\"--\")\nax2.set_axisbelow(True)\n\n# ===================\n# Part 4: Saving Output\n# ===================\n# Adjust layout\nplt.tight_layout()\nplt.savefig(\"bar_304.pdf\", bbox_inches=\"tight\")\n",
+      "width": 8.0,
+      "height": 6.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "hard",
+    "category": "bar"
+  },
+  {
+    "id": "ref_59",
+    "content": {
+      "Quantization Error": [
+        1e-07,
+        3.981071705534973e-07,
+        1.9952623149688796e-06,
+        6.30957344480193e-06,
+        3.1622776601683795e-05,
+        0.00015848931924611142
+      ],
+      "Search Window Size Ratio": [
+        1.0,
+        1.05,
+        1.15,
+        1.2,
+        2.0,
+        6.6
+      ]
+    },
+    "visual_intent": "A line chart about quantization error and search window size ratio, featuring an empirical relationship curve and vertical reference lines for different model configurations(size of the desired plot: width=6.0, height=4.0)",
+    "path_to_gt_image": "images/line_35.jpg",
+    "original_category": "line",
+    "additional_info": {
+      "gt_code": "# ===================\n# Part 1: Importing Libraries\n# ===================\nimport matplotlib.pyplot as plt\n\n\n# ===================\n# Part 2: Data Preparation\n# ===================\nimport numpy as np\n\nnp.random.seed(0)\n# Data for plotting\nquantization_error = np.array(\n    [10 ** (-7), 10 ** (-6.4), 10 ** (-5.7), 10 ** (-5.2), 10 ** (-4.5), 10 ** (-3.8)]\n)\nsearch_window_ratio = np.array([1, 1.05, 1.15, 1.2, 2, 6.6])\n\n# Labels and Plot Types\nx_M_LVQ_4x8_10 = 10 ** (-4.9)\nlabel_M_LVQ_4x8_10 = \"M-LVQ-4x8-10\"\nx_M_LVQ_4x8_100 = 10 ** (-4.8)\nlabel_M_LVQ_4x8_100 = \"M-LVQ-4x8-100\"\nx_M_LVQ_4x8_256 = 10 ** (-4.6)\nlabel_M_LVQ_4x8_256 = \"M-LVQ-4x8-256\"\nx_M_LVQ_4x8 = 10 ** (-4.5)\nlabel_M_LVQ_4x8 = \"M-LVQ-4x8\"\nlabel_empirical_relat_B2_8_0 = \"empirical relat. (B2=8.0)\"\n\n# Axes Limits and Labels\nyticks_values = np.arange(0, 8, 1)\nylim_values = [0, 7]\nxlabel_value = \"Quantization error\"\nylabel_value = \"Search window size ratio\"\n\n# ===================\n# Part 3: Plot Configuration and Rendering\n# ===================\n# Create figure and axis\nfig, ax = plt.subplots(figsize=(6, 4))\n\n# Add vertical lines\nax.axvline(\n    x=x_M_LVQ_4x8_10,\n    color=\"#d86810\",\n    linestyle=\"--\",\n    label=label_M_LVQ_4x8_10,\n    linewidth=3,\n)\nax.axvline(\n    x=x_M_LVQ_4x8_100,\n    color=\"#029e73\",\n    linestyle=\"--\",\n    label=label_M_LVQ_4x8_100,\n    linewidth=3,\n)\nax.axvline(\n    x=x_M_LVQ_4x8_256,\n    color=\"#de8f05\",\n    linestyle=\"--\",\n    label=label_M_LVQ_4x8_256,\n    linewidth=3,\n)\nax.axvline(\n    x=x_M_LVQ_4x8, color=\"#cc78bc\", linestyle=\"--\", label=label_M_LVQ_4x8, linewidth=3\n)\n\n# Plot the empirical relationship line\nax.plot(\n    quantization_error,\n    search_window_ratio,\n    label=label_empirical_relat_B2_8_0,\n    color=\"#0173b2\",\n    marker=\"o\",\n    markersize=8,\n    mec=\"white\",\n    linewidth=3,\n)\n\n# Set yticks\nplt.yticks(yticks_values, fontsize=10)\nplt.ylim(ylim_values)  # Adjusted y-axis limit\n\n# Customize the plot\nax.set_xscale(\"log\")\nax.set_xlabel(xlabel_value, fontsize=16)\nax.set_ylabel(ylabel_value, fontsize=16)\n\n# Remove x-axis minor ticks\nax.tick_params(axis=\"x\", which=\"minor\", bottom=False)\n\n# Add grid for major ticks only\nax.grid(True, which=\"major\", linestyle=\"-\", linewidth=0.5)\n\n# Add legend\nax.legend(loc=\"upper left\", bbox_to_anchor=(0, 1), fontsize=13)\n\n# ===================\n# Part 4: Saving Output\n# ===================\nplt.tight_layout()  # Adjust layout to not cut off legend\nplt.savefig(\"line_35.pdf\", bbox_inches=\"tight\")\n",
+      "width": 6.0,
+      "height": 4.0,
+      "rounded_ratio": "3:2"
+    },
+    "difficulty": "easy",
+    "category": "line"
+  }
+]
