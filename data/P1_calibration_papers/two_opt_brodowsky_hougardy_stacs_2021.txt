@@ -1,0 +1,833 @@
+The Approximation Ratio of the 2-Opt Heuristic
+for the Euclidean Traveling Salesman Problem
+Ulrich A. Brodowsky
+Pontsheide 20, 52076 Aachen, Germany
+
+Stefan Hougardy1 ! Ï
+Research Institute for Discrete Mathematics, Universität Bonn, Germany
+
+        Abstract
+The 2-Opt heuristic is a simple improvement heuristic for the Traveling Salesman Problem. It starts
+with an arbitrary tour and then repeatedly replaces two edges of the tour by two other edges, as
+long as this yields a shorter tour. We will prove that for Euclidean Traveling Salesman Problems
+with n cities the approximation ratio of the 2-Opt heuristic is Θ(log n/ log log n). This improves the
+upper bound of O(log n) given by Chandra, Karloff, and Tovey [3] in 1999.
+
+2012 ACM Subject Classification Theory of computation → Approximation algorithms analysis
+
+Keywords and phrases traveling salesman problem, metric TSP, Euclidean TSP, 2-Opt, approxima-
+tion algorithm
+
+Digital Object Identifier 10.4230/LIPIcs.STACS.2021.18
+
+Funding Stefan Hougardy: funded by the Deutsche Forschungsgemeinschaft (DFG, German Research
+Foundation) under Germany’s Excellence Strategy – EXC-2047/1 – 390685813.
+
+Acknowledgements We thank the anonymous referees for several useful comments.
+
+
+    1    Introduction
+The Traveling Salesman Problem (TSP) is one of the best studied problems in combinatorial
+optimization. Given n cities and their pairwise distances, the task is to find a shortest
+tour that visits each city exactly once. This problem is NP-hard [7] and it is even hard to
+approximate to a factor that is polynomial in n [13].
+    In the Euclidean TSP, the cities are points in R2 and the distance function is the
+Euclidean distance between the points. The Euclidean TSP is also NP-hard [12] but it allows
+a polynomial time approximation scheme [1, 11]. Euclidean Traveling Salesman Problems
+often appear in practice and they are usually solved using some heuristics. One of the
+simplest of these heuristics is the 2-Opt heuristic. It starts with an arbitrary tour and then
+repeatedly replaces two edges of the tour by two other edges, as long as this yields a shorter
+tour. The 2-Opt heuristic stops when no further improvement can be made this way. A tour
+that the 2-Opt heuristic cannot improve is called 2-optimal.
+    On real-world instances the 2-Opt heuristic achieves surprisingly good results (see e.g.
+Bentley [2]). Despite its simplicity the exact approximation ratio of the 2-Opt heuristic for
+Euclidean TSP is not known. In 1999, Chandra, Karloff, and Tovey [3] proved a lower bound
+of c · logloglogn n for some constant c > 0 and an upper bound of O(log n) on the approximation
+ratio of the 2-Opt heuristic for Euclidean TSP. This leaves a gap of factor O(log log n)
+between the best known upper and lower bound for the approximation ratio of the 2-Opt
+heuristic for Euclidean TSP. Our main result closes this gap up to a constant factor:
+
+
+
+1
+    corresponding author
+            © Ulrich A. Brodowsky and Stefan Hougardy;
+            licensed under Creative Commons License CC-BY 4.0
+38th International Symposium on Theoretical Aspects of Computer Science (STACS 2021).
+Editors: Markus Bläser and Benjamin Monmege; Article No. 18; pp. 18:1–18:15
+                   Leibniz International Proceedings in Informatics
+                   Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+18:2   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+       ▶ Theorem 1. The approximation ratio of the 2-Opt heuristic for Euclidean TSP instances
+       with n points is Θ(log n/ log log n).
+
+       Related Results. On real-world Euclidean TSP instances it has been observed that the
+       2-Opt heuristic needs a sub-quadratic number of iterations until it reaches a local optimum [2].
+       However, there exist worst-case Euclidean TSP instances for which the 2-Opt heuristic may
+       need an exponential number of iterations [5].
+           For n points embedded into the d-dimensional Euclidean space Rd for some constant
+       d > 2 the approximation ratio of the 2-Opt heuristic is bounded by O(log n) from above [3]
+       and by Ω(log n/ log log n) from below [15].
+           The Euclidean TSP is a special case of the metric TSP, i.e., the Traveling Salesman
+       Problem where the distance function satisfies the triangle inequality. The well-known
+       algorithm of Christofides [4] and Serdjukov [14] achieves an approximation ratio of 3/2 for
+       the metric TSP. If one allows randomization then the recent algorithm of Karlin, Klein, and
+       Oveis Gharan [9] slightly improves
+                                     p       on this. For the metric TSP the 2-Opt heuristic has
+       approximation ratio exactly n/2 [8]. A very special case of the metric TSP is the 1-2-TSP.
+       In this version all edge lengths have to be 1 or 2. For the 1-2-TSP the approximation ratio
+       of the 2-Opt heuristic is 3/2 [10].
+           For a constant k > 2 the 2-Opt heuristic naturally extends to the so called k-Opt heuristic
+       where in each iteration k edges of a tour are replaced by k other edges. For Euclidean TSP
+       Zhong [15] has shown that Ω(log n/ log log n) is a lower bound for the k-Opt heuristic if k is
+       constant. Therefore, Theorem 1 immediately implies:
+
+       ▶ Corollary 2. For constant k the approximation ratio of the k-Opt heuristic for Euclidean
+       TSP instances with n points is Θ(log n/ log log n).
+
+       Organization of the paper. The result of Chandra, Karloff, and Tovey [3, Theorem 4.4]
+       mentioned above shows that Ω(log n/ log log n) is a lower bound for the 2-Opt heuristic for
+       Euclidean TSP. To prove Theorem 1 it remains to prove the upper bound O(log n/ log log n).
+       We proceed as follows. First we will present in Section 2 some properties of Euclidean
+       2-optimal tours. In Section 2.1 we will prove Theorem 1 by reducing it to the special case
+       where no intersections between the edges of an optimal tour and the edges of a 2-optimal
+       tour exist. In this special case we will show that we can partition the edge set of a 2-optimal
+       tour into five sets that are each in some sense orientation-preserving with respect to an
+       optimal tour. The main step then is to prove that for each of these five sets we can bound
+       the total edge length by O(log n/ log log n) times the length of an optimal tour. To achieve
+       this we will relate optimal tours and subsets of the edge set of a 2-optimal tour to some
+       weighted arborescences. This relation is studied in Section 3. For weighted arborescences we
+       will provide in Section 4 some bounds for the edge weights. These results then will allow us
+       in Section 5 to finish the proof of Theorem 1.
+
+        2     Euclidean TSP and 2-Optimal Tours
+       An instance of the Euclidean TSP is a finite subset V ⊂ R2 . The task is to find a polygon
+       of shortest total edge length that contains all points of V . Note that by our definition a
+       Euclidean TSP instance cannot contain the same point multiple times. In the following we
+       will denote the cardinality of V by n.
+           For our purpose it is often more convenient to state the Euclidean Traveling Salesman
+       Problem as a problem on graphs. For a given point set V of a Euclidean TSP instance we
+       take a complete graph on the vertex set V , i.e., the graph G = (V, E) where E is the set of
+U. A. Brodowsky and S. Hougardy                                                                            18:3
+
+
+                        a                                                       a
+                                    b                                                        b
+               x                                                       x
+                            y                                                       y
+
+
+
+
+    Figure 1 An oriented TSP tour (left) and the tour obtained after replacing the edges (a, b) and
+(x, y) with the edges (a, x) and (b, y) (right). The orientation of the tour segment between the
+vertices b and x has been reversed in the new tour.
+
+
+all 12 n(n − 1) possible edges on V . We assign the Euclidean distance between the vertices
+in G by a function c : E(G) → R>0 . A tour in G is a cycle that contains all the vertices
+                                                          P
+of G. The length of a tour T in G is defined as c(T ) := e∈E(T ) c(e). An optimal tour is
+a tour of minimum length among the tours in G. Thus we can restate the Euclidean TSP
+as a problem in graphs: Given a complete graph G = (V, E) on a point set V ⊂ R2 and a
+Euclidean distance function c : E(G) → R>0 , find an optimal tour in G. Throughout this
+paper we will use the geometric definition of the Euclidean TSP and the graph-theoretic
+version of the Euclidean TSP simultaneously. Thus, a tour for a Euclidean TSP instance
+V ⊆ R2 can be viewed as a polygon in R2 as well as a cycle in a complete graph on the
+vertex set V with Euclidean distance function.
+    Let c : E(G) → R>0 be a weight function for the edges of some graph G = (V, E). To
+simplify notation, we will denote the weight of an edge {x, y} ∈ E(G) simply by c(x, y)
+instead of the more cumbersome notation c({x, y}). For subsets F ⊆ E(G) we define c(F ) :=
+P
+   e∈F c(e). We extend this definition to subgraphs H of G by setting c(H) := c(E(H)).
+    The distance function c of a Euclidean TSP instance G = (V, E) satisfies the triangle
+inequality. Therefore we have for any set of three vertices x, y, z ∈ V (G):
+
+   c(x, y) + c(y, z) ≥ c(x, z).                                                                  (1)
+
+    The 2-Opt heuristic repeatedly replaces two edges from the tour by two other edges such
+that the resulting tour is shorter. Given a tour T and two edges {a, b} and {x, y} in T , there
+are two possibilities to replace these two edges by two other edges. Either we can choose the
+pair {a, x} and {b, y} or we can choose the pair {a, y} and {b, x}. Exactly one of these two
+pairs will result in a tour again. Without knowing the other edges of T , we cannot decide
+which of the two possibilities is the correct one. Therefore, we will assume in the following
+that the tour T is an oriented cycle, i.e., the edges of T have an orientation such that each
+vertex has exactly one incoming and one outgoing edge. Using this convention, there is only
+one possibility to exchange a pair of edges such that the new edge set is a tour again: two
+directed edges (a, b) and (x, y) have to be replaced by the edges (a, x) and (b, y). Note that
+to obtain an oriented cycle again, one has to reverse the direction of the segment between b
+and x, see Figure 1.
+    A TSP tour T is called 2-optimal if for any two edges (a, b) and (x, y) of T we have
+
+   c(a, x) + c(b, y) ≥ c(a, b) + c(x, y).                                                        (2)
+
+We call inequality (2) the 2-optimality condition.
+     If (a, b) and (x, y) are two edges in a tour T that violate the 2-optimality condition, i.e.,
+they satisfy the inequality c(a, x) + c(b, y) < c(a, b) + c(x, y), then we can replace the edges
+(a, b) and (x, y) in T by the edges (a, x) and (b, y) and get a strictly shorter tour. We call
+this operation of replacing the edges (a, b) and (x, y) in T by the edges (a, x) and (b, y) an
+improving 2-move. Thus, the 2-Opt heuristic can be formulated as follows:
+
+                                                                                                       S TA C S 2 0 2 1
+18:4   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+          2-Opt Heuristic (V ⊆ R2 ).
+          1 start with an arbitrary tour T for V
+          2 while there exists an improving 2-move in T
+          3     perform an improving 2-move
+          4 output T
+
+          We call a Euclidean TSP instance V ⊂ R2 degenerate if there exists a line in R2 that
+       contains all points of V . Otherwise we call the instance non-degenerate.
+          It is easily seen that in a degenerate Euclidean TSP instance a 2-optimal tour is also an
+       optimal tour:
+
+       ▶ Proposition 3. In a degenerate Euclidean TSP instance a 2-optimal tour is an optimal
+       tour.
+
+       Proof. Let V ⊆ R2 be a degenerate Euclidean TSP instance. Let c : V × V → R be the
+       Euclidean distance between two points in V . Then there exist two points a, b ∈ V such that
+       the straight line segment S from a to b contains all points of V . The length of an optimal
+       TSP tour for V is 2 · c(a, b). Assume there exists a 2-optimal TSP tour T that is not optimal.
+       Orient the tour T . Then there must exist a point in S \ V that is contained in at least three
+       edges of the tour T and therefore there must exist a point in S \ V that is contained in two
+       edges (v, w) and (x, y) of T that are oriented in the same direction. This contradicts the
+       2-optimality of T as c(u, x) + c(w, y) < c(v, w) + c(x, y).                                 ◀
+
+           Because of Proposition 3 we may assume in the following that we have a non-degenerate
+       Euclidean TSP instance.
+           Let T be a tour in a Euclidean TSP instance. Each edge of T corresponds to a closed
+       line segment in R2 . A tour in a Euclidean TSP instance is called simple if no two edges of
+       the tour intersect in a point that lies in the interior of at least one of the two corresponding
+       line segments. For 2-optimal tours in Euclidean TSP instances we have the following simple
+       but very important result.
+
+       ▶ Lemma 4 (Flood [6]). In a non-degenerate Euclidean TSP instance a 2-optimal tour is
+       simple.
+
+
+       2.1    Crossing-Free Pairs of Tours
+       Let T be an optimal tour and T ′ be a 2-optimal tour in a non-degenerate Euclidean TSP
+       instance. By Lemma 4 we know that both tours are simple. In the following we want to
+       justify a much stronger assumption. Two edges e ∈ E(T ) and f ∈ E(T ′ ) cross if e and f
+       intersect in exactly one point in R2 and this point is in the interior of both line segments.
+       We say that two tours T and T ′ are crossing-free if there does not exist a pair of crossing
+       edges. See Figure 2 for an example of an optimal tour and a 2-optimal tour that have three
+       crossing pairs of edges.
+           To prove Theorem 1 it will be enough to prove it for the special case of crossing-free
+       tours:
+
+       ▶ Theorem 5. Let V ⊆ R2 with |V | = n be a non-degenerate Euclidean TSP instance, T
+       an optimal tour for V and S a 2-optimal tour for V . If T and S are crossing-free then the
+       length of S is bounded by O(log n/ log log n) times the length of T .
+U. A. Brodowsky and S. Hougardy                                                                              18:5
+
+
+
+
+    Figure 2 A Euclidean TSP instance with an optimal tour (red edges) and a 2-optimal tour
+(dashed green edges). Both tours shown in the left picture are simple but there are three pairs of
+crossing edges. The tours can be made crossing-free by adding three vertices (blue points in the
+right picture) to the instance.
+
+
+    The proof of Theorem 5 will be presented in Section 5. Here we show how Theorem 5
+allows to prove Theorem 1. For this we describe a method to transform a pair of tours into a
+crossing-free pair of tours.
+    Let V ⊆ R2 be a Euclidean TSP instance and T be a tour for V . We say that V ′ ⊆ R2 is
+a subdivision for (V, T ) if V ⊂ V ′ and V ′ is a subset of the polygon T . The set V ′ induces
+a new tour T ′ which results from the tour T by subdividing the edges by points in V ′ \ V .
+Note that T and T ′ constitute the same polygon. Therefore we have:
+
+▶ Proposition 6. Let V ⊆ R2 be a Euclidean TSP instance and T be an optimal tour. If V ′
+is a subdivision for (V, T ) then the tour T ′ induced by V ′ is an optimal tour for V ′ .
+
+   Subdividing a tour not only preserves the optimality but it also preserves the 2-optimality:
+
+▶ Lemma 7. Let V ⊆ R2 be a Euclidean TSP instance and T be a 2-optimal tour. If V ′ is
+a subdivision for (V, T ) then the tour T ′ induced by V ′ is a 2-optimal tour for V ′ .
+
+Proof. Let us assume that the tour T ′ is oriented and that (x′ , y ′ ) and (a′ , b′ ) are two edges
+of T ′ . We have to prove that these two edges satisfy the 2-optimality condition (2). As T ′ is
+a subdivision of the 2-optimal tour T we know that there exist edges (x, y) and (a, b) in T
+such that the line segment a′ b′ is contained in the line segment ab and the line segment x′ y ′
+is contained in the line segment xy. The 2-optimality of T implies
+
+   c(a, b) + c(x, y) ≤ c(a, x) + c(b, y).
+
+Using this inequality and the triangle inequality we get:
+
+   c(a′ , b′ ) + c(x′ , y ′ ) = c(a, b) − c(a, a′ ) − c(b, b′ ) + c(x, y) − c(x, x′ ) − c(y, y ′ )
+                          ≤ c(a, x) − c(a, a′ ) − c(x, x′ ) + c(b, y) − c(b, b′ ) − c(y, y ′ )
+                          ≤ c(a′ , x′ ) + c(b′ , y ′ ).                                              ◀
+
+   Now we are able to reduce Theorem 1 to Theorem 5:
+
+
+
+                                                                                                         S TA C S 2 0 2 1
+18:6   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+
+
+           Figure 3 A Euclidean TSP instance with an optimal tour T (red edges) and a 2-optimal tour
+       (blue edges) that are crossing-free. The edges of the 2-optimal tour are partitioned into the edges
+       lying in the interior of T (solid blue lines), the edges that lie in the exterior of T (dotted blue lines),
+       and the edges that are part of T (dashed blue edges).
+
+
+       Proof of Theorem 1. Let V ⊆ R2 be a Euclidean TSP instance with |V | = n, T be an
+       optimal tour for V and S be a 2-optimal tour for V . By Proposition 3 we may assume that
+       V is non-degenerate. Let V ′ ⊆ R2 be the set of points obtained by adding to V all crossings
+       between pairs of edges in T and S. Denote the cardinality of V ′ by n′ . Let T ′ and S ′ be the
+       tours induced by V ′ for T and S. Then by Proposition 6 and by Lemma 7 we know that T ′ has
+       the same length as T and is an optimal tour for V ′ and S ′ has the same length as S and is a 2-
+       optimal tour for V ′ . Now Theorem 5 implies that the length of S is at most O(log n′ / log log n′ )
+       times the length of T . It remains to observe that there can be at most O(n2 ) crossings
+       between edges in T and S and therefore O(log n′ / log log n′ ) = O(log n/ log log n).            ◀
+
+
+       2.2     Partitioning the Edge Set of a 2-Optimal Tour
+       Let V ⊆ R2 be a non-degenerate Euclidean TSP instance, T be an optimal tour and S be a
+       2-optimal tour such that S and T are crossing-free. As S and T are simple polygons and S
+       and T are crossing-free we can partition the edge set of S into three sets S1 , S2 , and S3 such
+       that all edges of S1 lie in the interior of T , all edges of S2 lie in the exterior of T and all
+       edges of S3 are contained in T (see Figure 3). More precisely, an edge {a, b} ∈ S belongs
+       to S1 resp. S2 if the corresponding open line segment ab completely lies in the interior resp.
+       exterior of the polygon T . The set S3 contains all the edges of S that are subsets of the
+       polygon T .
+           By definition and because of Proposition 3 and Lemma 4 we know that the edges in S3
+       are at most as long as the edges in T . To bound the total length of all edges in S1 in terms
+       of the length of T we proceed as follows: Fix some orientation of the tour S. We may assume
+       that S1 contains at least two edges as otherwise by the triangle inequality the length of T is
+       an upper bound for the length of the edges in S1 . Choose an edge e0 = (x0 , y0 ) from S1 such
+       that one of the two x0 -y0 -paths in T does not contain in its interior the endpoints of any
+       other edge in S1 (see Figure 4).
+           Let T[x0 ,y0 ] be the x0 -y0 -path in T that contains the endpoints of all other edges in S1 .
+       The path T[x0 ,y0 ] is unique if we assume |S1 | ≥ 2. Then we define the set S1′ to contain all
+       edges from S1 that are “compatible” with T[x0 ,y0 ] in the following sense:
+
+           S1′ := {(a, b) ∈ S1 : the x0 -b-path in T[x0 ,y0 ] contains a}.
+
+       In Figure 4 for the chosen edge e0 = (x0 , y0 ) the edges in S1′ are marked green.
+U. A. Brodowsky and S. Hougardy                                                                                18:7
+
+
+
+
+                                                                           y0
+                                                                                e0
+                                                                                       x0
+
+   Figure 4 The edge e0 = (x0 , y0 ) of the 2-optimal tour (blue edges) defines the set S1′ of all green
+marked edges in the interior of the optimal tour T (red edges).
+
+
+    All edges in S1 that are oriented in the “wrong” way with respect to T[x0 ,y0 ] define the
+set S1′′ , i.e., we have S1′′ := S1 \ S1′ . Similarly we can define sets S2′ and S2′′ with respect to
+some edge f ∈ S that lies in the exterior of T . We want to prove that for each of the four
+sets S1′ , S1′′ , S2′ , S2′′ we can bound the total length of all edges by O(log n/ log log n) times
+the length of T . To achieve this we will reduce the problem to a problem in weighted
+arborescences.
+
+
+ 3     Arborescences and Pairs of Tours
+
+In this section we will explain why bounding the length of a 2-optimal tour reduces to some
+problem in weighted arborescences. We start by giving an informal description of the idea.
+    Let T be an optimal tour for a non-degenerate Euclidean TSP instance V ⊆ R2 and let
+S be a 2-optimal tour such that S and T are crossing-free. Then T together with the edge
+set S1′ as defined in Section 2.2 is a plane graph. Each region of this plane graph is bounded
+by edges in E(T ) ∪ S1′ . The boundary of each region is a cycle. Because of the triangle
+inequality we can bound the length of each edge in a cycle by the sum of the lengths of all
+other edges in this cycle. This way we get a bound for the length of each edge in S1′ which
+we call the combined triangle inequality as it arises by applying the triangle inequality to
+edges from both tours T and S.
+    From the boundaries of the regions of the plane graph we can derive another type of
+inequalities. Suppose some boundary B contains at least two edges from S1′ . Then there will
+be two distinct edges e, f ∈ B ∩ S1′ such that e and f are oriented in opposite direction along
+the boundary B. (Here we see the reason why we partitioned the edge set S1 into the two
+subsets S1′ and S1′′ . In the plane graph arising from T together with the whole edge set S1 it
+may happen, that the boundary of a region contains at least two edges from S1 and these
+edges are all oriented in the same direction along the boundary.) If we remove e and f from
+B we get two paths (one of which may be empty) connecting the heads and tails of e and
+f . Now by applying the triangle inequality to these two paths and using the 2-optimality
+condition (2) for the edges e and f we get another inequality for the edges in S1′ . We call
+this inequality the combined 2-optimality condition as it arises by applying the 2-optimality
+condition in combination with the triangle inequality to edges from both tours T and S.
+    In the following we want to apply the combined triangle inequality and the combined
+2-optimality condition to neighboring regions of the plane graph formed by the edge set
+T ∪ S1′ . This part of the proof is independent of the embedding induced by the point
+
+
+                                                                                                           S TA C S 2 0 2 1
+18:8   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+
+
+                                                                             y0
+
+                                                                                  e0
+                                                                                        x0
+
+           Figure 5 The arborescence (green edges) in the dual of the plane graph formed by the edges
+       of an optimal tour (red edges) and the edges in the set S1′ (blue edges) with respect to the edge
+       e0 = (x0 , y0 ).
+
+
+       coordinates in R2 . In particular this part of the proof can also be applied to point sets in
+       higher dimension by choosing an arbitrary planar embedding of the tour T . We therefore
+       reduce in the following the problem of bounding the total length of all edges in S1′ to a purely
+       combinatorial problem in weighted arborescences.
+
+           We now give a formal description of the reduction. Consider the plane graph obtained
+       from T together with the edge set S1′ . Let H be the graph that is obtained from the geometric
+       dual of this plane graph by removing the vertex corresponding to the outer region. Then
+       each edge in H is a dual of an edge in S1′ . As each edge in S1′ is a chord in the polygon T we
+       know that each edge in H is a cut edge and thus H is a tree. See Figure 5 for an example.
+           We now want to orient the edges of H to get an arborescence. An arborescence A = (V, E)
+       is a connected directed acyclic graph that satisfies |δ − (x)| ≤ 1 for all x ∈ V (A). Each
+       arborescence has exactly one root r which is the unique vertex r ∈ V (A) with δ − (r) = ∅. For
+       an arborescence A with root r we say that A is rooted at r.
+           The set S1′ has been defined with respect to some edge e0 = (x0 , y0 ). The tree H contains
+       a vertex that corresponds to the region of the plane graph that is bounded by the edge e0
+       and the edges in E(T ) \ T[x0 ,y0 ] . By choosing this vertex as the root and orienting all edges
+       in H from the root to the leaves, we get an arborescence A from the tree H (see Figure 5).
+           We want to define two weight functions on the edge set E(A) of the arborescence A to
+       capture the weights of the edges in T and the edges in S1′ . First we define the function
+       c : E(A) → R>0 to be the weight of the corresponding dual edge in S1′ . Secondly, we define a
+       weight function w : E(A) → R>0 as follows. Let e = (x, y) be a directed edge in E(A). Let
+       Y be the region corresponding to the vertex y in the plane graph formed by E(T ) ∪ S1′ . Then
+       we define w(e) to be the weight of all the edges in E(T ) that belong to the boundary of Y .
+           For the arborescence A and the two weight functions c and w we can now state the above
+       mentioned combined triangle inequality and the combined 2-optimality condition as follows:
+
+       ▶ Lemma 8. Let V ⊆ R2 be a Euclidean TSP instance with distance function c : V × V → R
+       and let T be an optimal tour. Let S be a 2-optimal tour such that S and T are crossing-free.
+       Let S1′ be defined as in Section 2.2 with respect to some edge e0 = (x0 , y0 ). Let A be the
+       arborescence derived from the geometric dual of the plane graph T ∪ S1′ with weight functions
+       w : E(A) → R>0 and c : E(A) → R>0 as defined above. Then we have
+                             X
+           c(e) ≤ w(e) +          c(f ) for all e = (x, y) ∈ E(A)                                (3)
+                           f ∈δ + (y)
+U. A. Brodowsky and S. Hougardy                                                                                           18:9
+
+
+and
+                                                    X
+     c(x, y) + c(y, z) ≤ w(x, y) +                               c(f )         for all (x, y), (y, z) ∈ E(A).   (4)
+                                          f ∈δ + (y)\{(y,z)}
+
+
+Proof. Let f = (a, b) be an edge in S1′ and f ′ = (a′ , b′ ) its corresponding dual edge in A.
+By definition we have c(f ′ ) = c(f ). The vertex b′ corresponds to a region R in the plane
+graph on V with edges E(T ) ∪ S1′ . By the triangle inequality the length c(f ) of the edge
+f is bounded by the length of all other edges in the boundary of the region R. Using the
+definitions of the functions c and w we therefore get:
+                          X                X                             X
+    c(f ′ ) = c(f ) ≤           c(g) +             c(g) = w(f ′ ) +           c(g).
+                           g∈R∩E(T )               g∈(R∩S1′ )\{f }                        g∈δ + (b′ )
+
+
+This proves condition (3).
+     We now prove property (4). Let f ∈ S1′ . By definition of the set S1′ we know that S1′ is
+defined with respect to an edge e0 = (x0 , y0 ) ∈ S1 and the x0 -y0 -path T[x0 ,y0 ] contains the
+endpoints of all other edges in S1 . Let ϕ : V (T[x0 ,y0 ] ) → N such that ϕ(z) for z ∈ V (T[x0 ,y0 ] )
+denotes the distance (in terms of the number of edges) between x0 and z in T[x0 ,y0 ] . The
+definition of the set S1′ implies that ϕ(a) < ϕ(b) for each edge (a, b) ∈ S1′ . Each edge in S1′
+can be seen as a shortcut for the path T[x0 ,y0 ] . For an edge f = (a, b) ∈ S1′ with dual edge
+                                                ′
+f ′ = (a′ , b′ ) ∈ E(A) we denote by (δ + (b′ )) all edges dual to the edges in δ + (b′ ). The edge
+                                  + ′ ′
+f = (a, b) and the edges in (δ (b )) belong to the border of a region of the graph on V with
+edge set E(T ) ∪ S1′ . Along this border the edge f = (a, b) is directed opposite to all edges in
+           ′
+(δ + (b′ )) . Therefore, the triangle inequality together with the 2-optimality condition (2) for
+                                                     ′
+the set S1′ imply for each edge (u, v) ∈ (δ + (b′ )) :
+                                                       X
+     c(a, b) + c(u, v) ≤ w(a′ , b′ ) +                                c(g).
+                                           g∈(δ + (b′ ))′ \{(u,v)}
+
+
+We have c(a, b) = c(a′ , b′ ) and c(u, v) = c(b′ , x′ ) for the vertex x′ ∈ V (A) such that (u, v) ∈ S1
+is the dual edge to (b′ , x′ ) ∈ E(A). Therefore we get:
+                                                         X
+     c(a′ , b′ ) + c(b′ , x′ ) ≤ w(a′ , b′ ) +                             c(g).                                 ◀
+                                                 g∈δ + (b′ )\{(b′ ,x′ )}
+
+
+   We call condition (3) the combined triangle inequality and condition (4) the combined
+2-optimality condition. Note that these two conditions can be formulated for any ar-
+borescence A with weight functions c and w. In the next section we will show that if
+these two conditions are satisfied for an arborescence A then we can bound c(A)/w(A) by
+O(log(|E(A)|)/ log log(|E(A)|)).
+
+
+ 4       The Arborescence Lemmas
+Let A be an arborescence with weight functions w : E(A) → R>0 and c : E(A) → R>0 .
+We will first show that the combined triangle inequality (3) and the combined 2-optimality
+condition (4) imply two additional properties. For this we need the following definition.
+For an arborescence A = (V, E) and an edge e = (x, y) ∈ E(A) we denote by Ae the
+sub-arborescence rooted at x that contains the edge e and all descendants of y, see Figure 6
+for an example.
+
+
+
+                                                                                                                      S TA C S 2 0 2 1
+18:10   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+                                                                r
+
+
+                                                    e
+
+
+
+
+           Figure 6 An arborescence A with root r. Shown in red is the sub-arborescence Ae defined by
+        the edge e.
+
+
+        ▶ Lemma 9. Let A be an arborescence with weight functions w : E(A) → R>0 and c :
+        E(A) → R>0 that satisfies the combined triangle inequality (3). Then we have
+
+           c(e) ≤ w(Ae )        for all e ∈ E(A).                                                  (5)
+
+        Proof. This follows by induction on the height of the sub-arborescence Ae . If e = (x, y)
+        is an edge in E(A) such that y is a leaf then the combined triangle inequality (3) implies
+        c(e) ≤ w(e) = w(Ae ). For an arbitrary edge e = (x, y) ∈ E(A) we get by induction:
+                             X                      X
+            c(e) ≤ w(e) +         c(f ) ≤ w(e) +         w(Af ) = w(Ae ).                       ◀
+                              f ∈δ + (y)                 f ∈δ + (y)
+
+
+          In the following lemma we have a statement about the maximum weight of a possibly
+        empty edge set. As usual we assume max ∅ = −∞.
+
+        ▶ Lemma 10. Let A be an arborescence with weight functions w : E(A) → R>0 and
+        c : E(A) → R>0 that satisfies the combined 2-optimality condition (4). Then we have:
+                                                  X
+            2 · max
+                 +
+                    c(f ) ≤  w(x,  y) − c(x, y) +      c(g) for each edge (x, y) ∈ E(A).     (6)
+              f ∈δ (y)
+                                                        g∈δ + (y)
+
+
+        Proof. From the combined 2-optimality condition (4) we get
+                                             X
+           2 · c(y, z) ≤ w(x, y) − c(x, y) +    c(f )    for all (x, y), (y, z) ∈ E(A).
+                                               f ∈δ + (y)
+
+
+        As the right hand side of this inequality is independent of the edge (y, z) we can therefore
+        replace c(y, z) by the term maxf ∈δ+ (y) c(f ) on the left hand side.                     ◀
+
+           Our next goal is to bound c(A) in terms of w(A) for arborescences A satisfying (3) and (4).
+        The following two lemmas prove such a statement for certain subsets of E(A).
+
+        ▶ Lemma 11. Let A = (V, E) be an arborescence with weight functions w : E(A) → R>0
+        and c : E(A) → R>0 that satisfies the combined 2-optimality condition (4). For some fixed
+        number k ∈ R>0 define E ′ := {(x, y) ∈ E(A) : maxf ∈δ+ (y) c(f ) > k1 · c(x, y)}. Then we have:
+
+                         k
+           c(E ′ ) ≤       · w(A).
+                         2
+U. A. Brodowsky and S. Hougardy                                                                      18:11
+
+
+Proof. By definition of E ′ and using Lemma 10 we have for each edge (x, y) ∈ E ′ :
+      2                                                     X
+        · c(x, y) < 2 · max     c(f ) ≤ w(x, y) − c(x, y) +   c(g).
+      k                    +
+                       f ∈δ (y)
+                                                            +
+                                                           g∈δ (y)
+
+Adding this inequality for all (x, y) ∈ E ′ and using that the left hand side and therefore also
+the right hand side of inequality (6) is non-negative we get:
+                                                                      
+    2     X                   X                              X
+      ·           c(x, y) <           w(x, y) − c(x, y) +         c(g)
+    k           ′                   ′                         +
+        (x,y)∈E             (x,y)∈E                        g∈δ (y)
+                                                                        
+                                X                              X
+                          ≤             w(x, y) − c(x, y) +         c(g)
+                         (x,y)∈E(A)                        g∈δ + (y)
+
+                       ≤ w(A).                                                                ◀
+
+    For a fixed number k ∈ R>0 and a number r ∈ R≥0 we define the edge set Er ⊆ E(A) as
+follows:
+                                                                            
+                                         k               1
+    Er := e = (x, y) ∈ E(A) : r < c(e) ≤ · r and c(f ) ≤ · c(e) ∀f ∈ δ + (y) .      (7)
+                                         4               k
+
+▶ Lemma 12. Let A = (V, E) be an arborescence with weight functions w : E(A) → R>0
+and c : E(A) → R>0 that satisfies the combined triangle inequality (3) and the combined
+2-optimality condition (4). Let Er be defined as in (7). Then we have:
+
+   c(Er ) ≤ 2 · w(A).
+
+Proof. Let e = (x, y) ∈ Er . We first prove by induction on the cardinality of E(Ae ) ∩ Er :
+                            X                  r
+   w(Ae ) ≥ c(e) +                      c(f ) −    .                                     (8)
+                                                4
+                      f ∈(E(Ae )∩Er )\{e}
+
+   If |E(Ae ) ∩ Er | = 1 then E(Ae ) ∩ Er = {e} and therefore (E(Ae ) ∩ Er ) \ {e} = ∅.
+Inequality (8) then states w(Ae ) ≥ c(e) which holds because of Lemma 9.
+   Now assume that |E(Ae ) ∩ Er | > 1 and that inequality (8) holds for all edges f ∈ Er
+with |E(Af ) ∩ Er | < |E(Ae ) ∩ Er |. From the definition of the set Er we get for each edge
+f ∈ δ + (y):
+              1          1 k     r
+   c(f ) ≤      · c(e) ≤  · ·r = .                                                          (9)
+              k          k 4     4
+We define the following two sets of edges:
+
+   X := {f ∈ δ + (y) : E(Af ) ∩ Er = ∅}
+
+and
+
+   F := {f ∈ (Er ∩ E(Ae )) \ {e} : no edge h ∈ Er lies on a path from f to e in A}.
+
+For each edge f ∈ δ + (y) we either have E(Af ) ∩ Er = ∅ or E(Af ) ∩ Er ̸= ∅. In the first case
+the edge f belongs to the set X. In the second case at least one edge from Af belongs to F .
+Thus we have
+
+   |F | + |X| ≥ |δ + (y)|    ⇒     |δ + (y) \ X| ≤ |F |.                                   (10)
+
+
+
+                                                                                                   S TA C S 2 0 2 1
+18:12   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+           By the induction hypothesis, inequality (8) holds for each edge f ∈ F and we can now
+        prove inequality (8) for the edge e:
+                          X             X
+           w(Ae ) ≥           w(Af ) +       w(Af ) + w(e)
+                           f ∈F                f ∈X
+                    (5)    X                   X
+                    ≥             w(Af ) +            c(f ) + w(e)
+                           f ∈F                f ∈X
+                    (3)    X                                 X
+                    ≥             w(Af ) + c(e) −                       c(f )
+                           f ∈F                          f ∈δ + (y)\X
+                    (9)    X                                 X          r
+                    ≥             w(Af ) + c(e) −
+                                                                        4
+                           f ∈F                          f ∈δ + (y)\X
+                    (10)   X                    r
+                    ≥              w(Af ) −           + c(e)
+                                                 4
+                           f ∈F
+                                                                         
+                    (8)    X                             X          r  r
+                                                                        
+                    ≥           c(f ) +                     c(g) −    −  + c(e)
+                                                                    4   4
+                           f ∈F          g∈(E(Af )∩Er )\{f }
+                                         X                   r
+                    =      c(e) +                    c(f ) −     .
+                                                              4
+                                      f ∈(E(Ae )∩Er )\{e}
+
+        The last equality holds because each edge in (E(Ae ) ∩ Er ) \ {e} appears exactly once in the
+        sets (E(Af ) ∩ Er ) for f ∈ F .
+            By definition of the set Er we have for each edge f ∈ Er :
+                                  1           r                              r   1
+           c(f ) ≥ r       ⇒        · c(f ) ≥            ⇒        c(f ) −      ≥   · c(f ).        (11)
+                                  2           4                              4   2
+           Inequality (8) therefore implies
+                                      X                                    r
+           w(Ae ) ≥ c(e) +                                       c(f ) −
+                                                                            4
+                                      f ∈(E(Ae )∩Er )\{e}
+                                  X              r
+                    ≥                          c(f ) −
+                                                  4
+                           f ∈E(Ae )∩Er
+                    (11)
+                                                   
+                               X          1
+                    ≥                       · c(f )
+                                          2
+                           f ∈E(Ae )∩Er
+                        1
+                    =     · c(E(Ae ) ∩ Er ).
+                        2
+                                                                                S
+           Now choose a minimal set of edges e1 , e2 , . . . ∈ Er such that Er ⊆ i E(Aei ). Then
+                    [           X              1 X                      1
+           w(A) ≥ w( E(Aei )) =   w(E(Aei )) ≥   ·   c(E(Aei ) ∩ Er ) =   · c(Er ).                  ◀
+                    i           i
+                                               2   i
+                                                                        2
+
+        ▶ Lemma 13. Let A = (V, E) be an arborescence with weight functions w : E(A) → R>0
+        and c : E(A) → R>0 that satisfies the combined triangle inequality (3) and the combined
+        2-optimality condition (4). Moreover we assume that c(A) ≥ 18 · w(A). Then we have:
+
+                             log(|E(A)|)
+           c(A) ≤ 12 ·                     · w(A).
+                           log log(|E(A)|)
+U. A. Brodowsky and S. Hougardy                                                                         18:13
+
+
+Proof. We define k := c(A)/w(A). By assumption we have k ≥ 18. For i = 1, 2, . . . , ⌊k/6⌋
+                  i
+we define ri := k4 · w(A) and for these numbers we define sets Eri as in (7). By Lemma 9
+                             1
+we have c(e) ≤ w(A) = k4 · k4 · w(A) = k4 · r1 and therefore we have:
+
+⌊k/6⌋
+                 (                      ⌊k/6⌋                                            )
+ [                                      4                                1             +
+        E ri =     e = (x, y) ∈ E(A) :          · w(A) < c(e) and c(f ) ≤ · c(e) ∀f ∈ δ (y) .
+ i=1
+                                        k                                k
+
+Define
+                                                          1
+   E ′ := {(x, y) ∈ E(A) : max c(f ) >                      · c(x, y)}
+                            +      f ∈δ (y)               k
+
+and
+                            ⌊k/6⌋
+        ∗                   4
+   E := {e ∈ E(A) : c(e) ≤          · w(A)}.
+                            k
+
+Then we have
+                            ⌊k/6⌋
+                             [
+   E(A) = E ′ ∪ E ∗ ∪               Eri .
+                             i=1
+
+
+   Using Lemma 11 and Lemma 12 we get:
+
+                                    ⌊k/6⌋
+                                    X
+   k · w(A) = c(A) ≤                        c(Eri ) + c(E ′ ) + c(E ∗ )
+                                    i=1
+                                                                  ⌊k/6⌋
+                                                      k            4
+                            ≤       ⌊k/6⌋ · 2 · w(A) +  · w(A) +             · w(A) · |E ∗ |
+                                                      2            k
+                                                    ⌊k/6⌋
+                                    5               4
+                            ≤         · k · w(A) +          · w(A) · |E ∗ |.
+                                    6               k
+
+   This implies
+                                     ⌊k/6⌋    k/6
+                   k  ∗              k          k
+   |E(A)| ≥ |E | ≥   ·                       ≥        .                                        (12)
+                   6                 4          6
+
+    The function logloglogx x is monotone increasing for x > 18. Therefore we get from inequal-
+ity (12):
+                                                                  
+                                                           k k/6
+                                                             
+              log(|E(A)|)                       log        6
+   2·                       · w(A) ≥ 2 ·          k/6  · w(A)
+            log log(|E(A)|)              log log k6
+                                               k       k
+                                                         
+                                               6 · log 6
+                                   =2·                        · w(A)
+                                         log k6 + log log k6
+                                                
+
+                                     k
+                                   ≥ · w(A)
+                                     6
+                                     1
+                                   = · c(A).                                                     ◀
+                                     6
+
+
+
+                                                                                                      S TA C S 2 0 2 1
+18:14   The Approximation Ratio of the 2-Opt Heuristic for the Euclidean TSP
+
+
+         5      Proof of Theorem 5
+        Lemma 8 in combination with Lemma 13 shows that we can bound the length of all edges in
+        S1′ by O(log n/ log log n) times the length of an optimal tour T . The statement of Lemma 8
+        also holds for the set S1′′ : We can define an arborescence almost the same way as we did for
+        the set S1′ by taking the dual of the graph on V formed by the edges of T and S1′′ without
+        the vertex for the outer region. The only minor difference is the choice of the root vertex.
+        For S1′ we have chosen as root the vertex that corresponds to the region R bounded by the
+        edge e0 = (x0 , y0 ) and the edges in E(T ) \ T[x0 ,y0 ] . For the arborescence for S1′′ we choose as
+        a root the region that contains R. The proof of Lemma 8 then without any changes shows
+        that the statement of Lemma 8 also holds for the set S1′′ . Similarly, by exchanging the role
+        of the outer and the inner region of T , Lemma 8 also holds for the sets S2′ and S2′′ . We are
+        now able to prove our main result:
+
+        Proof of Theorem 5. Let V ⊆ R2 with |V | = n be a non-degenerate Euclidean TSP instance,
+        T an optimal tour for V and S a 2-optimal tour for V such that T and S are crossing-free.
+        We partition the tour S into the five (possibly empty) sets S1′ , S1′′ , S2′ , S2′′ , and S3 as defined
+        in Section 2.2. Then c(S3 ) ≤ c(T ). We claim that c(S1′ ) = O(log n/ log log n) · c(T ). If
+        c(S1′ ) < 18 · c(T ) this is certainly the case. Otherwise by Lemma 8 and Lemma 13 we get
+                                log(n)
+             c(S1′ ) ≤ 12 ·              · c(T )
+                              log log(n)
+        which again proves the claim. As observed above, Lemma 8 also holds for the sets S1′′ , S2′ ,
+        and S2′′ . Therefore, we can apply the same argument to the sets S1′′ , S2′ , and S2′′ and get
+
+             c(S) = c(S1′ ) + c(S1′′ ) + c(S2′ ) + c(S2′′ ) + c(S3 ) = O(log n/ log log n) · c(T ).         ◀
+
+               References
+         1     Sanjeev Arora. Polynomial time approximation schemes for Euclidean Traveling Salesman
+               and other geometric problems. Journal of the ACM, 45(5):753–782, September 1998.
+         2     Jon Jouis Bentley. Fast algorithms for geometric Traveling Salesman Problems. ORSA Journal
+               on Computing, 4(4):387–411, 1992.
+         3     Barun Chandra, Howard Karloff, and Craig Tovey. New results on the old k-opt algorithm for
+               the Traveling Salesman Problem. SIAM J. Comput, 28(6):1998–2029, 1999.
+         4     Nicos Christofides. Worst-case analysis of a new heuristic for the Travelling Salesman Problem.
+               Technical Report 388, Carnegie-Mellon University, 1976.
+         5     Matthias Englert, Heiko Röglin, and Berthold Vöcking. Worst case and probabilistic analysis
+               of the 2-opt algorithm for the TSP. Algorithmica, 68:190–264, 2014.
+         6     Merrill M. Flood. The traveling-salesman problem. Operations Research, 4(1):61–75, 1956.
+         7     Michael R. Garey and David S. Johnson. Computers and Intractability. A Guide to the Theory
+               of NP-Completeness. W. H. Freeman and Company, 1979.
+         8     Stefan Hougardy, Fabian Zaiser, and Xianghui Zhong. The approximation ratio of the 2-
+               Opt Heuristic for the metric Traveling Salesman Problem. Operations Research Letters,
+               48:401–404, 2020.
+         9     Anna R. Karlin, Nathan Klein, and Shayan Oveis Gharan. A (slightly) improved approximation
+               algorithm for metric TSP. arXiv:2007.01409v1 [cs.DS], July 2020. arXiv:2007.01409v1.
+        10     Sanjeev Khanna, Rajeev Motwani, Madhu Sudan, and Umesh Vazirani. On syntactic versus
+               computational views of approximability. SIAM J. Comput., 28:164–191, 1998.
+        11     Joseph S. B. Mitchell. Guillotine subdivisions approximate polygonal subdivisions: A simple
+               polynomial-time approximation scheme for geometric TSP, k-MST, and related problems.
+               SIAM J. Comput., 28(4):1298–1309, 1999.
+U. A. Brodowsky and S. Hougardy                                                                    18:15
+
+
+12   Christos H. Papadimitriou. The Euclidean Traveling Salesman Problem is NP-complete.
+     Theoretical Computer Science, 4(3):237–244, June 1977.
+13   Sartaj Sahni and Teofilo Gonzalez. P-complete approximation problems. Journal of the ACM,
+     23(3):555–565, July 1976.
+14   A.I. Serdyukov. O nekotorykh ekstremal’nykh obkhodakh v grafakh. Upravlyaemye sistemy,
+     17:76–79, 1978.
+15   Xianghui Zhong. Approximation Algorithms for the Traveling Salesman Problem. PhD thesis,
+     Research Institute for Discrete Mathematics, University of Bonn, 2020.
+
+
+
+
+                                                                                                 S TA C S 2 0 2 1
+
