@@ -1,6 +1,6 @@
 # 校准样例的论文资料
 
-本目录收录供审阅七条校准样例使用的论文 PDF 和 MinerU 解析资料。论文资料与本项目的算法库和案例库分开。PDF 保持原样；解析文本可能存在识别错误。
+本目录收录供审阅 ALG-001 至 ALG-009 及两个案例使用的论文 PDF 和 MinerU 解析资料。ALG-010 至 ALG-033 的其他来源见各自条目的来源记录，本目录未集中复制这些材料。论文资料与本项目的算法库和案例库分开。PDF 保持原样；解析文本可能存在识别错误。
 
 ## Split
 
@@ -19,15 +19,15 @@
 
 ## HGS-CVRP
 
-- [MinerU 解析全文](HGS_MinerU/full.md)及同目录的结构化 JSON 和图片来自 Thibaut Vidal 的 [arXiv:2012.10384v2 作者稿](https://arxiv.org/abs/2012.10384v2)，用于 ALG-002 和 CASE-001。原稿 PDF 为 24 页；解析资料含 17 张图片。
+- [MinerU 解析全文](HGS_MinerU/full.md)及同目录的结构化 JSON 和图片来自 Thibaut Vidal 的 [arXiv:2012.10384v2 作者稿](https://arxiv.org/abs/2012.10384v2)，用于 ALG-002、ALG-006 和 CASE-001。原稿 PDF 为 24 页；解析资料含 17 张图片。
 - 研究者于 2026-11-08 确认已取得将该作者稿全文及其 MinerU 解析文本公开发布的权利人授权。该确认不代表向其他使用者另行授予许可。
 - MinerU 对公式、表格和图片的识别可能有误，关键内容须与作者稿核对。
 
 ## ALNS
 
-- [2006 年期刊发表版的 MinerU 解析全文](ALNS_2006_MinerU/full.md)及同目录的结构化 JSON 和 51 个图片文件，用于 ALG-003、ALG-004 和 CASE-002。原始 PDF 共 18 页，来自学校提供访问的 JSTOR 期刊数据库。
+- [2006 年期刊发表版的 MinerU 解析全文](ALNS_2006_MinerU/full.md)及同目录的结构化 JSON 和 51 个图片文件，用于 ALG-003、ALG-004、ALG-007 至 ALG-009 和 CASE-002。原始 PDF 共 18 页，来自学校提供访问的 JSTOR 期刊数据库。
 - Stefan Ropke 和 David Pisinger, *An Adaptive Large Neighborhood Search Heuristic for the Pickup and Delivery Problem with Time Windows*，*Transportation Science*, 40(4), 455–472, 2006。[正式发表 DOI](https://doi.org/10.1287/trsc.1050.0135)。
 - 研究者于 2026-11-09 确认已取得将此发表版的 MinerU 全文公开发布的权利人授权。该确认不代表向其他使用者另行授予许可。
-- 样例最初核查的是 2005 年作者稿；本目录解析的是 2006 年发表版，两者须区分。MinerU 可能误识别公式、表格或图，关键内容须与原文核对。
+- ALG-003、ALG-004 和 CASE-002 最初核查的是 2005 年作者稿；本目录解析的是 2006 年发表版，两者须区分。MinerU 可能误识别公式、表格或图，关键内容须与原文核对。
 
 GitHub 的原始 PDF 下载链接可能返回 `application/octet-stream`，部分网页工具不能直接解析。遇到此限制时，可使用 Split 的[作者稿 HTML](https://arxiv.org/html/1508.02759v3)，以及上面的 2-Opt 文字版或[出版方 PDF](https://drops.dagstuhl.de/storage/00lipics/lipics-vol187-stacs2021/LIPIcs.STACS.2021.18/LIPIcs.STACS.2021.18.pdf)。
