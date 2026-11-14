@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-018",
+  "category": [
+    "Tree search"
+  ],
+  "function": [
+    "Search control"
+  ],
+  "summary": "Layered beam search: retain only a bounded number of the most promising paths at each depth to control candidate count.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input an unweighted graph, start, goal, beam width, depth limit, and heuristic function; return a path or `None`.\n\n",
+    "**Mechanism:** Expand every retained path at the same depth, sort candidates by their endpoint heuristic values, retain only the specified beam width, and exclude cycles within paths.\n\n",
+    "**Applicability and limits:** Width or depth limits may miss solutions, and optimality is not guaranteed. `None` does not prove infeasibility. Equal heuristic values are handled in generation order.\n\n",
+    "**Cost:** Candidate storage and sorting depend on beam width, branching, and path length; the depth limit bounds the number of layers.\n\n",
+    "**Transfer and relations:** It can construct heuristic candidates. Search failure does not prove infeasibility, and returned paths require checking against other target-problem constraints. Its role differs from iterative deepening in ALG-016 and A* in ALG-017."
+  ],
+  "code": {
+    "entry": "beam_search",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "beam_search.py",
+        "sha256_lf": "1956b64edf5a01b2157987ff1982e87cb4e658ea42ad1dcf00545a15e67a3d2e"
+      }
+    ]
+  }
+}

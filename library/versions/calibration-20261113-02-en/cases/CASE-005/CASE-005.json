@@ -1,0 +1,58 @@
+{
+  "case_id": "CASE-005",
+  "category": "tsp_ant_colony_local_search",
+  "description": [
+    "Problem and construction: Initialize a pheromone matrix from a nearest-neighbor tour. Multiple ants construct TSP tours using pheromone and distance, with local pheromone updates on traversed edges.\n\n",
+    "Iteration: Compare ant tours with the best cost; on even iterations improve the best ant with 2.5-opt, and on odd iterations improve a random ant with 2-opt. Update the global best when the resulting cost is strictly smaller, then reinforce its edges. Stop on the recorded best-known cost, the iteration limit, or the approximate time bound.\n\n",
+    "Boundary: The best route vector starts as all zeros while its cost starts at the nearest-neighbor cost. If no ant or locally improved tour strictly improves that cost, the reinforced edges and any printed route may not represent the nearest-neighbor tour. The function returns the best length, not the route; it prints the route only when print_path is enabled. Independently validate any printed tour; the initial known cost alone is insufficient."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "ad93c15ee16b3ab0295b6b6710ed8ff751b56acda471fe6b0056529276ecc538",
+      "marker": "#"
+    },
+    {
+      "name": "Makefile",
+      "path": "Makefile",
+      "sha256_lf": "21fb464da5dae3ff10ded57df85d051b81daf6de2ada98c4b6aa88905333f70c",
+      "marker": "#"
+    },
+    {
+      "name": "aco.cpp",
+      "path": "aco.cpp",
+      "sha256_lf": "4c7e69993f8066abefbf25ef9644f177108d546db97452b9145124be6fdfd343"
+    },
+    {
+      "name": "2opt.hpp",
+      "path": "2opt.hpp",
+      "sha256_lf": "d792f42f9f3cc28450a3c58f252a9e4d06ede81a5f471b9c126242c350491d1f"
+    },
+    {
+      "name": "Ant.hpp",
+      "path": "Ant.hpp",
+      "sha256_lf": "9d5f2b0952a1eb4ef744041a351ac8e5bd5ef16e242384db7e4949cd7191906c"
+    },
+    {
+      "name": "Bitmap.hpp",
+      "path": "Bitmap.hpp",
+      "sha256_lf": "f7b39e04351c32c2b122a5479b680da36dea6d8681340efe806e5dfc7e7b0123"
+    },
+    {
+      "name": "NN.hpp",
+      "path": "NN.hpp",
+      "sha256_lf": "f033e0a81c6a5a508d6b1b0136dc2a8cfb5bc8d86a8ec4fcd6008816bd60f904"
+    },
+    {
+      "name": "two_dot_five_opt.hpp",
+      "path": "two_dot_five_opt.hpp",
+      "sha256_lf": "312bbb36447750e3b94ca67a49d5f6fda01076a8534067e18e810aa3213b03a2"
+    },
+    {
+      "name": "utils.hpp",
+      "path": "utils.hpp",
+      "sha256_lf": "349031f99aaad1a06d64cf3155b9e22d1e0d55f603d155556d17c3164f36c691"
+    }
+  ]
+}

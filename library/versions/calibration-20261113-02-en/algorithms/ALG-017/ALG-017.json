@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-017",
+  "category": [
+    "Tree search"
+  ],
+  "function": [
+    "Search control"
+  ],
+  "summary": "A* path-tree search: find a shortest path in a graph with nonnegative edge weights using a nonnegative admissible heuristic that is zero at the goal.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input a finite explicit graph, start, goal, and heuristic function; return cost and path, or `None` if no path exists. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** A priority queue orders paths by $g+h$. Vertices are not repeated within a path; return when the goal is removed from the queue.\n\n",
+    "**Applicability and limits:** All edge weights must be finite and nonnegative; heuristic values must be finite and nonnegative, the heuristic must be admissible, and its goal value must be zero. The implementation checks only visited edges and evaluated heuristic values; it cannot verify whole-graph nonnegativity or admissibility. Without a global closed set, states may be expanded repeatedly.\n\n",
+    "**Cost:** The path tree can be exponential in the worst case, and the priority queue and stored complete paths can require substantial memory.\n\n",
+    "**Transfer and relations:** Unlike the graph-based Dijkstra implementation in ALG-029, a heuristic affects order. A zero heuristic allows cross-checking against shortest paths."
+  ],
+  "code": {
+    "entry": "astar_tree",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "astar_tree.py",
+        "sha256_lf": "a075abe5eec0e4c1b5dd3d1e27480569b39a3edbc44b3bf9f22d30e00b2443b1"
+      }
+    ]
+  }
+}

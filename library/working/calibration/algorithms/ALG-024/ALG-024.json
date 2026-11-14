@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-024",
+  "category": [
+    "Mathematical programming and relaxation"
+  ],
+  "summary": "Fractional knapsack relaxation: allow fractional item selection and use value-to-weight ratios to obtain the optimal single-capacity relaxation value.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input positive weights, nonnegative values, and nonnegative capacity; output the exact relaxation objective and the fraction of each item selected. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Fill in decreasing value-to-weight order, taking a fraction of the final item according to remaining capacity.\n\n",
+    "**Applicability and limits:** Applicable only to one capacity, divisible items, and nonnegative values. The result can bound 0/1 knapsack from above, but need not be an integer-feasible solution.\n\n",
+    "**Cost:** Sorting takes $O(n\\log n)$ comparisons; exact-rational operation cost depends on digit count.\n\n",
+    "**Transfer and relations:** It can provide the upper-bound concept used by ALG-015 branch and bound; the fractional solution cannot be treated directly as feasible for the original integer problem."
+  ],
+  "code": {
+    "entry": "fractional_knapsack",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "fractional_knapsack.py",
+        "sha256_lf": "f99819771bddfe7d8141e186e75faf6afe4229d8875ce0b485994abe04031cf2"
+      }
+    ]
+  }
+}

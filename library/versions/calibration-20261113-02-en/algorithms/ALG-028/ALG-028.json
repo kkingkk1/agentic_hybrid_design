@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-028",
+  "category": [
+    "Mathematical programming and relaxation"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Hungarian algorithm: find a minimum-cost assignment in a complete rectangular bipartite problem, assigning each row a distinct column.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input a finite cost matrix with no more rows than columns; output minimum cost and the assigned column index for each row. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Maintain row and column potentials, a matching, and reduced-cost augmenting paths, extending the matching one row at a time until every row is assigned.\n\n",
+    "**Applicability and limits:** Supports complete cost matrices only; negative costs are allowed. Unavailable edges, extra capacities, and routing constraints require separate modeling.\n\n",
+    "**Cost:** For n rows and m columns, the implementation uses approximately $O(n^2m)$ numerical operations; exact-fraction digit cost is additional.\n\n",
+    "**Transfer and relations:** It can solve a one-time task-to-vehicle or task-to-position assignment subproblem. ALG-033 finds only unweighted maximum-cardinality matchings."
+  ],
+  "code": {
+    "entry": "hungarian",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "hungarian.py",
+        "sha256_lf": "32720f386f03dd3e7a220082e53545369a32b752a781510fcb8f153a96762b26"
+      }
+    ]
+  }
+}

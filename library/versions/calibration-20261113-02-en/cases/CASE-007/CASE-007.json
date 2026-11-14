@@ -1,0 +1,113 @@
+{
+  "case_id": "CASE-007",
+  "category": "vrptw_lns_ejection",
+  "description": [
+    "Problem and initialization: Read a Solomon-style time-window routing instance and build an initial solution with the greedy heuristic. The entry point requests 100 customers.\n\n",
+    "Combination: First run a fleet-reduction phase that removes and reinserts customers and may invoke ejection search for unserved requests. Then apply a randomly selected destroy neighborhood and a repairer to a candidate, keep the best solution, and use the implementation's acceptance and larger-removal controls. In the main phase, the repair selector returns random-order insertion for draws below 10 and regret-2 otherwise; its nested branch for other choices is unreachable.\n\n",
+    "Boundary: The fleet-reduction loop counts 200000 iterations and the main loop counts 500000 nonempty destroy iterations. The main counter is decremented when a destroy operation removes nothing, so total attempts are not bounded by that counter. It requires a compatible input instance and a C++ environment. The deviation variable can be read without being initialized when an infeasible or too-many-routes trial is rejected before the variable is assigned; it may also contain a stale value. The syntax check does not establish constraint correctness or solution quality."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "083551cd16a45c949e04e2afb373c05b3c1dd81a21ca50f931d4b8a69b643e97",
+      "marker": "#"
+    },
+    {
+      "name": "include/alias.hpp",
+      "path": "include/alias.hpp",
+      "sha256_lf": "3d41ba27058d2dede192747766bd0762e154138eaa8df02b1f32405e6e05dabf"
+    },
+    {
+      "name": "include/eagle_distance.hpp",
+      "path": "include/eagle_distance.hpp",
+      "sha256_lf": "28e07c3e4d5b3e1bfd12f131157b4937ac135a0ea8858075fa6d568821edca77"
+    },
+    {
+      "name": "include/greedy_heuristic.hpp",
+      "path": "include/greedy_heuristic.hpp",
+      "sha256_lf": "a45ab620154142e837f9d093cbfe7160a828ce6d90fd375703e1bd6fe519eff4"
+    },
+    {
+      "name": "include/instance_data.hpp",
+      "path": "include/instance_data.hpp",
+      "sha256_lf": "36681b5ede268c3518c5bcd3f372a6309b9606471fb73519117a880d2e447374"
+    },
+    {
+      "name": "include/lns.hpp",
+      "path": "include/lns.hpp",
+      "sha256_lf": "5a9dcd20161dcb3435a8358c3125f65ad56c52d49c0277f20a2ba9ce556b5014"
+    },
+    {
+      "name": "include/neighborhoods.hpp",
+      "path": "include/neighborhoods.hpp",
+      "sha256_lf": "b40252b574de55850f80777c6184f99748b130948fb818aaa028db66b8680aec"
+    },
+    {
+      "name": "include/operations.hpp",
+      "path": "include/operations.hpp",
+      "sha256_lf": "ab1e95e717618afa29549dd196d4858b50e56f94cb09c5bfd5168462e6a0ac8a"
+    },
+    {
+      "name": "include/params.hpp",
+      "path": "include/params.hpp",
+      "sha256_lf": "a455eae8d79762e83356c52569a471a1696163cf1af248d28017246e3da0d631"
+    },
+    {
+      "name": "include/route_engine.hpp",
+      "path": "include/route_engine.hpp",
+      "sha256_lf": "8028ad0c6c15aafd80ee77ddaecc265ef7d8a4a1f7beefcb71023404e5fb35ee"
+    },
+    {
+      "name": "instance_data/instance_data.cpp",
+      "path": "instance_data/instance_data.cpp",
+      "sha256_lf": "eee96991909696ae35908ed6d19bc477b2f0e068281b73ead0e11b10c1a3dcf4"
+    },
+    {
+      "name": "lns/destroy_neighborhood.cpp",
+      "path": "lns/destroy_neighborhood.cpp",
+      "sha256_lf": "53eb0754857f17a05a4472891a1e264f9d1c0a2b4b89af89869b907ac8f634de"
+    },
+    {
+      "name": "lns/ejection_search.cpp",
+      "path": "lns/ejection_search.cpp",
+      "sha256_lf": "3a47e3dc96abbaa385573848212c858e0f16939ff5f60ab174a749660c3f84d5"
+    },
+    {
+      "name": "lns/greedy_heuristic.cpp",
+      "path": "lns/greedy_heuristic.cpp",
+      "sha256_lf": "cdf050e67ede5c7dd2bd223999a6114fa916977b895f05b842db900624cd0b77"
+    },
+    {
+      "name": "lns/lns.cpp",
+      "path": "lns/lns.cpp",
+      "sha256_lf": "34a653d0ab78377ab7729fb80fa63538fe3bbe466c669f05c55e01ba381a2f75"
+    },
+    {
+      "name": "lns/operations.cpp",
+      "path": "lns/operations.cpp",
+      "sha256_lf": "f9d54bb685d44d07707c1f542086b7feef76508daf455cce693e7c6fd8b0a575"
+    },
+    {
+      "name": "lns/repair_neighborhood.cpp",
+      "path": "lns/repair_neighborhood.cpp",
+      "sha256_lf": "c7211cd23f9d5b5728a6a73f656e39f497749a8771fd14f5f0c6a42f6298734c"
+    },
+    {
+      "name": "main/main.cpp",
+      "path": "main/main.cpp",
+      "sha256_lf": "abf6784f445e35af90aed96ab0b0da26c5a28608f7d8cbb57dc7cf9164a1f372"
+    },
+    {
+      "name": "main/makefile",
+      "path": "main/makefile",
+      "sha256_lf": "5922b712fab3426e4080b131a46934b8e387bc1236c5d73ae1a0b2713c460865",
+      "marker": "#"
+    },
+    {
+      "name": "route_engine/route_engine.cpp",
+      "path": "route_engine/route_engine.cpp",
+      "sha256_lf": "c8609075053701729dccd5f3671afe590eca2d0099ed8f84bf6e3811a123674c"
+    }
+  ]
+}

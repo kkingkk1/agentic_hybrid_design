@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-030",
+  "category": [
+    "Graph algorithms"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Bellman–Ford: compute single-source shortest paths in a directed graph that may have negative edges and detect negative cycles reachable from the start.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input vertex count, finite edge weights, and start; output distances and predecessors. Raise an error if a negative cycle is reachable from the start. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Perform at most vertex-count-minus-one rounds of edge relaxation, then check for a reachable edge that can still improve.\n\n",
+    "**Applicability and limits:** Only negative cycles reachable from the start are reported; unreachable negative cycles do not affect the result. When a negative cycle is detected, the implementation does not assign per-vertex negative-infinity labels.\n\n",
+    "**Cost:** At most $O(VE)$ relaxations; exact numeric arithmetic is additional.\n\n",
+    "**Transfer and relations:** Suitable for path subproblems with negative costs. ALG-013 applies to DAGs, and ALG-029 to nonnegative graphs."
+  ],
+  "code": {
+    "entry": "bellman_ford",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "bellman_ford.py",
+        "sha256_lf": "d27cb8201030eafbefe5201e66b30f5958bb38cf09854dacbf9f8c53b23f6803"
+      }
+    ]
+  }
+}

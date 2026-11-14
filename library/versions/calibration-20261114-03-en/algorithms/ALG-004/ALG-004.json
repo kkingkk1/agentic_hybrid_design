@@ -1,0 +1,27 @@
+{
+  "algorithm_id": "ALG-004",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Regret-k request insertion: use a caller-supplied best feasible insertion per route to schedule requests, including pickup-and-delivery repair; return updated routes and unscheduled requests without checking constraints or adding routes.",
+  "description": [
+    "**Level:** Component (insertion operator).\n\n",
+    "**Responsibility and interface:** `regret_k_insert` accepts existing routes, requests to insert, parameter $k$, and a `best_insertion(route, request)` callback. The callback must return the minimum feasible objective increment and resulting route for the specified request and route, or `None` if insertion is impossible. The function returns updated routes and remaining unscheduled requests without modifying its inputs or adding routes; the caller is responsible for feasibility and objective calculations.\n\n",
+    "**Mechanism:** For each request, use the callback to obtain its least-cost feasible insertion into each existing route. Compare different routes rather than multiple positions in one route. Rank requests by the sum of differences between their first $k$ available routes and their cheapest route; insert the chosen request in its cheapest route and reevaluate all remaining candidates. If at least one but fewer than $k$ routes allow insertion, prioritize the request with the fewest feasible routes, breaking ties by best insertion cost.\n\n",
+    "**Applicability and limits:** Requests in the source include paired pickup and delivery, so insertion must check same-vehicle assignment, pickup before delivery, capacity, and time windows. Single-point CVRP insertion is not automatically the same operation. Requests that cannot be inserted into any route remain pending. Constraints, costs, and tie rules must be specified for each problem. The operator does not guarantee a complete feasible or globally optimal solution.\n\n",
+    "**Cost:** After each insertion, this implementation reevaluates the callback for each pending request on every existing route, then compares candidates. Total cost depends on request count, route count, and callback cost. The source reduces recalculation because only one route changes per iteration; this implementation does not use that selective cache.\n\n",
+    "**Relation to the case:** The third-party implementation in [CASE-002](../../cases/CASE-002/CASE-002.md) includes Regret-2 combined with removal, adaptive selection, an acceptance rule, and CP-SAT. Its specific implementation must not automatically be treated as identical to the paper version described here. [ALG-003](../ALG-003/ALG-003.json) describes the paper's selection mechanism.\n\n",
+    "**Reference implementation:** The project independently implements `regret_k_insert`. The caller must provide `best_insertion` to find the best feasible insertion per route and handle pickup-delivery pairing, precedence, capacity, time windows, and other problem constraints. The component neither verifies those constraints nor adds routes. It recalculates candidates after each insertion and does not use the paper's selective cache update."
+  ],
+  "code": {
+    "entry": "regret_k_insert",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the Regret-k insertion rule in the ALNS paper.",
+    "files": [
+      {
+        "path": "regret_k.py",
+        "sha256_lf": "23e59431bf6e0438dcfc26903949690561576f8de49c3565f1b7c22d4d086a50"
+      }
+    ]
+  }
+}

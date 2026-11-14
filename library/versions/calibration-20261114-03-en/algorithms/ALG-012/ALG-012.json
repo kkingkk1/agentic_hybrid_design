@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-012",
+  "category": [
+    "Dynamic programming"
+  ],
+  "summary": "Weighted interval scheduling: select nonoverlapping intervals for one resource to maximize total weight.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input triples of start, end, and weight; output optimal weight and original indices. Touching endpoints are allowed. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Sort by finish time, use binary search to locate the compatible prefix, and apply a select-or-skip recurrence before reconstructing the selection.\n\n",
+    "**Applicability and limits:** Each interval must start before it ends. Only a single resource with no additional transition constraints is supported; negative-weight intervals may be skipped.\n\n",
+    "**Cost:** Sorting and predecessor lookup take $O(n\\log n)$ comparisons, with linear state-table space. Exact numeric arithmetic is additional.\n\n",
+    "**Transfer and relations:** It can select intervals for one resource. Scheduling with vehicles, routes, or multiple resources requires new modeling."
+  ],
+  "code": {
+    "entry": "weighted_intervals",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "weighted_intervals.py",
+        "sha256_lf": "0d0cd1fd35a89fcd00a1612492dd716ddb2fac5164bae34bf0fd1dbe532eab88"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-008",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Shaw related-request removal: select and remove a related set of scheduled requests to perturb the solution for later reinsertion.",
+  "description": [
+    "**Level:** Component (request-removal operator).\n\n",
+    "**Responsibility and interface:** Inputs are route-visit nodes without depots, a node-to-request mapping, removal count, bias parameter, relatedness callback, and random source. Outputs are the remaining routes and removed requests. All supplied nodes for the same request are removed together.\n\n",
+    "**Mechanism:** Choose the first request randomly. Thereafter choose a removed request randomly as a reference, sort remaining requests by increasing relatedness cost, and select index $\\lfloor U^p m\\rfloor$, where $U$ is in $[0,1)$, $p\\geq1$, and $m$ is the number of remaining requests. Repeat until the requested count is reached. Equal relatedness values retain current list order.\n\n",
+    "**Applicability and limits:** The original paper addresses pickup and delivery, using distance, visit times, demand, and vehicle compatibility for relatedness. This implementation requires the caller to supply stable relatedness based on the state before removal. The input mapping covers only supplied nodes and does not verify missing pickup or delivery nodes, precedence, capacity, or time windows. The caller must maintain the request bank and check feasibility after repair.\n\n",
+    "**Cost:** Each choice evaluates and sorts the remaining requests and removes the corresponding nodes. Cost depends on the number of requests, removal count, and relatedness callback. This implementation does not use the linear-selection optimization mentioned in the paper.\n\n",
+    "**Relation to the case:** [CASE-002](../../cases/CASE-002/CASE-002.md) combines a third-party Shaw-like removal with Regret-2 insertion and simulated annealing; related methods are described in [ALG-004](../ALG-004/ALG-004.json) and [ALG-007](../ALG-007/ALG-007.json). The case does not call these project reference implementations; its relatedness and selection strategies must be checked against its own code."
+  ],
+  "code": {
+    "entry": "shaw_removal",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on Shaw related-request removal in the ALNS paper.",
+    "files": [
+      {
+        "path": "shaw_removal.py",
+        "sha256_lf": "c321777aecdb9c99741fd5a0cb6a4d3d6ed05c63ecb7380438a65ced7ee78d83"
+      }
+    ]
+  }
+}

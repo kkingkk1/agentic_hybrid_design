@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-011",
+  "category": [
+    "Dynamic programming"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "0/1 knapsack capacity dynamic programming: maximize total value over items and remaining capacity and reconstruct the chosen items.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input nonnegative integer weights, values, and capacity; output the maximum value and original item indices. Zero weights are allowed.\n\n",
+    "**Mechanism:** Each state compares skipping the current item with including it from the previous row, then reconstructs choices from the state table.\n\n",
+    "**Applicability and limits:** Only single-capacity 0/1 knapsack is handled. Large numeric capacity produces a large table; multidimensional constraints are not handled.\n\n",
+    "**Cost:** Let $n$ be the item count and $C$ the integer capacity. This implementation builds an $(n+1)\\times(C+1)$ state table. State updates and table entries both take $O((n+1)(C+1))$; integer operation and storage costs depend on digit count. This is pseudopolynomial in numeric capacity.\n\n",
+    "**Transfer and relations:** It can serve as a capacity-constrained subproblem or exact comparator. ALG-015 solves the same problem by branch and bound."
+  ],
+  "code": {
+    "entry": "knapsack_dp",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "knapsack_dp.py",
+        "sha256_lf": "0d2d8575273b7222012cb420b9f426ca0b2c761d169dbec5cda88cff98f9b619"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-025",
+  "category": [
+    "Mathematical programming and relaxation"
+  ],
+  "function": [
+    "Bound estimation"
+  ],
+  "summary": "Knapsack Lagrangian upper bound: use a fixed nonnegative multiplier to move the capacity constraint into the objective and select items independently.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input nonnegative weights, values, capacity, and a fixed multiplier; output an upper bound and the items selected by the relaxed subproblem. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Penalize capacity excess using the multiplier and select items with positive adjusted gain; add back the multiplier times capacity to obtain the upper bound.\n\n",
+    "**Applicability and limits:** Computes the bound for the supplied multiplier only and does not optimize it. The relaxed selection may exceed capacity and must not be treated directly as feasible.\n\n",
+    "**Cost:** One upper-bound calculation uses a linear number of numerical operations; exact-rational operation cost depends on digit count.\n\n",
+    "**Transfer and relations:** Provides a bound for maximization knapsack; its role differs from ALG-024's fractional relaxation and ALG-015's exact search."
+  ],
+  "code": {
+    "entry": "lagrangian_knapsack",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "lagrangian_knapsack.py",
+        "sha256_lf": "30180ef51fc448b8e8aa11d300ef45f8f7bdc299e5b449a630565f68ea0fb272"
+      }
+    ]
+  }
+}

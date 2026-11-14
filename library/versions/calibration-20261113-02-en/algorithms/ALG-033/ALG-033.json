@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-033",
+  "category": [
+    "Graph algorithms"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Hopcroft–Karp: find a maximum-cardinality bipartite matching by layering and searching shortest augmenting paths.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input the numbers of left and right vertices and the bipartite edges; output matched pairs with no shared endpoints.\n\n",
+    "**Mechanism:** Use breadth-first search to build shortest augmenting layers, then depth-first search to find multiple augmenting paths in those layers. Repeat until no augmentation exists.\n\n",
+    "**Applicability and limits:** Optimizes matching cardinality only, without edge weights or extra capacities. Recursion depth is stack-limited.\n\n",
+    "**Cost:** Each round visits vertices and edges in the layered graph; actual cost depends on graph structure and recursive search.\n\n",
+    "**Transfer and relations:** It can check the maximum number of compatible assignments in one allocation. ALG-028 addresses complete assignments with costs."
+  ],
+  "code": {
+    "entry": "hopcroft_karp",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "hopcroft_karp.py",
+        "sha256_lf": "87abfa05bb734b744bcf800e104ed5576d4040843227a7ba163f84b3ad24cfbb"
+      }
+    ]
+  }
+}

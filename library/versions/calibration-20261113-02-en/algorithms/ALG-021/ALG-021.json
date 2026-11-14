@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-021",
+  "category": [
+    "Constraint programming"
+  ],
+  "function": [
+    "Constraint propagation"
+  ],
+  "summary": "Table-constraint GAC: retain values occurring in at least one currently valid allowed tuple for each variable.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input a list of finite domains and explicitly allowed tuples; output supported domains or `None` if no tuple remains valid.\n\n",
+    "**Mechanism:** Scan the allowed table, retain tuples compatible with every current domain, and collect each column's values as supports.\n\n",
+    "**Applicability and limits:** Handles only one positive table constraint. The caller manages other constraints and global propagation; this does not prove a multi-constraint problem feasible.\n\n",
+    "**Cost:** One call scans the explicit table and its fields; memory grows with the number and arity of valid tuples.\n\n",
+    "**Transfer and relations:** It can represent vehicle-order compatibility combinations. Compared with binary arc propagation in ALG-019, it can express higher-arity relations."
+  ],
+  "code": {
+    "entry": "table_gac",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "table_gac.py",
+        "sha256_lf": "83ce6c07ac8bffb66bc7f2d962748f788d1fa567127322192316dec53f152a41"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-031",
+  "category": [
+    "Graph algorithms"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Kruskal minimum spanning tree: select undirected edges in increasing weight order when they connect different components.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input vertex count and undirected weighted edges; output minimum-tree total weight and tree edges, or `None` if disconnected. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Sort edges by weight and use union-find to merge distinct components while skipping cycle-forming edges.\n\n",
+    "**Applicability and limits:** Negative weights and parallel edges are allowed. The result is a spanning tree, not a TSP tour. An empty graph yields zero weight and no edges.\n\n",
+    "**Cost:** Main costs are sorting edges and union-find operations; exact numeric comparison cost is additional.\n\n",
+    "**Transfer and relations:** It can support network-design subproblems or parts of some TSP lower bounds, but cannot directly be treated as a feasible tour."
+  ],
+  "code": {
+    "entry": "kruskal",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "kruskal.py",
+        "sha256_lf": "ca8ff8df6329b43a0625ef15da81200b356c78649d2defbd9b4fbf26c28a1877"
+      }
+    ]
+  }
+}

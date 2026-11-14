@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-026",
+  "category": [
+    "Mathematical programming and relaxation"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "Primal simplex: solve a linear maximization problem with nonnegative variables, nonnegative right-hand side, and only less-than-or-equal constraints; return an optimum or an unbounded status.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** `primal_simplex` takes matrix A, nonnegative right-hand side b, and objective c, and maximizes $c^\\top x$ subject to $Ax\\le b$ and $x\\ge 0$. A bounded optimum returns `(\"optimal\", optimal_value, solution_vector)`; an unbounded problem returns `(\"unbounded\", None, None)`. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Establish a feasible basis using slack variables, choose entering and leaving variables by Bland's rule, and perform tableau transformations using exact rational arithmetic.\n\n",
+    "**Applicability and limits:** Requires nonnegative b and supports only less-than-or-equal constraints and nonnegative variables. It does not implement two-phase simplex, integer constraints, or general model conversion.\n\n",
+    "**Cost:** Simplex can take exponentially many iterations in the worst case; exact-fraction digit count and tableau size affect cost.\n\n",
+    "**Transfer and relations:** It can solve small linear subproblems or relaxations without a commercial solver; integer feasibility needs separate handling."
+  ],
+  "code": {
+    "entry": "primal_simplex",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "primal_simplex.py",
+        "sha256_lf": "dbaa794c292c54e02cd9ce537f4fb12d5c4ae5d8e85978fc5687223e2cc99c99"
+      }
+    ]
+  }
+}

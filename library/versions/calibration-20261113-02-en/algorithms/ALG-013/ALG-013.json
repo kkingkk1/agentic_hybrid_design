@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-013",
+  "category": [
+    "Dynamic programming"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "DAG shortest paths: relax edges in topological order to find single-source shortest paths in a directed acyclic graph.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input the vertex count, directed edges, and start vertex; output distances and predecessors. Unreachable vertices are `None`; edge weights may be negative. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Topologically sort the entire graph, then propagate shortest costs from reachable vertices in that order.\n\n",
+    "**Applicability and limits:** The entire input graph must be acyclic. A cycle raises an error even if unreachable from the start. Resource-constrained paths are not solved.\n\n",
+    "**Cost:** Topological sorting and relaxation require $O(V+E)$ basic graph operations; exact-rational arithmetic cost is additional.\n\n",
+    "**Transfer and relations:** It can serve as a path or scheduling subproblem. Use ALG-029 for general nonnegative graphs and consider ALG-030 for general graphs with negative edges."
+  ],
+  "code": {
+    "entry": "dag_shortest_paths",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "dag_paths.py",
+        "sha256_lf": "5eb61e88b72288e43abce6781df2adf4ceb2bafece95de42018b48bda23c91de"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "case_id": "CASE-008",
+  "category": "cvrp_variable_neighborhood_search",
+  "description": [
+    "Problem and initialization: The reference program models a customer order for CVRP and evaluates it by constructing routes under configured limits. Its example constructs a nearest-neighbor order before trying several methods, including VNS.\n\n",
+    "VNS flow: Randomly shake the current order, run local search with swap or insertion, and compare the result with the saved value. A strict improvement updates the best and restarts the neighborhood sequence; otherwise the next neighborhood is tried. The timer can end the search.\n\n",
+    "Boundary: After an unsuccessful local search, the code keeps the shaken current order but retains the previous current value, so the next iteration is not a standard revert-to-incumbent VNS. The example uses an external data file and imports solver.py before creating its log directory. The CVRP evaluator accepts a finite-cost order with a duplicated customer and a missing customer; validate coverage independently before trusting its feasibility or output."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "b060a3b39675dfb1c0ff268bf17f4307eb1a67592f5fd5a1a7773c42b183a9d6",
+      "marker": "#"
+    },
+    {
+      "name": "requirements.txt",
+      "path": "requirements.txt",
+      "sha256_lf": "4377f331b17dd7c5430706df0ba7137f417936dc005b789022ad4c487fdc4adc",
+      "marker": "#"
+    },
+    {
+      "name": "src/graphbuild.py",
+      "path": "src/graphbuild.py",
+      "sha256_lf": "151c3e115a38ddb5731880944d6f6d5c05cf29d7a2e34149815f09dee4647d1a",
+      "marker": "#"
+    },
+    {
+      "name": "src/heuristics.py",
+      "path": "src/heuristics.py",
+      "sha256_lf": "c5dfee0e7952c62965cc59dcfaa4ef11730195ac7c67f872541de9f8180548a0",
+      "marker": "#"
+    },
+    {
+      "name": "src/main.py",
+      "path": "src/main.py",
+      "sha256_lf": "8729531078d8987c0d63e5a1fdc3baa13d92d4e496859791d4eaf74488ca42bd",
+      "marker": "#"
+    },
+    {
+      "name": "src/solver.py",
+      "path": "src/solver.py",
+      "sha256_lf": "dba2cde1ec74c8a7f0016ef7512543ba30937a513fc08744721328e7b4e2246f",
+      "marker": "#"
+    },
+    {
+      "name": "src/timer.py",
+      "path": "src/timer.py",
+      "sha256_lf": "5ac21289662f03d6ceb7a35680b9029b6efabfc3465c2e085109ecac2726f56e",
+      "marker": "#"
+    },
+    {
+      "name": "src/utils.py",
+      "path": "src/utils.py",
+      "sha256_lf": "b75548026974f273185f7ee073395148b5f9a9334f58c97b6a39bd7f613d4de6",
+      "marker": "#"
+    }
+  ]
+}

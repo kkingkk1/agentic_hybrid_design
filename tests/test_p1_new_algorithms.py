@@ -4,7 +4,7 @@ import importlib.util
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1] / "vault/Knowledge/P1-只读知识库校准/算法条目"
+ROOT = Path(__file__).resolve().parents[1] / "library/working/calibration/algorithms"
 for number in range(10, 34):
     source = ROOT / f"ALG-{number:03d}" / "check.py"
     spec = importlib.util.spec_from_file_location(f"p1_alg_{number:03d}_checks", source)

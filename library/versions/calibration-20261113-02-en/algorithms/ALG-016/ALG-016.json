@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-016",
+  "category": [
+    "Tree search"
+  ],
+  "function": [
+    "Search control"
+  ],
+  "summary": "Iterative-deepening DFS: increase depth up to a supplied limit to find a path with the fewest edges in an unweighted graph; failure does not establish infeasibility.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input an adjacency list, start, goal, and maximum depth; return a path or `None` when no path is found within that limit.\n\n",
+    "**Mechanism:** Run depth-first search with successive depth limits 0, 1, 2, and so on, avoiding cycles on the current path.\n\n",
+    "**Applicability and limits:** Paths are compared only by edge count, not different edge weights. `None` covers both no solution and a solution beyond the limit. Recursion depth is limited by the Python stack.\n\n",
+    "**Cost:** Prefixes are revisited at different depth limits. Work grows exponentially with branching and depth; recursion and path storage grow with depth.\n\n",
+    "**Transfer and relations:** Applicable to unweighted state search; it differs from cost-ordered A* in ALG-017 and width-limited beam search in ALG-018."
+  ],
+  "code": {
+    "entry": "iterative_deepening",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "iterative_deepening.py",
+        "sha256_lf": "992acec93fe469b7cc95b5ee9621e1b84d03e94cdebd9762cf381f6d3b0018ae"
+      }
+    ]
+  }
+}

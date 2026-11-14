@@ -1,0 +1,95 @@
+{
+  "case_id": "CASE-002",
+  "category": "adaptive_large_neighborhood_search_with_cp_sat",
+  "description": [
+    "Initialization: Build routes by greedily inserting orders in ascending delivery-window deadline order, then initialize the current and best solutions.\n\n",
+    "Search:\n",
+    "- Operator selection: Select a destroy operator and a repair operator independently by weighted roulette, related to ALG-003; the scoring rules differ from that reference.\n",
+    "- Destroy: Remove orders using random, relatedness, worst-contribution, or whole-route removal. The relatedness variant uses one seed and picks the closest orders; the worst-contribution variant ranks once. They differ from the randomized, iterative paper-based references ALG-008 and ALG-009.\n",
+    "- Repair: Reinsert removed orders with greedy, regret-2, or noise-perturbed insertion; regret-2 is related to ALG-004 but uses the case implementation. Discard an attempt if repair fails or the implementation's solution-feasibility check fails.\n",
+    "- Acceptance and scoring: Apply simulated annealing to the candidate, related to ALG-007; this case has a minimum temperature. Score the selected operators for a new best, an improvement, or an accepted candidate; update their weights and cool the temperature at segment boundaries.\n",
+    "- Route refinement: At the configured interval after a successful attempt, use CP-SAT to reorder individual routes. Per-route candidates are checked by the implementation; changed routes replace the current routes when the reported cost is finite.\n",
+    "- Termination: Stop at the iteration limit or when the wall-clock limit is noticed at the start of an iteration.\n\n",
+    "Scope: This is a third-party ALNS + CP-SAT variant for PDPTW, not the 2006 authors' implementation. It does not call the project reference implementations. Its initial insertion and feasibility/cost checks have known limitations documented in the accompanying case note; validate returned solutions independently."
+  ],
+  "code": [
+    {
+      "name": "alns_pdptw/acceptance.py",
+      "path": "alns_pdptw/acceptance.py",
+      "sha256_lf": "2d2af0334010c3c162108a057f752b2169f1d5b36fe57a5779ed695bcfd52991",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/alns.py",
+      "path": "alns_pdptw/alns.py",
+      "sha256_lf": "cbea65d6287299a8742ad495754c1cc8a6d9a3bdc997f8dd3f546db34ce1c653",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/config.py",
+      "path": "alns_pdptw/config.py",
+      "sha256_lf": "db1bffb38e06ad5cf38c39b3841a8d7c1a56cf6e6444426a3d40b912a7f37932",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/data.py",
+      "path": "alns_pdptw/data.py",
+      "sha256_lf": "f11a0e6763716b980d064e8c6fdc470b97d6217333eb0eb6000910e4500b373e",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/destroy_ops.py",
+      "path": "alns_pdptw/destroy_ops.py",
+      "sha256_lf": "a581c9ecbdbc2562cd5e23773b6fdcbb041c8f498f384ea49f311a57cb36fe08",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/feasibility.py",
+      "path": "alns_pdptw/feasibility.py",
+      "sha256_lf": "cdf94375d588a04073be1e98bc4a2286b0f15f9815b259e1fccc5860ef1af89b",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/insertion.py",
+      "path": "alns_pdptw/insertion.py",
+      "sha256_lf": "f7a7fa0b3041230b9e7bd67bc2d719fe49fbd2306099d84e75b4c42aaba1c8cb",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/main.py",
+      "path": "alns_pdptw/main.py",
+      "sha256_lf": "feb9c30b9da00727811a37af0559e403af6f44826417da2fd97ddeef4a4151a8",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/repair_ops.py",
+      "path": "alns_pdptw/repair_ops.py",
+      "sha256_lf": "b195e1634c6d24e737928f472d1879cc64adc89fedc1d388570e5937bff36138",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/route_optimizer.py",
+      "path": "alns_pdptw/route_optimizer.py",
+      "sha256_lf": "a4055c0c4edc527eab236dd88b254ddf36500f3fbd3ae88f1dfb8e4a7da68864",
+      "marker": "#"
+    },
+    {
+      "name": "alns_pdptw/solution.py",
+      "path": "alns_pdptw/solution.py",
+      "sha256_lf": "a8f52c549964c343d549020d2836fd999685c265e5f5b673a4338e446185be72",
+      "marker": "#"
+    },
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "16fb63f9aee63f40b61dc359ad91f3a84ca35632795717888108386b0fd64eaf",
+      "marker": "#"
+    },
+    {
+      "name": "requirements.txt",
+      "path": "requirements.txt",
+      "sha256_lf": "21290f714b657c7ae0a3c1e9ae88c328e78ba639727cabe6396b89672c2d14ca",
+      "marker": "#"
+    }
+  ]
+}

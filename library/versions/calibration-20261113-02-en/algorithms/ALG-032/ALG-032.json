@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-032",
+  "category": [
+    "Graph algorithms"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Edmonds–Karp: repeatedly find shortest-by-edge-count augmenting paths in a directed integer-capacity network to obtain maximum flow and one side of a minimum cut.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input vertex count, directed edge capacities, and distinct source and sink; output maximum-flow value and the vertices reachable from the source in the residual network.\n\n",
+    "**Mechanism:** Use breadth-first search in the residual network to find an augmenting path, update forward and reverse residual capacities by its bottleneck, and repeat until the sink is unreachable.\n\n",
+    "**Applicability and limits:** Capacities must be nonnegative integers; parallel edges are merged. This implementation does not output per-edge flows or handle costs or multicommodity flow.\n\n",
+    "**Cost:** A dense residual matrix uses $O(V^2)$ space, and each breadth-first search scans matrix rows. Total work depends on the number of augmentations.\n\n",
+    "**Transfer and relations:** It can serve as a capacity-network bound or feasibility subproblem; the source-side set can be used to check the corresponding cut capacity."
+  ],
+  "code": {
+    "entry": "edmonds_karp",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "edmonds_karp.py",
+        "sha256_lf": "b6c5401b25669bb1b60e8f7fe0548a32feaf6a6faad11693f7e15d9f9a1f968f"
+      }
+    ]
+  }
+}

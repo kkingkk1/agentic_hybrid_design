@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-029",
+  "category": [
+    "Graph algorithms"
+  ],
+  "function": [
+    "Exact subproblem"
+  ],
+  "summary": "Dijkstra shortest paths: compute single-source shortest distances and predecessors in a directed graph with nonnegative edge weights.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input vertex count, weighted directed edges, and start; output distances and predecessors, with `None` for unreachable vertices. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Use a min-heap to expand vertices by current distance; relax an edge and push a new heap entry when a shorter path is found.\n\n",
+    "**Applicability and limits:** Every edge weight must be finite and nonnegative. It solves shortest paths only, not vehicle capacity, time windows, or multiple resource constraints.\n\n",
+    "**Cost:** Heap and relaxation operations depend on vertices, edges, and repeated heap entries; exact numeric arithmetic is additional.\n\n",
+    "**Transfer and relations:** It can preprocess paths. A general graph with negative edges requires an alternative such as ALG-030."
+  ],
+  "code": {
+    "entry": "dijkstra",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "dijkstra.py",
+        "sha256_lf": "0c4e6abdfbccb75010037d68be5184d98a25f3f770b4a3ec0a6c36ca64c19e86"
+      }
+    ]
+  }
+}

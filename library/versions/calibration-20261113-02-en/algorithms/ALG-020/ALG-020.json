@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-020",
+  "category": [
+    "Constraint programming"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "CSP backtracking with forward checking: choose variables by minimum remaining domain and filter neighboring domains to find one solution to finite binary constraints.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input finite variable domains and binary allowed pairs; output one variable assignment, or `None` if exhaustive search finds none.\n\n",
+    "**Mechanism:** Recursively choose an unassigned variable with the smallest current domain, try each value, and remove incompatible values from neighboring domains. Backtrack when a domain becomes empty.\n\n",
+    "**Applicability and limits:** Only finite binary constraints are supported and not all solutions are enumerated. Recursion depth is limited by the Python stack.\n\n",
+    "**Cost:** Worst-case search space grows exponentially with variable count. Every branch copies and filters domains.\n\n",
+    "**Transfer and relations:** This is complete finite-CSP search, complementary to the local propagation in ALG-019; it can serve as a reference for small discrete subproblems."
+  ],
+  "code": {
+    "entry": "solve_csp",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "csp_forward_checking.py",
+        "sha256_lf": "dcd76852eed7cedfdd8c46ee410ee716a86e8f1fc0344987ee2400af3f15182e"
+      }
+    ]
+  }
+}

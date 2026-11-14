@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-023",
+  "category": [
+    "Constraint programming"
+  ],
+  "function": [
+    "Constraint propagation"
+  ],
+  "summary": "Integer sum-equality filtering: remove discrete domain values that cannot participate in the target sum.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input finite integer domains and an integer target; return supported values for each domain or `None` if no complete supporting assignment exists.\n\n",
+    "**Mechanism:** Dynamically calculate reachable prefix and suffix sums around each position and, for each candidate value, find prefix and suffix sums that combine with it to reach the target.\n\n",
+    "**Applicability and limits:** Handles a single equality over integer domains, which may contain negative values and gaps. It does not propagate other constraints.\n\n",
+    "**Cost:** Reachable-sum sets can be large and depend on domains and variable count; general polynomial size is not guaranteed.\n\n",
+    "**Transfer and relations:** It can propagate small capacity or resource equalities. Inequalities and coupling constraints require separate modeling."
+  ],
+  "code": {
+    "entry": "sum_equals_gac",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "sum_gac.py",
+        "sha256_lf": "34e9328a3884eb1bfcb7526bc675e615da71f45675e16364378b5ac4f8c54a56"
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "case_id": "CASE-009",
+  "category": "vrp_population_local_search",
+  "description": [
+    "Problem and representation: A configurable vehicle-routing framework reads an instance and builds a population of solutions. Its input model includes vehicle capacity and customer pickup, delivery, and time-window fields; actual constraint behavior depends on the instance and configuration.\n\n",
+    "Population loop: Initialize the population and apply local search, then select parent pairs. Crossover alternates whole non-overlapping routes from the parents and uses the configured insertion strategy to repair missing customers; disabling crossover copies the first parent. Locally improve children, replace population members, and update the best solution. Search operators and stopping settings are exposed through command-line parameters.\n\n",
+    "Boundary: This entry describes the supplied configurable implementation, not a claim that every configuration reproduces a particular paper. Verify the chosen operators, instance encoding, capacity and time-window semantics, and coverage before migration. SRC/argparse.h has its own BSD 3-clause license in addition to the repository MIT license."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "053adad6d80e492dcc4087834284ffdc1f5ef4388299f84474183de56c2644ed",
+      "marker": "#"
+    },
+    {
+      "name": "SRC/VRPenstein.cpp",
+      "path": "SRC/VRPenstein.cpp",
+      "sha256_lf": "116fcc374454a8eec48ac52b6eb748b8f407a7fa008a98fca36e928ac409c792"
+    },
+    {
+      "name": "SRC/VRPenstein.h",
+      "path": "SRC/VRPenstein.h",
+      "sha256_lf": "68a479001e7a245f51cc08cb3d466b9800fbe59f4d9add8fb623182ee06e0f98"
+    },
+    {
+      "name": "SRC/argparse.h",
+      "path": "SRC/argparse.h",
+      "sha256_lf": "8b667418d8b7765b40a7d5fb6e66c1f765c9b04229f09e02e7b961a8262b6bc6"
+    },
+    {
+      "name": "SRC/config.h",
+      "path": "SRC/config.h",
+      "sha256_lf": "420d328a74e067a8f72dd711a935fad5129ea74df01c95e5aa0a6675e24b05ea"
+    },
+    {
+      "name": "SRC/data.cpp",
+      "path": "SRC/data.cpp",
+      "sha256_lf": "34f3f42fcd85c1ff50eac9863bc4853f32a4c58da73a0bbadb0a552f1c649a7a"
+    },
+    {
+      "name": "SRC/data.h",
+      "path": "SRC/data.h",
+      "sha256_lf": "cc8266629ee690f879dd21b1961d4212ad4a80da96fede25aca27271dedaef5b"
+    },
+    {
+      "name": "SRC/eval.cpp",
+      "path": "SRC/eval.cpp",
+      "sha256_lf": "c8ecba04730512517026bbab175335a7d55f9ef41500f1427c2c6bb9543b9040"
+    },
+    {
+      "name": "SRC/eval.h",
+      "path": "SRC/eval.h",
+      "sha256_lf": "1c7eaa941515a8c2ce3ffee96f4495dfd6fe6cc17853934f6ec36556ab1d7f32"
+    },
+    {
+      "name": "SRC/move.h",
+      "path": "SRC/move.h",
+      "sha256_lf": "d01e28487f0e9d4a583f56472d8ba7f876c0eecab403c9bd5d1b39d63d56ad30"
+    },
+    {
+      "name": "SRC/operator.cpp",
+      "path": "SRC/operator.cpp",
+      "sha256_lf": "1b3df0017376034cb5398c92699e01fb17d3bc46726402938b5cebe314fd9aee"
+    },
+    {
+      "name": "SRC/operator.h",
+      "path": "SRC/operator.h",
+      "sha256_lf": "80a3d2bf81dece6bc0f9c768879e4623dacac11090515f6b439c3a5317dd071e"
+    },
+    {
+      "name": "SRC/search_framework.cpp",
+      "path": "SRC/search_framework.cpp",
+      "sha256_lf": "f5fe5166760f799ea302019158d759f283db2f9e8a9d4991f1865bee4b60d917"
+    },
+    {
+      "name": "SRC/search_framework.h",
+      "path": "SRC/search_framework.h",
+      "sha256_lf": "95abed37cc0d48973b7d7e798d25d4afff077078121d45effedd9b5eb98a80bc"
+    },
+    {
+      "name": "SRC/solution.cpp",
+      "path": "SRC/solution.cpp",
+      "sha256_lf": "1395db6c6064b60fec6c679a068920915ff006b773f3bdc1d0cf8b397a818991"
+    },
+    {
+      "name": "SRC/solution.h",
+      "path": "SRC/solution.h",
+      "sha256_lf": "b11583f71513fd2f5ea444fe70589a770617920382215419bb7aec4c9580f870"
+    },
+    {
+      "name": "SRC/util.cpp",
+      "path": "SRC/util.cpp",
+      "sha256_lf": "12bd332701009bc7bfc526138cdb7559b9deb831f45798a479e505cb6d0e119c"
+    },
+    {
+      "name": "SRC/util.h",
+      "path": "SRC/util.h",
+      "sha256_lf": "9c492eacfb1fbbb862e93db81e565d406ed97f22f933d85917b0f778687b9d36"
+    }
+  ]
+}

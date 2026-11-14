@@ -1,0 +1,27 @@
+{
+  "algorithm_id": "ALG-003",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "ALNS adaptive operator selection: three functions perform weighted sampling, outcome scoring, and segment-based weight updates; the caller manages removal and insertion operators and history, and shared rewards do not identify each operator's independent contribution.",
+  "description": [
+    "**Level:** Component (control mechanism).\n\n",
+    "**Responsibility and interface:** `choose_operator` returns an operator index from weights and a random source; `score_outcome` returns one score from the candidate, current and historical-best objectives, acceptance state, and rewards; `update_weights` returns updated weights from previous weights, accumulated scores, call counts, and a reaction factor. The caller separately chooses removal and insertion operators and maintains history, counts, and shared rewards. A score cannot be treated as the independent causal contribution of one operator.\n\n",
+    "**Mechanism:** Removal and insertion operators are sampled independently in proportion to their weights. Table 1 of the 2006 published version scores both operators used in an operation for three types of outcome: a new historical-best solution; a solution not previously accepted that improves on the current solution; and a solution not previously accepted that is worse than the current solution but accepted in this iteration. At the end of each segment, divide accumulated scores by attempted calls and combine the result with the old weight and reaction factor to update the next segment's weight.\n\n",
+    "**Applicability and limits:** The mechanism requires interchangeable operators, comparable feedback, and a positive total weight. The source credits the same reward to both operators and cannot distinguish their contributions. Its text also uses 'unvisited' and mentions a hash record, but the timing of solution registration is not established here and must not be equated automatically with 'previously generated' or 'previously accepted'. An implementation must specify precedence for overlapping scoring cases. The checked text does not state beside the update formula how to handle zero calls; an implementation must specify this separately. Different feedback windows, rewards, or acceptance rules change the behavior.\n\n",
+    "**Cost:** Each iteration requires sampling and outcome recording; weights are updated per operator at segment boundaries. Operator execution costs are separate, so the update cost alone does not determine total search cost.\n\n",
+    "**Relation to the case:** [CASE-002](../../cases/CASE-002/CASE-002.md) shows a third-party implementation combining adaptive selection with request removal, insertion, and simulated annealing; its operator scoring differs from the paper mechanism described here. [ALG-004](../ALG-004/ALG-004.json) describes the paper's insertion operator.\n\n",
+    "**Reference implementation:** The project independently implements `choose_operator`, `score_outcome`, and `update_weights`. The caller separately chooses removal and insertion operators and maintains solution history, call counts for both kinds of operators, and shared rewards. Because the paper does not specify the zero-call update, this implementation retains the previous weight. When reward conditions overlap, it gives precedence to a new best, then improvement, then acceptance of a worse solution. The caller decides how to proceed when every weight is zero."
+  ],
+  "code": {
+    "entry": "choose_operator",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the ALNS paper's operator selection and segment-based weight updates.",
+    "files": [
+      {
+        "path": "adaptive_operators.py",
+        "sha256_lf": "de28aa02e4f045fb13d3c3eedea53d75ae2d11526987ee85e634ced404534409"
+      }
+    ]
+  }
+}

@@ -13,7 +13,8 @@
 
 - [主计划](vault/Plan/多智能体协作的通用混合算法自动设计.md)：维护总体设计、P0—P3路线和阶段状态；详细合同见其链接的阶段计划。
 - [知识库入库口径与校准样例](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md)：按ID阅读样例、核对来源与待确认的数量建议；正式两库尚未建成。
-- [P1只读读取器](scripts/p1_library_reader.py)：列出全部校准条目的候选信息，按ID读取完整描述、代码和来源并核对版本。
+- [P1只读读取器](scripts/p1_library_reader.py)：默认校验并读取冻结的校准快照，列出候选信息或按ID加载说明、代码和来源。
+- [两库工作目录](library/working/calibration/)位于项目顶层；[英文校准快照](library/versions/calibration-20261114-03-en/)与[冻结清单](library/manifests/calibration-20261114-03-en/manifest-6e20a83e63570d7f9ae40ddfece9cc86c63e73b5db8078b7a987a562d00f2d26.json)固定33条算法和10条案例，不代表正式库验收。
 - [校准样例审阅资料](vault/Knowledge/P1-只读知识库校准/审阅资料入口.md)：查看样例对应的论文全文入口，以及 PaperBanana 本地参考数据的公开副本。
 - [P0阶段计划](vault/Plan/P0-TSP最简工程链路.md)：首批TSP实例、求解接口与工程链路任务。
 - [P0实例生成器](scripts/generate_p0_tsp.py)：按ReEvo规则生成TSP实例，并核验现有数据快照。
@@ -39,7 +40,7 @@ python -B scripts/p1_library_reader.py catalog
 python -B scripts/p1_library_reader.py load ALG-001 CASE-001
 ```
 
-读取器只读文件；Retriever 的全文分析、知识库冻结和预算检查尚未接入。字段、校验规则和材料使用限制见[入库口径与校准说明](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md#读取器使用)。
+读取器默认使用冻结的校准快照；整理当前草稿时可在子命令前加 `--draft`。正式检索的快照管理、Retriever 全文分析和预算检查尚未接入。字段、校验规则和材料使用限制见[入库口径与校准说明](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md#读取器使用)。
 
 ## 来源与历史
 

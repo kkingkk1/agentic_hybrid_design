@@ -1,0 +1,23 @@
+{
+  "case_id": "CASE-003",
+  "category": "tsp_iterated_local_search",
+  "description": [
+    "Problem and representation: Solve a symmetric Euclidean TSP using a customer permutation and rounded distances. Nearest-neighbor construction creates an initial tour.\n\n",
+    "Iteration: Copy the current best tour, apply a double-bridge kick, then use 2-opt, Or-opt, and 3-opt local search. An improved candidate replaces the saved best. Stop at the configured time limit.\n\n",
+    "Boundary: The kick rearranges the tour without updating its position index before local search; this inconsistency was reproduced and can invalidate move evaluation. Rebuild that index and independently verify the result before reuse. The local 2-opt is independent of ALG-005. The script imports networkx and matplotlib even when drawing is not requested."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "0ca50aefd9e0075d91e58a1aecd0f09b5626e7d7ddd69b890a3f1f7323f39b1e",
+      "marker": "#"
+    },
+    {
+      "name": "tsp_ils.py",
+      "path": "tsp_ils.py",
+      "sha256_lf": "9e96ad7e1b7a8f8d14bb4f66d3880ab1757f55cb9447c6f80a78947df5d3de9f",
+      "marker": "#"
+    }
+  ]
+}

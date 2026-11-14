@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-014",
+  "category": [
+    "Tree search"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "TSP branch and bound: construct directed tours depth first and prune using a lower bound on outgoing edges of remaining vertices.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input a finite nonnegative distance matrix and a start vertex; output the exact cost and vertex sequence of a shortest tour. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** Construct partial permutations. The lower bound sums the cost so far, the cheapest edge from the current endpoint to an unvisited vertex, and for each unvisited vertex the cheapest edge to another unvisited vertex or the start. Prune when this is no better than the incumbent.\n\n",
+    "**Applicability and limits:** Only complete graphs, nonnegative distances, and a single tour are supported. Capacity, time windows, and missing edges are not handled; worst-case enumeration can still be extensive.\n\n",
+    "**Cost:** The worst-case search tree is factorial. Each bound examines remaining outgoing edges; exact-rational arithmetic cost is additional.\n\n",
+    "**Transfer and relations:** ALG-010 solves the same TSP with a different exact mechanism. The outgoing-edge bound here was independently constructed by the project."
+  ],
+  "code": {
+    "entry": "tsp_branch_bound",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "tsp_branch_bound.py",
+        "sha256_lf": "9dc5a0c08826f1514e9686285069a9f6ed39c6170fc712dec50c1174fc5c4a98"
+      }
+    ]
+  }
+}

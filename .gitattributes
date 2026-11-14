@@ -1,3 +1,11 @@
 # P0实例快照按字节校验；检出时保持LF。
 /data/p0_tsp/train50.json text eol=lf
 /data/p0_tsp/train200.json text eol=lf
+
+# 工作库 JSON 使用 LF；案例来源记录校验 JSON 原始字节。
+/library/working/calibration/algorithms/ALG-*/ALG-*.json text eol=lf
+/library/working/calibration/cases/CASE-*/CASE-*.json text eol=lf
+
+# 冻结快照按原始字节校验；检出时不转换行尾。
+/library/manifests/** -text
+/library/versions/** -text

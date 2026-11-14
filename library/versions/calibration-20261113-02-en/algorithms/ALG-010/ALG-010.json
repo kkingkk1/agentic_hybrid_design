@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-010",
+  "category": [
+    "Dynamic programming"
+  ],
+  "function": [
+    "Exact solving"
+  ],
+  "summary": "Held–Karp subset dynamic programming: find a shortest traveling-salesperson tour from a given start in a finite complete directed graph.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input a finite numeric square matrix and a start vertex; output the optimal tour cost and a vertex sequence including the start at both ends. Numeric results use Python `Fraction`; floating-point inputs are converted according to their binary values.\n\n",
+    "**Mechanism:** States record the visited vertex set and last vertex. Enumerate predecessors and retain minimum costs, then add the return edge and reconstruct the path.\n\n",
+    "**Applicability and limits:** A complete directed matrix is required. Negative edges are supported, but missing edges, capacity, and time windows are not. A single-vertex tour has zero cost.\n\n",
+    "**Cost:** There are $O(n2^n)$ states, each inspecting at most $n$ predecessors; numeric operation cost depends on precision.\n\n",
+    "**Transfer and relations:** It can serve as a small TSP exact subproblem. ALG-014 addresses the same problem using a different branch-and-bound mechanism. A CVRP adaptation must handle its constraints separately."
+  ],
+  "code": {
+    "entry": "held_karp",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "held_karp.py",
+        "sha256_lf": "724ff2c7071dc6af84a24b3c0381f8c94076e286f771efcacc6e79e3f71f9175"
+      }
+    ]
+  }
+}

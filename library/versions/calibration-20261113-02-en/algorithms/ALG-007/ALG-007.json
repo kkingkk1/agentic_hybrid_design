@@ -1,0 +1,29 @@
+{
+  "algorithm_id": "ALG-007",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "function": [
+    "Search control"
+  ],
+  "summary": "Simulated-annealing acceptance and geometric cooling: at positive temperature accept unchanged or improved minimization solutions and probabilistically accept worse ones; provide one cooling step while the caller handles initial temperature, feasibility, and stopping.",
+  "description": [
+    "**Level:** Component (acceptance rule and cooling).\n\n",
+    "**Responsibility and interface:** `annealing_accept` takes current and candidate objective values, a positive temperature, and a random source, and returns whether to accept the candidate. `cool_temperature` returns the next temperature for a given coefficient. The caller controls the initial temperature, call timing, candidate generation, feasibility, and stopping conditions.\n\n",
+    "**Mechanism:** For minimization, accept unchanged or improved solutions directly; accept a worse solution with probability $\\exp[-(f_{new}-f_{current})/T]$. Geometric cooling updates $T_{next}=cT$, requiring $T>0$ and $0<c<1$.\n\n",
+    "**Applicability and limits:** Current and candidate objectives must be comparable; the caller must check problem constraints. The acceptance rule alone guarantees neither feasibility nor optimality. Temperature, cooling rate, and stopping conditions affect search behavior. The reference implementation uses logarithmic comparison to avoid exponential underflow; logarithms still incur floating-point error, and cooling explicitly raises an error if the result underflows to zero.\n\n",
+    "**Cost:** One acceptance decision and cooling step use a constant number of numerical operations. For arbitrary-precision integers or exact rationals, operation cost also depends on the number of digits; objective evaluation and candidate generation are excluded.\n\n",
+    "**Relation to the case:** [CASE-002](../../cases/CASE-002/CASE-002.md) uses simulated annealing after removal and insertion and sets a minimum temperature. This implementation does not set a minimum temperature or copy that third-party case code. [ALG-003](../ALG-003/ALG-003.json) handles a different search-control mechanism: operator selection and scoring."
+  ],
+  "code": {
+    "entry": "annealing_accept",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the simulated-annealing acceptance rule in the ALNS paper.",
+    "files": [
+      {
+        "path": "annealing_acceptance.py",
+        "sha256_lf": "17960988368b02b2b6b0146f43c3928759f10911351b3077ccfa2111cfc6c865"
+      }
+    ]
+  }
+}

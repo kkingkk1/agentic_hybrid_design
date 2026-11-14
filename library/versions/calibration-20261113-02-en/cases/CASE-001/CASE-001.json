@@ -1,0 +1,111 @@
+{
+  "case_id": "CASE-001",
+  "category": "hybrid_genetic_search",
+  "description": [
+    "Problem and components: HGS searches CVRP routes by combining order crossover, Split decoding, route local search, and population management. The case references the author version of Split and supporting files stored once under ALG-001; SWAP* and order crossover are related to the independently implemented ALG-002 and ALG-006. The remaining HGS program files belong to this case.\n\n",
+    "Initialization: Create 4μ random customer permutations. Split converts each permutation into routes; local search improves them, and each result enters the feasible or infeasible subpopulation. For half of infeasible individuals, retry local search with tenfold penalties and insert the repaired individual only if feasible.\n\n",
+    "Evolution:\n",
+    "- Parent selection: Use binary tournaments based on biased fitness to choose two parents from the subpopulations. Each parent supplies a customer permutation.\n",
+    "- Crossover: Order crossover copies a segment from the first parent and fills the remaining positions in the second parent's order, producing a new permutation.\n",
+    "- Split decoding: Pass the permutation to Split with the first parent's route count. HGS adjusts this bound to at least the total-demand capacity lower bound, tries the simple Split, and falls back to limited-fleet Split when necessary. Capacity excess is penalized. The case uses this component and its required supporting code from ALG-001.\n",
+    "- Local search and repair: Improve the decoded routes using route moves, including SWAP*. Insert the result according to feasibility. For half of infeasible offspring, retry local search with tenfold penalties; insert the repaired result only when feasible.\n",
+    "- Population and feedback: Keep feasible and infeasible subpopulations separately. Survivor selection uses solution quality and diversity; observed feasibility periodically adjusts capacity and duration penalties for later local search and decoding.\n",
+    "- Termination: Stop at the non-improvement limit or CPU time limit. With a finite time limit, restart the population at the non-improvement threshold and continue until the time limit.\n\n",
+    "Boundary: The reference case is an HGS implementation with its own representation, penalties and vehicle handling. ALG-001 uses the same author version of Split; it depends on the HGS Params and Individual interfaces, which require adaptation for different representations or constraints. The case OX code returns the second parent when the selected circular interval spans the entire permutation, whereas ALG-006 retains the first parent for that interval."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/LICENSE",
+      "sha256_lf": "f394ca7994e08f3e965d2041a36803d400b3cd3d2c2dc5c0a394fe1c28a7ef6c"
+    },
+    {
+      "name": "Program/CircleSector.h",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/CircleSector.h",
+      "sha256_lf": "392300382207664b2e6a51d742a39daa7ec586b4cb0b958747caa55b9d4cba30"
+    },
+    {
+      "name": "Program/Genetic.cpp",
+      "path": "Program/Genetic.cpp",
+      "sha256_lf": "0ec51ad649392d79782354bab3193dc709f8392180e9849ae89e22985513dbb8"
+    },
+    {
+      "name": "Program/Genetic.h",
+      "path": "Program/Genetic.h",
+      "sha256_lf": "3356c3bb201ca9d11bed07f14048a5c12bc6da20fa6ca245e56035a25eb5f8d9"
+    },
+    {
+      "name": "Program/Individual.cpp",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Individual.cpp",
+      "sha256_lf": "83d79b3b1dd858756aeb0bfad6590cf78743aa89bf92018b218d59f7aa256666"
+    },
+    {
+      "name": "Program/Individual.h",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Individual.h",
+      "sha256_lf": "d3d4b988a077f0f45c5cc5d02ea87497300ad04e2e253b99185ccecdefb736ec"
+    },
+    {
+      "name": "Program/LocalSearch.cpp",
+      "path": "Program/LocalSearch.cpp",
+      "sha256_lf": "05a88b07fe8556a1918245baa7d43c97d49ced40c0c15d0e0b21fc1e7e757564"
+    },
+    {
+      "name": "Program/LocalSearch.h",
+      "path": "Program/LocalSearch.h",
+      "sha256_lf": "44e5068233e057ec2c082d14fa52b2ccd9c52abfd8e5f0e939e1d6920583ed4a"
+    },
+    {
+      "name": "Program/Makefile",
+      "path": "Program/Makefile",
+      "sha256_lf": "7b919011d0463f14587d3c6f5e393470629204d1ed1c6a6f7ef2f47430456f07"
+    },
+    {
+      "name": "Program/Params.cpp",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Params.cpp",
+      "sha256_lf": "0ac4a3b8fb9867744a2ee7515e2da00750303b36839e62db9aef0e1529bcc0ad"
+    },
+    {
+      "name": "Program/Params.h",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Params.h",
+      "sha256_lf": "f088573b9ae0256c7d847a915eed53ff2b8baa6c2a5fce06a88354d889510063"
+    },
+    {
+      "name": "Program/Population.cpp",
+      "path": "Program/Population.cpp",
+      "sha256_lf": "a1a7288bc3b9e9dd664bd0933953d8cda843907329f481127bfb44b915355224"
+    },
+    {
+      "name": "Program/Population.h",
+      "path": "Program/Population.h",
+      "sha256_lf": "3f4da5bff830a80b7fddc2c39265b08ebbc8ff0f58519c91e1c0a4c0e5a0cf9e"
+    },
+    {
+      "name": "Program/Split.cpp",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Split.cpp",
+      "sha256_lf": "4a9e20cf017d443f4419aba1d694428d1dd04158272e75d358bf701f4325ca93"
+    },
+    {
+      "name": "Program/Split.h",
+      "algorithm_id": "ALG-001",
+      "path": "hgs_split/Split.h",
+      "sha256_lf": "3375614e74a88eb86fd893210a02bec6a3833e8d918417e4dce0c03848892178"
+    },
+    {
+      "name": "Program/commandline.h",
+      "path": "Program/commandline.h",
+      "sha256_lf": "3706be890149ab53dcdcc35f4e042fa2a4361e4772de83041072b4dda1615a33"
+    },
+    {
+      "name": "Program/main.cpp",
+      "path": "Program/main.cpp",
+      "sha256_lf": "26e044b48ac248b7cd56e052511687ad2ac2d392d85da5412a2a5fd576db7332"
+    }
+  ]
+}
