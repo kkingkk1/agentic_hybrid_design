@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-027",
+  "category": "cvrp_savings_and_relocate_descent",
+  "description": [
+    "**CVRP Clarke–Wright savings followed by feasible relocate descent.** Use a complete symmetric matrix and hard route capacity. The savings stage starts from singleton customers and joins compatible route endpoints.\n\n",
+    "Feed the complete feasible grouping to interroute relocate. Enumerate alternate destination positions without violating capacity. Accept decreasing total depot-route distance and run another move search from the changed route set.\n\n",
+    "The procedure ends when no strict relocate improvement is found. The case combines savings construction with distinct post-construction customer redistribution."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "d2f80214324a64940b39dc022d1ebdcc4695606798f448663468afec1bc088bb",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

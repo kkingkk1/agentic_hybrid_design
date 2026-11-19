@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-039",
+  "category": [
+    "Graph algorithms"
+  ],
+  "summary": "Euler shortcutting traverses a connected even-degree multigraph and keeps each vertex's first visit.",
+  "description": [
+    "Input is undirected nonloop edge pairs and a start in the graph. Distinct parallel edges are allowed. Return a cycle order with its closing edge implicit.\n\n",
+    "Use a stack to splice closed trails and distinguish edges by index. Drop repeats from the reconstructed Euler walk. Disconnected or odd-degree input raises an error. The traversal is linear in the number of edges. Metric shortcut bounds are the caller's responsibility."
+  ],
+  "code": {
+    "entry": "euler_shortcut",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "euler_shortcut.py",
+        "sha256_lf": "f6d4708587e230b459fb2430a514450ac635406a429cb5cc5b03ac5088032911"
+      }
+    ]
+  }
+}

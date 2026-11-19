@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-023",
+  "category": "tsp_one_tree_certification",
+  "description": [
+    "**Exact small symmetric TSP with a 1-tree certificate and subset fallback.** Use nonnegative integer symmetric costs and at most 12 vertices. 2-opt initialized by nearest neighbor supplies a feasible upper bound.\n\n",
+    "Compute lower bounds with minimum 1-trees and update vertex weights from degree deficits or excesses. If a lower bound matches the upper bound, return the tour with a certificate. Otherwise invoke Held–Karp subset dynamic programming and return the exact tour.\n\n",
+    "The staged certificate can avoid subset enumeration on some inputs. This adaptation combines the weighted 1-tree and the existing complete subset dynamic program. It uses integer arithmetic for the certificate comparison."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "f551a34d71ff1a4430d2122c264bcf36ea7d7384251b8819a2961efb031cc370",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    },
+    {
+      "name": "one_tree.py",
+      "path": "one_tree.py",
+      "algorithm_id": "ALG-062",
+      "sha256_lf": "f0b37d9d9c0c5ebbc3d863c70192a13c8f1a331c811920bd8ee70bf19d872645",
+      "marker": "#"
+    },
+    {
+      "name": "held_karp.py",
+      "path": "held_karp.py",
+      "algorithm_id": "ALG-010",
+      "sha256_lf": "724ff2c7071dc6af84a24b3c0381f8c94076e286f771efcacc6e79e3f71f9175",
+      "marker": "#"
+    }
+  ]
+}

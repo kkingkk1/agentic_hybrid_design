@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-065",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Record-to-record travel accepts moves inside a fixed deviation from the best seen objective.",
+  "description": [
+    "Input is an initial solution, a nonmutating proposal callback, a cost function, an iteration limit, an absolute tolerance and a random generator. Return the best solution found.\n\n",
+    "Accept a proposal when its value is at most the current record plus tolerance. An improvement updates the record and the active solution. Stop when the proposal callback returns None or rounds expire. This reference keeps the tolerance fixed and requires the callback to protect feasibility."
+  ],
+  "code": {
+    "entry": "record_travel",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "record_travel.py",
+        "sha256_lf": "10da9a16f4aa1e740ec2860bb566953b80a8e4dc67beef24aa28b6a6175c8edb"
+      }
+    ]
+  }
+}

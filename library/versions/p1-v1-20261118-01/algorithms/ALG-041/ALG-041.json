@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-041",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Symmetric TSP 3-opt searches reconnections after three pairwise nonadjacent edge cuts.",
+  "description": [
+    "Input is a finite symmetric matrix and a complete open tour. Return one strict best improvement or a copy of the input when no constructed neighbor improves it.\n\n",
+    "Keep one fragment oriented and try both orders and orientations of the other two. The enumeration includes 2-opt-equivalent reconnections and does not cut adjacent edges. Recomputing full lengths gives quartic time. Fewer than six vertices leave the tour unchanged."
+  ],
+  "code": {
+    "entry": "three_opt",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "three_opt.py",
+        "sha256_lf": "8232c8ebe3ad8fe7b6a57c12d5d6767c8c65d461dc9cc6d72e0d29f46010bf80"
+      }
+    ]
+  }
+}

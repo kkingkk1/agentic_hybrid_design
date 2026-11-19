@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-024",
+  "category": "cvrp_route_first_cluster_second",
+  "description": [
+    "**CVRP giant-tour construction, capacity Split and interroute relocation.** Use a complete symmetric matrix, single depot at index zero, nonnegative customer demands and a homogeneous capacity. Nearest neighbor supplies a single customer permutation.\n\n",
+    "Decode that order into maximal feasible consecutive blocks. The decoder gives implicit depot tours with all customers once. Then use the decoded routes as the state for one best feasible interroute relocate.\n\n",
+    "Beasley's route-first design uses cost-aware route partitioning. This adaptation uses a greedy hard-capacity boundary rule in place of exact distance-based partitioning. The relocation may change the original segment assignments."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "8a60feada92bb9856e10c9ba913ea537564fae9c377885dc46c2334f6af68748",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "capacity_split.py",
+      "path": "capacity_split.py",
+      "algorithm_id": "ALG-051",
+      "sha256_lf": "a4e9a6e28de57b5dd107c5b551b26656c8ce8cf38af5e0295390dabadd9cebf6",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

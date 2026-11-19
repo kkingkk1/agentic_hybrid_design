@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-014",
+  "category": "tsp_double_tree_descent",
+  "description": [
+    "**TSP doubled-tree shortcut followed by 2-opt descent.** Use a symmetric complete distance matrix. Kruskal supplies a spanning tree whose edges pass to a preorder traversal. First visits shortcut the closed walk of the doubled tree.\n\n",
+    "Take that complete order as the initial tour for 2-opt. It minimizes distance within its improving neighborhood while retaining all vertices. The initial guarantee relies on metric costs. The search never intentionally accepts a longer move.\n\n",
+    "The doubled-tree mechanism creates the Euler structure by duplicating tree edges. The case adds a local refinement phase rather than a matching-based parity correction."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "beb009b92f1d7f2118c5959f0329d693b9f5a5ebacd38866a24827253c8d3d11",
+      "marker": "#"
+    },
+    {
+      "name": "kruskal.py",
+      "path": "kruskal.py",
+      "algorithm_id": "ALG-031",
+      "sha256_lf": "ca8ff8df6329b43a0625ef15da81200b356c78649d2defbd9b4fbf26c28a1877",
+      "marker": "#"
+    },
+    {
+      "name": "tree_preorder.py",
+      "path": "tree_preorder.py",
+      "algorithm_id": "ALG-038",
+      "sha256_lf": "19a8d894645b1f8a94e7e24917dd6e08309d1b4250a25f21fcb2a82dff989cd1",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    }
+  ]
+}

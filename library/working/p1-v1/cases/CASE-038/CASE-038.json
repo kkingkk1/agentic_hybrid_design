@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-038",
+  "category": "cvrp_angular_petal_partition",
+  "description": [
+    "**CVRP polar petal generation and set partitioning.** Use planar coordinates, a depot, nonnegative demands and at most 12 customers. Sort customers by polar angle.\n\n",
+    "Generate every capacity-feasible consecutive cyclic segment starting at each angle-ordered customer. Route a segment of at most eight customers exactly and retain angular order for larger segments. These candidate petals form the input to a restricted disjoint cover.\n\n",
+    "The set-partitioning step selects combinations among overlapping candidate petals rather than committing to the first greedy angle cut. Optimality pertains to the restricted route family."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "6b8c425c4b30a5ae2fe744e6c8869f691ab9cfd9cb1729cecb363aa016a3ca6a",
+      "marker": "#"
+    },
+    {
+      "name": "sweep_order.py",
+      "path": "sweep_order.py",
+      "algorithm_id": "ALG-050",
+      "sha256_lf": "abb1c39c439b802c1a64b1b51e254ae40cc6e7404119355849336e9494545895",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    },
+    {
+      "name": "route_partition.py",
+      "path": "route_partition.py",
+      "algorithm_id": "ALG-057",
+      "sha256_lf": "978620697bf76686318e2653063e26b80560e806557f002c9fd461dece15b16e",
+      "marker": "#"
+    }
+  ]
+}

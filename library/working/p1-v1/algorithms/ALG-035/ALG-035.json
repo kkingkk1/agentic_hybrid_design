@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-035",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Cheapest insertion selects the unused TSP vertex and tour position giving the smallest immediate length increase.",
+  "description": [
+    "Input is a finite complete distance matrix with zero diagonal and a start vertex. Output is an open permutation with the return edge implicit.\n\n",
+    "At every step test all pairs of unused vertices and cyclic edges. Replace the cheapest edge by the two arcs through the chosen vertex. Ties use vertex and position. The direct implementation takes cubic time and does not guarantee global optimality."
+  ],
+  "code": {
+    "entry": "cheapest_insertion",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "cheapest_insertion.py",
+        "sha256_lf": "f9a96d453b4e47e43aa74be1e2d7beb559ca6aa003959cb1b57fa464f80298e9"
+      }
+    ]
+  }
+}

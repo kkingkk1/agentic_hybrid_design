@@ -1,0 +1,27 @@
+{
+  "algorithm_id": "ALG-005",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "2-Opt local improvement for symmetric TSP: repeatedly replace two tour edges, accepting only moves that shorten the distance and retain one tour; complete descent guarantees only 2-Opt local optimality.",
+  "description": [
+    "**Level:** Component (local-search operator).\n\n",
+    "**Responsibility and interface:** `two_opt` accepts a permutation of matrix node indices, with each node appearing once and the start not repeated, and a finite nonnegative symmetric distance matrix with zero diagonal. The return edge to the start is implicit. It returns the closed-tour length and an improved permutation without a repeated start. An empty matrix yields zero cost and an empty permutation. The implementation repeatedly selects the best strict improvement until none is legal; it has no early-stop or time-limit parameter.\n\n",
+    "**Mechanism:** Select two suitable nonadjacent tour edges, remove them, and reconnect the two paths into one tour while reversing the middle path. Under symmetric distances the reversed segment's internal edge lengths do not change, so the objective difference can be calculated from the two replaced edge pairs. Only strict improvements are applied.\n\n",
+    "**Applicability and limits:** The source specifically studies two-dimensional Euclidean TSP. Symmetric distances are used here to explain the move; the source's Euclidean theoretical conclusions must not be generalized to arbitrary objectives or constraints. Under asymmetric distances, reversing a segment changes internal arc costs, so comparing only four edges is insufficient; extra constraints also require revalidation. A 2-Opt local optimum need not be globally optimal.\n\n",
+    "**Cost:** A full scan considers a quadratic number of edge-pair candidates. Complete descent takes multiple scans; iteration count and route-update cost depend on the instance and selection rule, so the entire search cannot be claimed quadratic on this basis.\n\n",
+    "**Relation to other entries:** [ALG-002](../ALG-002/ALG-002.json) exchanges customers between different CVRP routes. The entries should not be merged merely because both perform local improvement.\n\n",
+    "**Reference implementation:** The project independently implements `two_opt`, repeatedly taking the best strict improvement for symmetric nonnegative distance matrices until no legal improvement exists. The input permutation does not repeat the start, and the return edge is implicit. Asymmetric distance, capacity, and time windows are not handled."
+  ],
+  "code": {
+    "entry": "two_opt",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation of best-improvement 2-Opt descent for symmetric TSP.",
+    "files": [
+      {
+        "path": "two_opt.py",
+        "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d"
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "case_id": "CASE-006",
+  "category": "cvrp_lns_tabu_restart",
+  "description": [
+    "Problem and initialization: The Rust entry point reads a vehicle-routing instance and selects MultiLNSSolver. The constructor tries Clarke-Wright up to five times, then sweep up to 50 times if needed, and finally falls back to greedy construction. It returns as soon as one attempt succeeds.\n\n",
+    "Search: Destroy removes five randomly chosen non-tabu customers. Repair processes them by descending demand and usually selects the feasible position with the lowest incremental cost, but selects a random feasible position with probability 0.02. The driver reverts failed repairs and updates the recorded best only when the candidate cost is more than 0.1 lower. It treats a candidate as an improvement only when its cost is more than 0.1 below last_cost; otherwise it keeps the candidate with probability 0.1. After stagnation it jumps from a saved solution. The entry point sets the random-drop fraction to zero and uses a 15-second search limit.\n\n",
+    "Boundary: Despite a source comment calling this simulated annealing, the acceptance probability is fixed and has no temperature. After rejecting a candidate, last_cost still records the rejected cost, affecting the next comparison. The default zero drop fraction means the jump removes no customers, although route order is shuffled. This implementation is distinct from the paper-based ALG-003."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "9129ea633c0a55ae2f13fe3a5f2c2766bfab5be5017ee7081d9e74a4574937ca",
+      "marker": "#"
+    },
+    {
+      "name": "Cargo.toml",
+      "path": "Cargo.toml",
+      "sha256_lf": "b8f594776de3cae765147f06f1823f6ea755804405ca105e1512e7b2f5722ff0",
+      "marker": "#"
+    },
+    {
+      "name": "Cargo.lock",
+      "path": "Cargo.lock",
+      "sha256_lf": "8e1ace375e764bc975f055a1e02471abd2a2c21ee0995d37aa00bea9e61e1cb7"
+    },
+    {
+      "name": "src/common.rs",
+      "path": "src/common.rs",
+      "sha256_lf": "b752ea8f406ef2c9c23b9d55116ced703c6db23d25fb08c30865aa6ba87238f9"
+    },
+    {
+      "name": "src/construct.rs",
+      "path": "src/construct.rs",
+      "sha256_lf": "b02c28d0268835058529a6580c8c0228a076f8c1244a712e6700e29b5090c2a9"
+    },
+    {
+      "name": "src/jump.rs",
+      "path": "src/jump.rs",
+      "sha256_lf": "b38ff482076a387fe8ab14a725d7eaaa22d6db55013de7a7ed3a45345fd270e7"
+    },
+    {
+      "name": "src/main.rs",
+      "path": "src/main.rs",
+      "sha256_lf": "d4d7a2d9fa598e461cc07dcd9b9bd1ef588fea3df6dcf3d8af1801de3616ee55"
+    },
+    {
+      "name": "src/solver.rs",
+      "path": "src/solver.rs",
+      "sha256_lf": "0af24c72987414c435a5fc00fc2e7a1aeeb250a90aac185f57b9f70c3f547a28"
+    },
+    {
+      "name": "src/solvers/adaptive.rs",
+      "path": "src/solvers/adaptive.rs",
+      "sha256_lf": "bb395a38c0a8e5a28595507c21be2d65237e26a55553269cb15ff019f5eeb855"
+    },
+    {
+      "name": "src/solvers/mod.rs",
+      "path": "src/solvers/mod.rs",
+      "sha256_lf": "2693b09f02f499ff36a00576ae7c2bf6a67a6d0b1c763c936a512571b7e36b21"
+    },
+    {
+      "name": "src/solvers/multineighbor.rs",
+      "path": "src/solvers/multineighbor.rs",
+      "sha256_lf": "a35871f4e0ae82a6246633be3dda156b7681ed20d1cd8e4a42a2022bc04e6d5b"
+    },
+    {
+      "name": "src/solvers/neighbor.rs",
+      "path": "src/solvers/neighbor.rs",
+      "sha256_lf": "1296c819f2ca98d03b0281fcf39158e6b584bd24c534e5d971b591b946a01b1b"
+    },
+    {
+      "name": "src/swap.rs",
+      "path": "src/swap.rs",
+      "sha256_lf": "7bbd4ce142a2cc27d3a55cc5b3b20bd32bb443a84420310d49300723402f956e"
+    },
+    {
+      "name": "src/vrp_instance.rs",
+      "path": "src/vrp_instance.rs",
+      "sha256_lf": "6d17b8cf5b12e14284adabdf0d30c634b01e336dbd5df2746906e72fcaf0eb3a"
+    }
+  ]
+}

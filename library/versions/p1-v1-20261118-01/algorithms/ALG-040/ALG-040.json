@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-040",
+  "category": [
+    "Dynamic programming",
+    "Graph algorithms"
+  ],
+  "summary": "Exact subset matching pairs a small even set of vertices with minimum total edge cost.",
+  "description": [
+    "Input is a complete symmetric matrix and a list of distinct vertices of even length. Return vertex pairs. An empty list requires no pairs.\n\n",
+    "Fix one remaining vertex and try each partner. The recursive mask state represents unpaired vertices. This independent subset implementation is exponential in the number of candidates and serves only small matching subproblems."
+  ],
+  "code": {
+    "entry": "minimum_matching",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "perfect_matching.py",
+        "sha256_lf": "68a917a889fde3d0e43f049c2ed7e449abf369f4ef9aac55c1354de2dd40b188"
+      }
+    ]
+  }
+}

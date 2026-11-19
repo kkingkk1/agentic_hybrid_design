@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-040",
+  "category": "cvrp_column_pricing_integer_recombination",
+  "description": [
+    "**CVRP LP-guided route pricing and restricted integer recombination.** Use a complete nonnegative integer cost matrix with hard homogeneous capacity and at most eight customers. Generate the least-cost depot route for each feasible customer subset as a small pricing oracle.\n\n",
+    "Start a route pool with singleton routes. Solve the nonnegative customer-price dual of the restricted set-cover LP. Compute reduced cost for unused routes, add the cheapest negative reduced-cost column and resolve. Stop when the route oracle supplies no improving column.\n\n",
+    "Choose a feasible disjoint cover from the final pool using integer set partitioning. The route-pool selection uses LP feedback and the final integer result is restricted to that pool. This illustrates pricing and integer recovery with exhaustive small-subset pricing rather than a production resource-constrained labeler."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "b237e3cacae3e887642c493f945d02a4a5b718eeebec3a2f0dc8acf91ea3446f",
+      "marker": "#"
+    },
+    {
+      "name": "primal_simplex.py",
+      "path": "primal_simplex.py",
+      "algorithm_id": "ALG-026",
+      "sha256_lf": "dbaa794c292c54e02cd9ce537f4fb12d5c4ae5d8e85978fc5687223e2cc99c99",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "route_partition.py",
+      "path": "route_partition.py",
+      "algorithm_id": "ALG-057",
+      "sha256_lf": "978620697bf76686318e2653063e26b80560e806557f002c9fd461dece15b16e",
+      "marker": "#"
+    }
+  ]
+}

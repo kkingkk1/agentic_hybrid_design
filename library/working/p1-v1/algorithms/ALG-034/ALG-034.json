@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-034",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Nearest-neighbor construction builds a complete TSP order by repeatedly appending the closest unused vertex.",
+  "description": [
+    "The input is a finite complete distance matrix and an optional start index. The result lists each vertex once and leaves the return edge implicit. Empty input returns an empty order.\n\n",
+    "Choose the lightest outgoing arc from the current endpoint to an unused vertex and use the index for ties. This costs quadratic time. The cycle-length helper uses exact integer sums and a stable sum for floating-point distances."
+  ],
+  "code": {
+    "entry": "nearest_tour",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "nearest_tour.py",
+        "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d"
+      }
+    ]
+  }
+}

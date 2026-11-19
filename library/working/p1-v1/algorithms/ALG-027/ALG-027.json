@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-027",
+  "category": [
+    "Mathematical programming and relaxation"
+  ],
+  "summary": "Knapsack cover-cut separation: find a valid 0/1 knapsack inequality violated by a given fractional point.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input nonnegative weights, capacity, and a point whose components lie between 0 and 1; return an item-index set for one violated cover, or `None`.\n\n",
+    "**Mechanism:** Enumerate item subsets. Return a subset if its total weight exceeds capacity and the corresponding components of the point sum to more than the subset size minus one.\n\n",
+    "**Applicability and limits:** Separates basic cover inequalities only. It does not solve an LP or add cuts to a solver. `None` means only that no violation of this type was found.\n\n",
+    "**Cost:** Subsets are enumerated by size, requiring up to $2^n$ checks in the worst case; suitable for small instances.\n\n",
+    "**Transfer and relations:** It can strengthen integer-programming relaxations. Every returned inequality is valid for all integer-feasible solutions of the original knapsack."
+  ],
+  "code": {
+    "entry": "violated_cover",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "cover_cut.py",
+        "sha256_lf": "72b34da9d1cc0e5128d6e6951762434155cbcafb2956395b64eaeb775f4eeef6"
+      }
+    ]
+  }
+}

@@ -163,6 +163,59 @@ def _tokens(usage: dict) -> int:
     return usage["input_tokens"] + usage["output_tokens"]
 
 
+def _preflight_profile(plan: dict, name: str, logical: int, stop: threading.Event) -> None:
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel.GetCurrentThread.argtypes = []
+    kernel.GetCurrentThread.restype = wintypes.HANDLE
+    kernel.SetThreadAffinityMask.argtypes = [wintypes.HANDLE, ctypes.c_size_t]
+    kernel.SetThreadAffinityMask.restype = ctypes.c_size_t
+    thread = kernel.GetCurrentThread()
+    previous = kernel.SetThreadAffinityMask(thread, 1 << logical)
+    if not previous:
+        raise ctypes.WinError(ctypes.get_last_error())
+    try:
+        while not stop.is_set():
+            try:
+                sandbox.job._resource_gate()
+                break
+            except OSError as exc:
+                if not ("资源检查不满足 P0 条件" in str(exc) or "可用内存低于 16 GiB" in str(exc)):
+                    raise
+                if stop.wait(5):
+                    return
+        if not stop.is_set():
+            sandbox._profile(plan, name)
+    finally:
+        if not kernel.SetThreadAffinityMask(thread, previous):
+            raise ctypes.WinError(ctypes.get_last_error())
+
+
+def _preflight_profiles(plan: dict, profiles: list[str], workers: list[dict]) -> None:
+    jobs = list(zip(profiles, workers, strict=True))
+    if (len(jobs) != 16 or len(set(profiles)) != 16
+            or len({worker["logical_processor"] for _, worker in jobs}) != 16):
+        raise ValueError("模型调用前核验须使用16个不同身份和物理核槽位。")
+
+    stop = threading.Event()
+
+    def verify(job: tuple[str, dict]) -> None:
+        name, worker = job
+        try:
+            _preflight_profile(plan, name, worker["logical_processor"], stop)
+        except BaseException:
+            stop.set()
+            raise
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=16) as pool:
+        try:
+            list(pool.map(verify, jobs))
+        except BaseException:
+            stop.set()
+            raise
+    if stop.is_set():
+        raise StopRun("模型调用前的身份核验未完成。")
+
+
 def _evaluate(coordinates: list, result: dict) -> dict:
     if result.get("reason") != "exited":
         return {"valid": False, "code": str(result.get("reason", "unknown"))}
@@ -277,8 +330,7 @@ def _run_locked() -> dict:
     profiles = _fresh_profiles(plan)
     if len(profiles) < 16:
         raise StopRun("不足16个未分配身份，无法完成一次构建和15个求解作业。")
-    for name in profiles[:16]:
-        sandbox._profile(plan, name)
+    _preflight_profiles(plan, profiles[:16], mapping["workers"])
     batch = _new_batch()
     ledger = Ledger(batch / "events.jsonl")
     cpu_start = time.process_time()

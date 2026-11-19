@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-048",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Restricted-candidate-list construction samples TSP steps from a band of low-cost outgoing edges.",
+  "description": [
+    "Input is a complete finite matrix, a random generator, an alpha in [0, 1] and a start. Output is an open tour.\n\n",
+    "At each step recompute minimum and maximum outgoing costs among unused vertices. Sample uniformly within the threshold from the minimum to minimum plus alpha times the range. A zero alpha uses a cheapest tie and alpha one admits all options. Construction costs quadratic time apart from sorting eligible ties."
+  ],
+  "code": {
+    "entry": "grasp_tour",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "grasp_construct.py",
+        "sha256_lf": "ed7bda55b66ac1489ce78f4d4ff95e0e3b59abc83bc4589c6cbdca4d88d668a3"
+      }
+    ]
+  }
+}

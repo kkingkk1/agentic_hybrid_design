@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-031",
+  "category": "cvrp_tabu_and_tail_intensification",
+  "description": [
+    "**CVRP tabu interroute relocate with record-triggered tail improvement.** Use a complete symmetric matrix and a feasible savings solution. Enumerate capacity-feasible relocations with the moved customer as the tabu attribute.\n\n",
+    "Select the cheapest authorized move, including worse moves when allowed. A tabu move may pass by strictly improving the best objective. Record the moved customer for a fixed tenure.\n\n",
+    "A new record triggers a 2-opt* tail-improvement scan before updating the best route set. This keeps new records feasible and illustrates reactive intensification without reproducing TABUROUTE's infeasible-solution strategy."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "89af6a67e3f4c6de5ebe2e1c302588ec40e27e21091c241170c1fec2d8ebe5b1",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "tabu_memory.py",
+      "path": "tabu_memory.py",
+      "algorithm_id": "ALG-064",
+      "sha256_lf": "f33f5a7a4c9ead0855c11a6b8a905decb108b2f5e08f3144ba6d07e5948a8a5f",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt_star.py",
+      "path": "two_opt_star.py",
+      "algorithm_id": "ALG-054",
+      "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722",
+      "marker": "#"
+    }
+  ]
+}

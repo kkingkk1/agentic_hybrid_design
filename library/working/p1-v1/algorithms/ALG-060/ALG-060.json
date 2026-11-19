@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-060",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Random-key decoding maps one finite numerical key per vertex to a deterministic permutation.",
+  "description": [
+    "Input is a vector of finite keys. Sort vertex indices by key and use the index for ties. Return every index exactly once in O(n log n) time.\n\n",
+    "It replaces permutation repair with an ordering representation suitable for numerical crossover. Routing, improvement, objective evaluation and reversibility of the representation are outside the component."
+  ],
+  "code": {
+    "entry": "random_key_tour",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "random_keys.py",
+        "sha256_lf": "bbae37f4f184fdcce929f7bfa968f23fd58bac99c50f68077c0919b0324f2fb3"
+      }
+    ]
+  }
+}

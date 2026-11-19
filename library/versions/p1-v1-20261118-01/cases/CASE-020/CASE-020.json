@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-020",
+  "category": "tsp_exact_window_reordering",
+  "description": [
+    "**TSP multifragment construction with exact bounded-window reordering.** Use a symmetric complete distance matrix. Greedy multifragment construction supplies the initial open tour.\n\n",
+    "Pass a nonwrapping window of consecutive internal vertices to exact subset dynamic programming, with the immediately preceding and following vertices fixed. Replace the window only when the full boundary-to-boundary path improves. Repeat over windows for at most the requested passes.\n\n",
+    "Window size is bounded between two and eight. This is a small subchain adaptation of an exact TSP neighborhood. It improves a restricted neighborhood while preserving every outside edge and the full tour."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "c88809faa47f5da8f0e68c2d8a624327ab6608dc152b962aa003d829d8550fb8",
+      "marker": "#"
+    },
+    {
+      "name": "multifragment.py",
+      "path": "multifragment.py",
+      "algorithm_id": "ALG-037",
+      "sha256_lf": "a90d0b36d6882e3b1b5f94b5cb3bca52f1a5a53b85134d565c29977538754fd5",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    }
+  ]
+}

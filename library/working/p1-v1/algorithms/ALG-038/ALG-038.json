@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-038",
+  "category": [
+    "Graph algorithms",
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Spanning-tree preorder shortcuts a doubled tree walk into an open TSP tour.",
+  "description": [
+    "Input is a spanning tree on indexed vertices and a start. Return a deterministic first-visit order using sorted adjacency. A malformed or nonspanning tree raises an error.\n\n",
+    "Depth-first traversal gives the first visits of the closed walk that traverses every tree edge twice. A metric distance matrix is needed to argue that shortcuts do not increase the walk's distance. This component takes linear traversal time apart from sorting the adjacency."
+  ],
+  "code": {
+    "entry": "preorder_tour",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "tree_preorder.py",
+        "sha256_lf": "19a8d894645b1f8a94e7e24917dd6e08309d1b4250a25f21fcb2a82dff989cd1"
+      }
+    ]
+  }
+}

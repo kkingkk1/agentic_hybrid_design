@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-019",
+  "category": [
+    "Constraint programming"
+  ],
+  "summary": "AC-3: repeatedly remove domain values lacking neighboring support in a finite binary constraint network until arc consistency or an empty domain.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input a mapping from variables to finite domains and binary allowed-pair constraints; output new filtered domains or `None` if a domain becomes empty.\n\n",
+    "**Mechanism:** A queue maintains directed constraint arcs. When a domain shrinks, potentially affected neighboring arcs are requeued until the queue is empty.\n\n",
+    "**Applicability and limits:** Only finite binary constraints are supported; multiple constraints on the same variable pair are intersected. Arc consistency does not guarantee a solution to the whole CSP.\n\n",
+    "**Cost:** Cost depends on domain sizes, constraints, and repeated queue insertions. The implementation explicitly scans neighboring supports.\n\n",
+    "**Transfer and relations:** Propagation can run before or during search. ALG-020 constructs a complete assignment by backtracking and forward checking."
+  ],
+  "code": {
+    "entry": "ac3",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "ac3.py",
+        "sha256_lf": "c0e78edf4af1c5b4857367cbcdf8c0d14fe0decbe95d0e58f44dbb96374bb78d"
+      }
+    ]
+  }
+}

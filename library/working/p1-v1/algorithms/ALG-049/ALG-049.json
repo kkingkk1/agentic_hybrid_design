@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-049",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Parallel Clarke–Wright savings merges depot routes at compatible ends under hard CVRP capacity.",
+  "description": [
+    "Input is a complete symmetric distance matrix, indexed nonnegative demands, capacity and an optional customer subset. Output contains nonempty routes without depot markers.\n\n",
+    "Start with singletons. Consider decreasing positive savings and combine distinct compatible ends only when the full load fits. Routes may be reversed because costs are symmetric. The method does not optimize or enforce a fixed fleet size. Computing and sorting savings uses quadratic space and quadratic-logarithmic time before route ownership updates."
+  ],
+  "code": {
+    "entry": "savings_routes",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "savings.py",
+        "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df"
+      }
+    ]
+  }
+}

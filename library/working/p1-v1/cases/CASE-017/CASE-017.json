@@ -1,0 +1,59 @@
+{
+  "case_id": "CASE-017",
+  "category": "tsp_memetic_edge_recombination",
+  "description": [
+    "**TSP permutation memetic search with edge and mapping crossover.** Use a symmetric complete matrix. Build a small permutation population from nearest-neighbor, farthest insertion and random starts.\n\n",
+    "Alternate edge recombination and partially mapped crossover. Pass each child to 2-opt, 3-opt, then 2-opt before comparing it to the worst member. Selection thus receives an improved permutation rather than the raw genetic child.\n\n",
+    "This local-search and direct permutation design differs from fitness-only random-key decoding. The chosen alternation and replacement policy are project adaptations. The code keeps strict improvement of replacement scores."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "9fda8a75562cb4cd6a4387a553c2da5c3917f7ec99444a1fc70fa0a8c30c8e62",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "farthest_insertion.py",
+      "path": "farthest_insertion.py",
+      "algorithm_id": "ALG-036",
+      "sha256_lf": "a5eb2935e33ac37c92748b2f1aa1f000738be179399f7616165e425c58bcb185",
+      "marker": "#"
+    },
+    {
+      "name": "edge_recombination.py",
+      "path": "edge_recombination.py",
+      "algorithm_id": "ALG-046",
+      "sha256_lf": "5cbdbb20bc655a1236b9979f87e322507f0811919fe7005a2deb03347c10d55f",
+      "marker": "#"
+    },
+    {
+      "name": "pmx.py",
+      "path": "pmx.py",
+      "algorithm_id": "ALG-045",
+      "sha256_lf": "3879b2e39acb4d0ab9519bfaaaea560dd2dd0cc5c6ba3985f74977ef63c99df6",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    },
+    {
+      "name": "three_opt.py",
+      "path": "three_opt.py",
+      "algorithm_id": "ALG-041",
+      "sha256_lf": "8232c8ebe3ad8fe7b6a57c12d5d6767c8c65d461dc9cc6d72e0d29f46010bf80",
+      "marker": "#"
+    }
+  ]
+}

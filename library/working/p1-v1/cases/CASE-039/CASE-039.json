@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-039",
+  "category": "atsp_assignment_subtour_branching",
+  "description": [
+    "**Exact small ATSP with assignment-relaxation subtour branching.** Use complete nonnegative integer directional costs and at most nine vertices. Begin with a nearest-neighbor feasible tour to bound the objective from above.\n\n",
+    "At each state solve an assignment with self arcs and forbidden arcs given a dominating cost. Prune when the assignment bound reaches the incumbent. A single cycle improves the incumbent directly.\n\n",
+    "When the assignment has subtours, choose one and create a branch that forbids each of its arcs in turn. Every Hamiltonian completion excludes at least one such arc, so the branches cover every possible improvement. The reference omits the source's large-scale reduction and parametric reoptimization."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "92b76a767fdaae01b04588aa33b90e5ff7419e10440bf03ed2e6cdb7d81b5f79",
+      "marker": "#"
+    },
+    {
+      "name": "hungarian.py",
+      "path": "hungarian.py",
+      "algorithm_id": "ALG-028",
+      "sha256_lf": "32720f386f03dd3e7a220082e53545369a32b752a781510fcb8f153a96762b26",
+      "marker": "#"
+    },
+    {
+      "name": "cycle_patching.py",
+      "path": "cycle_patching.py",
+      "algorithm_id": "ALG-044",
+      "sha256_lf": "ededd5922b5c55dcf6ff0763e5343f0bf1aacb9205d71110b959298db7b8849c",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    }
+  ]
+}

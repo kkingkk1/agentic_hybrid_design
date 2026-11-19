@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-015",
+  "category": [
+    "Tree search"
+  ],
+  "summary": "Knapsack branch and bound: branch on including or excluding each item and use a fractional-knapsack relaxation as an upper bound.",
+  "description": [
+    "**Level:** Complete method.\n\n",
+    "**Responsibility and interface:** Input positive integer weights, nonnegative integer values, and capacity; output maximum value and original indices of selected items.\n\n",
+    "**Mechanism:** Sort by value-to-weight ratio and estimate an upper bound by allowing fractional selection with remaining capacity. Prune when the bound cannot exceed the incumbent.\n\n",
+    "**Applicability and limits:** Only single-capacity 0/1 knapsack is handled. Zero weights are not accepted; multidimensional and other constraints need separate implementations.\n\n",
+    "**Cost:** The worst-case number of search nodes grows exponentially; each upper bound scans remaining items.\n\n",
+    "**Transfer and relations:** ALG-011 solves the same problem by capacity-state dynamic programming. ALG-024 separately provides the fractional relaxation."
+  ],
+  "code": {
+    "entry": "knapsack_branch_bound",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "knapsack_branch_bound.py",
+        "sha256_lf": "500f5ef1f3942a2001bd06f1c69b24154f622ace595255a0d5c6e0b0bbcef68b"
+      }
+    ]
+  }
+}

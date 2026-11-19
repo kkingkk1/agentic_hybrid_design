@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-022",
+  "category": [
+    "Constraint programming"
+  ],
+  "summary": "AllDifferent domain consistency: retain only variable values that participate in a complete assignment with distinct values.",
+  "description": [
+    "**Level:** Component.\n\n",
+    "**Responsibility and interface:** Input finite domains and return the supported values for each variable; return `None` if no complete matching exists.\n\n",
+    "**Mechanism:** Treat variables and values as the two sides of a bipartite graph. Fix each candidate value in turn and use augmenting matching to check whether all remaining variables can still be matched.\n\n",
+    "**Applicability and limits:** Propagates only one AllDifferent constraint. Repeated matching is the project's reference implementation and is not Régin's incremental filtering implementation.\n\n",
+    "**Cost:** Every candidate value may trigger a matching computation; cost depends on variables, domain values, and bipartite edges. Recursion depth is stack-limited.\n\n",
+    "**Transfer and relations:** It can handle distinctness in permutations and task assignment. ALG-033 provides an independent maximum-matching algorithm."
+  ],
+  "code": {
+    "entry": "all_different_gac",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the cited source method, with the stated adaptations.",
+    "files": [
+      {
+        "path": "all_different_gac.py",
+        "sha256_lf": "c9195544a48a404beb9a98b5c1c44b35f5156adb3fbcc11525b1dcc19f80d68f"
+      }
+    ]
+  }
+}

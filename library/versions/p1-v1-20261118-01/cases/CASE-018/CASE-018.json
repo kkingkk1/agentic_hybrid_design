@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-018",
+  "category": "tsp_grasp_path_relinking",
+  "description": [
+    "**TSP GRASP with elite path relinking.** Use a symmetric complete matrix. Each GRASP iteration constructs a randomized restricted-candidate tour and locally improves it with 2-opt.\n\n",
+    "Choose a guide from previously retained elite orders. Change the current permutation toward that guide via swaps. Rank the resulting path states by original cycle length and locally improve the best one. The resulting value can replace the current iteration's solution and feeds back to the four-tour archive.\n\n",
+    "Relinking guides the permutation, not the fitness value alone. A finite iteration budget and a seeded tie sampler define this small implementation."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "dd8a50e7297b2cd86fd90fb3f7a32c37d5ccf0de8d18c064a9006d080c3c9934",
+      "marker": "#"
+    },
+    {
+      "name": "grasp_construct.py",
+      "path": "grasp_construct.py",
+      "algorithm_id": "ALG-048",
+      "sha256_lf": "ed7bda55b66ac1489ce78f4d4ff95e0e3b59abc83bc4589c6cbdca4d88d668a3",
+      "marker": "#"
+    },
+    {
+      "name": "path_relinking.py",
+      "path": "path_relinking.py",
+      "algorithm_id": "ALG-063",
+      "sha256_lf": "9cfe33f978ab3f94ace91977a6ceffeff7fbe3be18b62fd26dcf1c18301d618c",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    }
+  ]
+}

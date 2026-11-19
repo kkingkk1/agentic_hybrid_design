@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-012",
+  "category": "tsp_ant_local_feedback",
+  "description": [
+    "**TSP Ant System with local-search feedback.** The input is a symmetric nonnegative distance matrix. Ant System constructs a complete permutation for each ant using pheromone and distance.\n\n",
+    "The improvement callback applies 2-opt descent, a 3-opt reconnection and another 2-opt descent. It returns the changed vertex order before both the all-time best update and the pheromone deposit. Subsequent ants therefore sample from the reinforced edges of locally improved tours.\n\n",
+    "The controller uses all-ant deposits of Ant System and a fixed number of ants per round. The local-improvement chain is the project variant. Returned tour quality does not depend on a reported unverified fitness field."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "06ecd1adae0ab313d735b79312738afacd99fc8fd57ff99bf74057a4957c2276",
+      "marker": "#"
+    },
+    {
+      "name": "ant_system.py",
+      "path": "ant_system.py",
+      "algorithm_id": "ALG-047",
+      "sha256_lf": "f1d3b622b0403b256427d2280d7b7b65db8e400cc7a398f7cf62bd72b873efbb",
+      "marker": "#"
+    },
+    {
+      "name": "three_opt.py",
+      "path": "three_opt.py",
+      "algorithm_id": "ALG-041",
+      "sha256_lf": "8232c8ebe3ad8fe7b6a57c12d5d6767c8c65d461dc9cc6d72e0d29f46010bf80",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-043",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Double-bridge perturbation reconnects four TSP fragments to disrupt the current local optimum.",
+  "description": [
+    "Input is an open tour and a caller-owned random generator. Output is another permutation. Tours shorter than eight vertices are copied unchanged to preserve the two-vertices-per-fragment convention.\n\n",
+    "Choose a cyclic offset and four nonempty lengths of at least two. Reconnect the first, fourth, third and second fragments without reversal. The perturbation preserves feasibility for an unconstrained TSP permutation but can increase distance. Time is linear in tour size."
+  ],
+  "code": {
+    "entry": "double_bridge",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "double_bridge.py",
+        "sha256_lf": "58b48266da8d4cb0fdfcfc6890db3607d3cb0e09af5d07fedbc48da4e3415e01"
+      }
+    ]
+  }
+}

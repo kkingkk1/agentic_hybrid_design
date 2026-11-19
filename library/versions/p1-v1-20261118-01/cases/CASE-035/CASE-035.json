@@ -1,0 +1,52 @@
+{
+  "case_id": "CASE-035",
+  "category": "cvrp_selective_route_exchange_repair",
+  "description": [
+    "**CVRP selective route exchange with explicit offspring repair.** Build two feasible CVRP parents by savings and by capacity decoding of a reversed nearest-neighbor order. The input assumes a complete symmetric matrix, depot zero and homogeneous capacity.\n\n",
+    "Select equally sized cyclic route blocks with maximum overlap of customer sets. Remove the selected block from the first parent and insert the second parent's block. Remove duplicate inherited customers from the other first-parent routes.\n\n",
+    "Compute the missing customer set and complete the offspring by feasible insertion. One relocate scan refines the repaired routes. This adapts SREX to a two-route block limit and a single returned child instead of a population loop."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "05ce58672b23c7d9fb0cfbaff0ba82a28d60c3fd5f9f996371890893b5424a62",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "capacity_split.py",
+      "path": "capacity_split.py",
+      "algorithm_id": "ALG-051",
+      "sha256_lf": "a4e9a6e28de57b5dd107c5b551b26656c8ce8cf38af5e0295390dabadd9cebf6",
+      "marker": "#"
+    },
+    {
+      "name": "greedy_insertion.py",
+      "path": "greedy_insertion.py",
+      "algorithm_id": "ALG-058",
+      "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

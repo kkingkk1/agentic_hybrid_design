@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-056",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Route elimination tries to redistribute a deleted CVRP route among the retained routes.",
+  "description": [
+    "Input is a distance matrix, feasible routes, and a callback that returns a feasible full repair or None. Return the least-distance one-fewer-route repair among the attempted deletions.\n\n",
+    "For each route, pass a copy of the other routes and its removed customers to the callback. Examine repairs that reduce the route count by one. Feasibility of the returns depends on the callback contract. Running time depends on that repair routine. This bounded variant does not use ejection chains."
+  ],
+  "code": {
+    "entry": "drop_route",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "route_elimination.py",
+        "sha256_lf": "6bbe9c4c40d88feeed00b4d949286ed1c721286b3bda020b15682d3557e09b61"
+      }
+    ]
+  }
+}

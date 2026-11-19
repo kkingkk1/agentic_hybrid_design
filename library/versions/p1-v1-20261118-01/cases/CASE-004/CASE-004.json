@@ -1,0 +1,59 @@
+{
+  "case_id": "CASE-004",
+  "category": "tsp_conditional_hybrid",
+  "description": [
+    "Problem and initialization: For a coordinate TSP, construct a rounded Euclidean distance matrix and use greedy tours with rotated starting points to obtain a starting route.\n\n",
+    "Conditional flow: In automatic mode, instances with at most 50 nodes use simulated annealing; those with 51 to 500 nodes use crossing-path dismantling followed by 2-opt; larger ones use 2-opt. The command line can override the branch. The chosen route and cost are written to an output file.\n\n",
+    "Boundary: In the annealing branch, a nonnegative time setting below 60 seconds performs zero annealing runs and leaves the final route and cost as None. The 2-opt code is independent of ALG-005; the route representation closes the tour by repeating its starting node."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "169ec6bdbdb6d011d4ce48f650a0a55be172797f7185490f2db90ab4b3f1f514",
+      "marker": "#"
+    },
+    {
+      "name": "requirements.txt",
+      "path": "requirements.txt",
+      "sha256_lf": "33d45191a3e28c2eced5dec78ebc4eeba19eaee19fe9c05a57c5a4e872758f24",
+      "marker": "#"
+    },
+    {
+      "name": "solve_tsp.py",
+      "path": "solve_tsp.py",
+      "sha256_lf": "21754801e2bdbde95cfa28da6db6958f2e427f1deea5154704389545796d641b",
+      "marker": "#"
+    },
+    {
+      "name": "algo/cross_path_dismantling.py",
+      "path": "algo/cross_path_dismantling.py",
+      "sha256_lf": "be41b3d38c52dc52b8c9bc0dfb542403e48138b969395d0e5107cca77faa89ec",
+      "marker": "#"
+    },
+    {
+      "name": "algo/greedy_rotate.py",
+      "path": "algo/greedy_rotate.py",
+      "sha256_lf": "b9a07939e94e45fd8ff6c403bd08cce47aa8296a57a7d5f67ae8cdaa04ddb7b4",
+      "marker": "#"
+    },
+    {
+      "name": "algo/simulated_annealing.py",
+      "path": "algo/simulated_annealing.py",
+      "sha256_lf": "3666f16af6b498f5952d79fb42df9fb2205ace62b712eb0172801916ffcb7cd2",
+      "marker": "#"
+    },
+    {
+      "name": "algo/two_opt.py",
+      "path": "algo/two_opt.py",
+      "sha256_lf": "fecbe9d318e7db761775c0e87306a73f2057ce580eba37c11ea80377ca633518",
+      "marker": "#"
+    },
+    {
+      "name": "visualizer/visualizer.py",
+      "path": "visualizer/visualizer.py",
+      "sha256_lf": "c89470599db933f89ef3c21b12e9ed2db38f631e1d2ac144baf995a08dd4fd2d",
+      "marker": "#"
+    }
+  ]
+}

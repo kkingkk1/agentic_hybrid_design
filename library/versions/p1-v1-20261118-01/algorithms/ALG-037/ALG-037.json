@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-037",
+  "category": [
+    "Heuristics and metaheuristics",
+    "Graph algorithms"
+  ],
+  "summary": "Multifragment greedy construction joins cheap edges into paths to build a symmetric TSP tour.",
+  "description": [
+    "Input is a finite symmetric complete distance matrix. Return the vertex order of the final path, with its endpoint connection implicit.\n\n",
+    "Sort undirected edges and admit one while both endpoints have spare degree and lie in different path components. Union-find detects premature subtours. Sorting the quadratic edge set dominates time. The edge list also uses quadratic space."
+  ],
+  "code": {
+    "entry": "multifragment_tour",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "multifragment.py",
+        "sha256_lf": "a90d0b36d6882e3b1b5f94b5cb3bca52f1a5a53b85134d565c29977538754fd5"
+      }
+    ]
+  }
+}

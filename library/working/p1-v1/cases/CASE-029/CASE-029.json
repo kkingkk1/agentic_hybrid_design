@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-029",
+  "category": "cvrp_relatedness_large_neighborhood",
+  "description": [
+    "**CVRP relatedness destroy and capacity-aware repair.** Use a symmetric matrix and hard capacity with each customer as a single request. Savings creates the first feasible incumbent.\n\n",
+    "A Shaw-style operator removes a small group using intercustomer distance as relatedness. Pass both incomplete routes and removed customer IDs to insertion. Reinsert heavier demands first, opening a singleton if required.\n\n",
+    "Evaluate complete repaired routes by original depot-to-depot distance. Strict improvement restarts from the repaired routes. This adapts relatedness-driven large-neighborhood search to CVRP with greedy insertion in place of the source's constraint-programming repair."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "af08ab912202a4236a5e7ea651a62e6d298508ac575168342092944397736150",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "shaw_removal.py",
+      "path": "shaw_removal.py",
+      "algorithm_id": "ALG-008",
+      "sha256_lf": "c321777aecdb9c99741fd5a0cb6a4d3d6ed05c63ecb7380438a65ced7ee78d83",
+      "marker": "#"
+    },
+    {
+      "name": "greedy_insertion.py",
+      "path": "greedy_insertion.py",
+      "algorithm_id": "ALG-058",
+      "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

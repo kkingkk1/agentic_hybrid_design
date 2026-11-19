@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-016",
+  "category": "tsp_biased_random_keys",
+  "description": [
+    "**TSP biased random-key evolution with a local decoder.** Use a symmetric distance matrix. Each individual carries one random key per vertex. Sorting keys yields a permutation, which 2-opt improves during phenotype evaluation.\n\n",
+    "Rank keys by the cost of the improved phenotype. Retain two elites from eight individuals. Generate children using independent biased choices from an elite and a nonelite parent, then add one independent mutant. The improved tour shapes selection without overwriting the parent's keys.\n\n",
+    "The project decoder adds 2-opt to illustrate the published BRKGA interface. The finite iteration budget and population parameters apply only to this reference."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "8469fa15a78b1b38a7ced27bd8c96a13ce3453715f367c406b56e1bcd93c232d",
+      "marker": "#"
+    },
+    {
+      "name": "random_keys.py",
+      "path": "random_keys.py",
+      "algorithm_id": "ALG-060",
+      "sha256_lf": "bbae37f4f184fdcce929f7bfa968f23fd58bac99c50f68077c0919b0324f2fb3",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    }
+  ]
+}

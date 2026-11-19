@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-062",
+  "category": [
+    "Graph algorithms",
+    "Mathematical programming and relaxation"
+  ],
+  "summary": "Weighted minimum 1-tree yields a lower bound and vertex degrees for symmetric TSP.",
+  "description": [
+    "Input is a complete symmetric cost matrix on at least three vertices, a fixed root and one weight per vertex. Return the lower bound and node degree vector.\n\n",
+    "Compute a minimum spanning tree without the root under edge costs d(i,j) plus both vertex weights, then add the two cheapest distinct root edges. Subtract twice the sum of weights. A Hamiltonian cycle has degree two at every vertex, which justifies the bound. This dense Prim implementation takes quadratic time."
+  ],
+  "code": {
+    "entry": "one_tree",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "one_tree.py",
+        "sha256_lf": "f0b37d9d9c0c5ebbc3d863c70192a13c8f1a331c811920bd8ee70bf19d872645"
+      }
+    ]
+  }
+}

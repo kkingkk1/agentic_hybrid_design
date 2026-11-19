@@ -1,0 +1,52 @@
+{
+  "case_id": "CASE-028",
+  "category": "cvrp_ils_pool_and_partition",
+  "description": [
+    "**CVRP iterated route generation and restricted set partitioning.** Use a symmetric matrix, capacity and nonnegative demands with at most 12 customers. Savings supplies an incumbent and the first pool columns.\n\n",
+    "Perturb the incumbent by sampling customers to remove. Greedy repair and relocate produce a complete solution. Add its routes to the pool and update the perturbation base only after strict improvement. Each route is stored in its actual visit order.\n\n",
+    "Solve a restricted set-partitioning problem over the resulting pool. The recombination can combine routes from different trials. Keep a cheaper recombination when available. The reference uses one final partitioning pass and claims optimality only within its pooled columns."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "4302c3ec671cac9bd7ec3e33a0c1221e8ca936710ba8ab97e8f3d1023d8b40b0",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "random_removal.py",
+      "path": "random_removal.py",
+      "algorithm_id": "ALG-059",
+      "sha256_lf": "c3e80ebafdd0617643c26e411e1370085fcaa5f37ba2c5ecfbf888e0f1ef99ac",
+      "marker": "#"
+    },
+    {
+      "name": "greedy_insertion.py",
+      "path": "greedy_insertion.py",
+      "algorithm_id": "ALG-058",
+      "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "route_partition.py",
+      "path": "route_partition.py",
+      "algorithm_id": "ALG-057",
+      "sha256_lf": "978620697bf76686318e2653063e26b80560e806557f002c9fd461dece15b16e",
+      "marker": "#"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-034",
+  "category": "cvrp_tail_chain_vnd",
+  "description": [
+    "**CVRP variable-neighborhood descent over tail, chain and single-customer moves.** Use a single depot and homogeneous hard capacity with a complete symmetric matrix. Begin with a greedy Split of the supplied index order.\n\n",
+    "Run 2-opt* tail exchange, bounded CROSS exchange and interroute relocate on the currently accepted route set. Every operation preserves exact customer coverage and checks the new route loads.\n\n",
+    "After a strict distance improvement, pass the changed solution back to the first neighborhood. Otherwise advance to the next one. Stop after all neighborhoods fail without a change. This is deterministic descent without a shaking phase."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "f04ad62173237d618370e6a921c8d371450ad92b2ac7c72d10e2eaa8d672219a",
+      "marker": "#"
+    },
+    {
+      "name": "capacity_split.py",
+      "path": "capacity_split.py",
+      "algorithm_id": "ALG-051",
+      "sha256_lf": "a4e9a6e28de57b5dd107c5b551b26656c8ce8cf38af5e0295390dabadd9cebf6",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt_star.py",
+      "path": "two_opt_star.py",
+      "algorithm_id": "ALG-054",
+      "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722",
+      "marker": "#"
+    },
+    {
+      "name": "cross_exchange.py",
+      "path": "cross_exchange.py",
+      "algorithm_id": "ALG-055",
+      "sha256_lf": "aebbbf17b2704418ac2ded2153f9cff308b8aa02abd94d437b5922ff883140b3",
+      "marker": "#"
+    }
+  ]
+}

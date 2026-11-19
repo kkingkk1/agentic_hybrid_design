@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-045",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Partially mapped crossover preserves a permutation block and repairs value conflicts by a correspondence map.",
+  "description": [
+    "Input is two permutations of the same unique values and a half-open interval. Return one child without mutating either parent.\n\n",
+    "Copy the interval from the first parent. For each conflicting value sourced from outside the second parent's interval, follow values paired within the interval until reaching an unused value. The operator uses linear storage and can follow a linear chain on any individual position."
+  ],
+  "code": {
+    "entry": "pmx",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "pmx.py",
+        "sha256_lf": "3879b2e39acb4d0ab9519bfaaaea560dd2dd0cc5c6ba3985f74977ef63c99df6"
+      }
+    ]
+  }
+}

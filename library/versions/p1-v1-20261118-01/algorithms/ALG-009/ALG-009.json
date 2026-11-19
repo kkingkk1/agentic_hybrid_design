@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-009",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Worst request removal: repeatedly calculate each request's current removal gain, favoring larger gains while retaining randomness.",
+  "description": [
+    "**Level:** Component (request-removal operator).\n\n",
+    "**Responsibility and interface:** Inputs are routes without depots, a node-to-request mapping, removal count, bias parameter, objective function, and random source. Outputs are new routes and the removed requests. All supplied nodes for the same request are removed together.\n\n",
+    "**Mechanism:** Compute the objective difference before and after completely removing each request, sort removal gains in descending order, and randomly choose index $\\lfloor U^p m\\rfloor$. Remove that request from the current routes and recalculate gains for the remaining requests. $U$ is in $[0,1)$, $p\\geq1$, and $m$ is the current candidate count. Stop after the specified number has been removed.\n\n",
+    "**Applicability and limits:** When the original paper computes a removal gain, the request is completely removed rather than placed in the request bank included in its objective. The caller's objective must follow this convention and must handle the vehicle cost of empty routes, missing pickup-delivery nodes, capacity, and time windows. This component does not add routes or repair requests and does not guarantee final feasibility. It still removes the requested number when all gains are negative.\n\n",
+    "**Cost:** Each removal constructs a candidate and calls the objective function for every remaining request, then sorts them. Total cost depends on removal count, request count, route length, and objective cost. This implementation expresses the mechanism without incremental-update optimization.\n\n",
+    "**Relation to the case and other entries:** [CASE-002](../../cases/CASE-002/CASE-002.md) contains a third-party contribution-removal implementation; its scoring and updates must be checked separately. [ALG-008](../ALG-008/ALG-008.json) selects by request relatedness rather than removal gain."
+  ],
+  "code": {
+    "entry": "worst_removal",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on Worst Removal in the ALNS paper.",
+    "files": [
+      {
+        "path": "worst_removal.py",
+        "sha256_lf": "079e0c85b5500614c026268ed879fbf4456d72819a913c804e60b980331fdff6"
+      }
+    ]
+  }
+}

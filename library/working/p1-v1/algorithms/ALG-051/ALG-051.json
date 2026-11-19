@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-051",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Greedy hard-capacity Split decodes a fixed customer order into maximal feasible consecutive blocks.",
+  "description": [
+    "Input is an order of distinct nondepot customers, a nonnegative demand vector and capacity. A request larger than capacity raises an error. Output contains nonempty cycles with implicit depot legs.\n\n",
+    "Start a new route only when the next demand would exceed capacity. For nonnegative demands it minimizes the number of contiguous blocks in the fixed order. This linear rule does not minimize route distance. It differs from ALG-001's cost-based, penalty-aware Split."
+  ],
+  "code": {
+    "entry": "capacity_split",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "capacity_split.py",
+        "sha256_lf": "a4e9a6e28de57b5dd107c5b551b26656c8ce8cf38af5e0295390dabadd9cebf6"
+      }
+    ]
+  }
+}

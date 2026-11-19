@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-055",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "CROSS exchange swaps bounded consecutive customer chains between different CVRP routes.",
+  "description": [
+    "Input is a complete matrix, capacity data, a feasible set of routes and a positive maximum chain length. Return a best strictly improving move or an unchanged copy.\n\n",
+    "Test a nonempty contiguous block on each route, exchange the blocks in their input orientations, and enforce both resulting loads. It differs from tail exchange and from the independent reinsertion used by SWAP*. The number of trials grows with the route lengths and the square of the chain bound."
+  ],
+  "code": {
+    "entry": "cross_exchange",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "cross_exchange.py",
+        "sha256_lf": "aebbbf17b2704418ac2ded2153f9cff308b8aa02abd94d437b5922ff883140b3"
+      }
+    ]
+  }
+}

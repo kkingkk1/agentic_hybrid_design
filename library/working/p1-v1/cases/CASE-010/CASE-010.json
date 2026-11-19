@@ -1,0 +1,83 @@
+{
+  "case_id": "CASE-010",
+  "category": "vrptw_ant_colony_local_search",
+  "description": [
+    "Problem and construction: Ants build routes for customers with capacity and time-window constraints. Candidate selection combines pheromone and inverse distance, with an optional random choice; construction checks depot return and exact customer coverage.\n\n",
+    "Search: In each iteration construct multiple ants. If local search is enabled, as it is by default, attempt to improve the iteration-best solution by route elimination via relocation and then 2-opt; retain the result only if its score is better and evaluated constraints are satisfied. Evaporate pheromone and deposit it for all ants and the iteration best. Scores compare the number of vehicles first and penalized distance second.\n\n",
+    "Boundary: The constructor raises an error when no remaining customer can be served from the depot under its checks. Construction and route evaluation start at time zero without applying the depot's opening time or any departure service time; independently validate schedules when those conditions matter. The Solomon parser discards the vehicle-count field, and the evaluator does not enforce a fleet limit. The route evaluator checks capacity and time windows under its own timing assumptions, while coverage is a separate function; callers adapting the local search should check coverage explicitly. The CLI requires a Solomon-format instance; it is not included."
+  ],
+  "code": [
+    {
+      "name": "LICENSE",
+      "path": "LICENSE",
+      "sha256_lf": "9c8253c578a8d6c296b77e93980950823713d5254097cdfded8b4663deed730b",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/__init__.py",
+      "path": "vrptw/src/__init__.py",
+      "sha256_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/__init__.py",
+      "path": "vrptw/src/aco/__init__.py",
+      "sha256_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/ant.py",
+      "path": "vrptw/src/aco/ant.py",
+      "sha256_lf": "6df4b8a12942d1d2817fa051cf93d61ad6061ab48ed87544a2814fd29b0e44d5",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/io.py",
+      "path": "vrptw/src/aco/io.py",
+      "sha256_lf": "4bc59bf5d4510c7cf5b55560649773feb7d26f9189ec035e194530c2b5cbf3d5",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/local_search.py",
+      "path": "vrptw/src/aco/local_search.py",
+      "sha256_lf": "a51bcf1a545a2a1828793633d267a5382931dccb037be37f1a8abe305e6d3cea",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/plotting.py",
+      "path": "vrptw/src/aco/plotting.py",
+      "sha256_lf": "7c12fa810bd53c1faa30b496634e1bfab65e8e5e928b4ee32eee8371038b9fda",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/problem.py",
+      "path": "vrptw/src/aco/problem.py",
+      "sha256_lf": "18901b610d77d6a2253f279e505a54a9fa62919150aa5f384137904eb533dde6",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/aco/solver.py",
+      "path": "vrptw/src/aco/solver.py",
+      "sha256_lf": "f144e8726da96c50812f6cb1d0c2f5c1962cc194c34e5afff020f923b65e86a0",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/experiment/__init__.py",
+      "path": "vrptw/src/experiment/__init__.py",
+      "sha256_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/experiment/run_experiments.py",
+      "path": "vrptw/src/experiment/run_experiments.py",
+      "sha256_lf": "bb7ce23b74c1fde13e39cd03087060154d0762943f92a2787bab9a74d0bb8a49",
+      "marker": "#"
+    },
+    {
+      "name": "vrptw/src/main.py",
+      "path": "vrptw/src/main.py",
+      "sha256_lf": "8322206cd969b69ff7a999c1a99f56b6cd39fa72f2370f85e432d29f434f280c",
+      "marker": "#"
+    }
+  ]
+}

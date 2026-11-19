@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-036",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Farthest insertion chooses a vertex remote from the current symmetric TSP tour and inserts it at its cheapest position.",
+  "description": [
+    "Input is a finite symmetric complete distance matrix with zero diagonal. Return an open permutation starting at the specified vertex.\n\n",
+    "Maintain the minimum distance of every unused vertex to the selected set. Choose the largest such distance, minimize the increase across the cycle's positions, and update the minimum distances. The method takes quadratic time."
+  ],
+  "code": {
+    "entry": "farthest_insertion",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "farthest_insertion.py",
+        "sha256_lf": "a5eb2935e33ac37c92748b2f1aa1f000738be179399f7616165e425c58bcb185"
+      }
+    ]
+  }
+}

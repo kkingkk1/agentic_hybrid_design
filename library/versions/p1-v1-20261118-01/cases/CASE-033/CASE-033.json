@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-033",
+  "category": "cvrp_related_route_partial_optimization",
+  "description": [
+    "**CVRP partial reoptimization of geographically related route pairs.** Use a symmetric distance matrix and hard capacity. Begin with savings and visit an anchor route from the current list.\n\n",
+    "Choose one partner by minimum intercustomer distance to the anchor. Hold all other routes fixed and reoptimize the selected subset with savings, relocate and 2-opt*. Replace only the selected subset when its own total cost falls.\n\n",
+    "The two routes' customer set defines the boundary of a local subproblem. This is a small POPMUSIC-style partial optimization variant with a heuristic subproblem solver and bounded rounds."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "3dd764ec46a76f68c0f3213825d70a08d09fda5deac34e22b7741b20a6a3e54d",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt_star.py",
+      "path": "two_opt_star.py",
+      "algorithm_id": "ALG-054",
+      "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722",
+      "marker": "#"
+    }
+  ]
+}

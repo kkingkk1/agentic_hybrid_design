@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-037",
+  "category": "cvrp_exact_route_generation_partition",
+  "description": [
+    "**Exact small CVRP by complete route generation and set partitioning.** Use a complete nonnegative integer distance matrix, firm homogeneous capacity and at most nine customers. There is no fixed fleet size. Check each nonempty feasible customer subset and find its least-cost depot order by exact fixed-path dynamic programming.\n\n",
+    "Pass every feasible subset and its least-cost route to set partitioning. Select a disjoint cover of all customers to minimize total distance. Keeping one least-cost order for each subset preserves an optimal solution under these assumptions.\n\n",
+    "The subset enumeration and disjoint-cover search are exponential. The reference is intended for small instances and supplies an objective oracle under its stated constraints."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "0dccae04c9889aff1f6501ca87955f9090bed632b8e616fb5614d48e6c2dc690",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    },
+    {
+      "name": "route_partition.py",
+      "path": "route_partition.py",
+      "algorithm_id": "ALG-057",
+      "sha256_lf": "978620697bf76686318e2653063e26b80560e806557f002c9fd461dece15b16e",
+      "marker": "#"
+    }
+  ]
+}

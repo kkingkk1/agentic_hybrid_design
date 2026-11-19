@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-036",
+  "category": "cvrp_record_to_record_neighborhoods",
+  "description": [
+    "**CVRP record-to-record travel with mixed feasible neighborhoods.** Use a complete symmetric matrix and hard capacity. Start from savings routes and compute an absolute tolerance from five percent of the first solution's length.\n\n",
+    "Sample either a feasible relocate or a feasible tail exchange, with a fallback when the preferred family yields no candidate. The proposal goes to record-to-record acceptance. Accept a worse solution only within the fixed deviation of the best record.\n\n",
+    "Proposals use the current routes while the record uses the best previously seen feasible set. The threshold and iteration cap are fixed in this small reference. The published VRP algorithm has additional implementation choices."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "d902a545c30e85eeec03b9d8cd4d27050f8c6a4013b2ace3628b03ed5e927b4f",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt_star.py",
+      "path": "two_opt_star.py",
+      "algorithm_id": "ALG-054",
+      "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722",
+      "marker": "#"
+    },
+    {
+      "name": "record_travel.py",
+      "path": "record_travel.py",
+      "algorithm_id": "ALG-065",
+      "sha256_lf": "10da9a16f4aa1e740ec2860bb566953b80a8e4dc67beef24aa28b6a6175c8edb",
+      "marker": "#"
+    }
+  ]
+}

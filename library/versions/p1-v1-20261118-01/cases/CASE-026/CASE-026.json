@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-026",
+  "category": "cvrp_seeded_assignment_and_routing",
+  "description": [
+    "**CVRP seeded generalized assignment followed by route optimization.** Use a complete distance matrix, indexed nonnegative demands, capacity and fixed customer seeds on at most 11 customers. Stage one minimizes a single-insertion cost surrogate while assigning customers to capacitated seed groups.\n\n",
+    "Pass the entire group to exact path ordering with the depot as both endpoints when it has at most eight customers. A larger group retains its constructed order. A seeded assignment failure leads to a feasible savings construction.\n\n",
+    "The exposed seeds fix the route slots in the first stage. Assignment cost is a surrogate for future routing decisions. The combination implements the assignment-then-route structure using small standard-library subproblems."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "ceb91acb2bacda5d9eab6653d5781b26b65e78a85475e370a834df80d45dd0e4",
+      "marker": "#"
+    },
+    {
+      "name": "seeded_assignment.py",
+      "path": "seeded_assignment.py",
+      "algorithm_id": "ALG-052",
+      "sha256_lf": "918899bbc60b233a702e2033d84820a2fe34bf9e44e947fab073b8f192625d57",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-015",
+  "category": "atsp_assignment_patching",
+  "description": [
+    "**ATSP assignment cycle cover and greedy patching.** Use a finite complete directional matrix with nonnegative, representable costs. Solve the minimum-cost assignment after giving self arcs a cost larger than any complete unpenalized cover.\n\n",
+    "Pass the successor permutation to cycle decomposition and join distinct cycles by the least-increase swap of successors. Each swap reduces the cycle count. The final single cycle gives a legal open tour.\n\n",
+    "The assignment handles input arc directions. Patching is a greedy repair and can substantially increase the objective. The returned tour is a feasible upper bound for the given matrix."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "7dad0732e634b6147ef9c543cd46182cab635533862d255c2a45f84cae328e8f",
+      "marker": "#"
+    },
+    {
+      "name": "hungarian.py",
+      "path": "hungarian.py",
+      "algorithm_id": "ALG-028",
+      "sha256_lf": "32720f386f03dd3e7a220082e53545369a32b752a781510fcb8f153a96762b26",
+      "marker": "#"
+    },
+    {
+      "name": "cycle_patching.py",
+      "path": "cycle_patching.py",
+      "algorithm_id": "ALG-044",
+      "sha256_lf": "ededd5922b5c55dcf6ff0763e5343f0bf1aacb9205d71110b959298db7b8849c",
+      "marker": "#"
+    }
+  ]
+}

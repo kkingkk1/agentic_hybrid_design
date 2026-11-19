@@ -1,0 +1,26 @@
+{
+  "algorithm_id": "ALG-006",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Order crossover (OX): retain a circular contiguous segment from the first parent and fill the remaining positions in the second parent's circular order, producing one permutation offspring.",
+  "description": [
+    "**Level:** Component (permutation crossover operator).\n\n",
+    "**Responsibility and interface:** The input consists of two nonempty parent permutations of the same distinct elements and the start and end indices of a segment in the first parent. The output is one offspring permutation of the same elements. The caller selects the cut points; nodes must be hashable.\n\n",
+    "**Mechanism:** Preserve the circular closed interval from start to end in the first parent. Beginning immediately after the end position, scan the second parent cyclically, skip retained elements, and fill the offspring from the position after the end in circular order.\n\n",
+    "**Applicability and limits:** Applicable to permutation representations; parent element sets must match and contain no duplicates. Crossover produces only a customer order, not CVRP route separators, and does not guarantee capacity, time-window, or other feasibility. Decoding and feasibility handling remain necessary. Single-element and wraparound segments are supported.\n\n",
+    "**Cost:** A set records inherited elements. Average time and auxiliary space are $O(n)$ for permutation length $n$, with hashing cost depending on element type.\n\n",
+    "**Relation to the case:** [CASE-001](../../cases/CASE-001/CASE-001.md) passes the OX offspring to its own Split implementation and then runs local search; that Split references the author version in [ALG-001](../ALG-001/ALG-001.json) through the file manifest. The case does not call this OX implementation either. When the circular interval spans the full permutation, this implementation retains the first parent while that cut-point combination in the author's case code retains the second. The case code also does not draw identical cut points."
+  ],
+  "code": {
+    "entry": "order_crossover",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on OX permutation recombination in the HGS-CVRP paper and case.",
+    "files": [
+      {
+        "path": "order_crossover.py",
+        "sha256_lf": "b9e87284c35cd16f55b9a6ceff2686988a2c5b67895349ec79ceee15f4e8fdc5"
+      }
+    ]
+  }
+}

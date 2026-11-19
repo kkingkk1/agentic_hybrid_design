@@ -5,6 +5,8 @@
 # 工作库 JSON 使用 LF；案例来源记录校验 JSON 原始字节。
 /library/working/calibration/algorithms/ALG-*/ALG-*.json text eol=lf
 /library/working/calibration/cases/CASE-*/CASE-*.json text eol=lf
+/library/working/p1-v1/algorithms/ALG-*/ALG-*.json text eol=lf
+/library/working/p1-v1/cases/CASE-*/CASE-*.json text eol=lf
 
 # 冻结快照按原始字节校验；检出时不转换行尾。
 /library/manifests/** -text

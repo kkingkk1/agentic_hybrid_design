@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-046",
+  "category": [
+    "Heuristics and metaheuristics",
+    "Graph algorithms"
+  ],
+  "summary": "Edge recombination builds a TSP order from the union of both parents' cyclic adjacency sets.",
+  "description": [
+    "Input is two cyclic permutations of the same unique vertices and a random generator. Return one open order starting at the first parent's first vertex.\n\n",
+    "Remove the used vertex from other lists. Prefer an unused parental neighbor with few remaining incident edges, breaking ties randomly. Fall back to any unused vertex if there is no such neighbor. This operator treats edges as undirected and does not certify cost improvement."
+  ],
+  "code": {
+    "entry": "edge_recombine",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "edge_recombination.py",
+        "sha256_lf": "5cbdbb20bc655a1236b9979f87e322507f0811919fe7005a2deb03347c10d55f"
+      }
+    ]
+  }
+}

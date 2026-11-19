@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-063",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Swap-based path relinking walks from one permutation toward a guiding permutation.",
+  "description": [
+    "Input is two permutations over the same unique vertex set. Yield each intermediate order as a separate list.\n\n",
+    "Fix the next mismatching position by swapping in the guide's vertex. The matching prefix and total number of matches never decrease. The path ends at the guide. Updating positions is constant work per swap, but copying each yielded permutation uses quadratic total work."
+  ],
+  "code": {
+    "entry": "path_relink",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "path_relinking.py",
+        "sha256_lf": "9cfe33f978ab3f94ace91977a6ceffeff7fbe3be18b62fd26dcf1c18301d618c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-057",
+  "category": [
+    "Dynamic programming",
+    "Mathematical programming and relaxation"
+  ],
+  "summary": "Restricted set partitioning selects a minimum-distance disjoint cover from already feasible depot routes.",
+  "description": [
+    "Input is a complete distance matrix, target customers and feasible route columns. Return a minimum-cost route list for this pool or None when no disjoint cover exists. The caller supplies or checks capacity-feasible columns.\n\n",
+    "Retain the cheapest route per customer mask. Branch on routes containing the first uncovered customer and memoize remaining masks. Exponential space and time in the number of customers limit this reference to small pools. Optimality pertains to the supplied pool."
+  ],
+  "code": {
+    "entry": "partition_routes",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "route_partition.py",
+        "sha256_lf": "978620697bf76686318e2653063e26b80560e806557f002c9fd461dece15b16e"
+      }
+    ]
+  }
+}

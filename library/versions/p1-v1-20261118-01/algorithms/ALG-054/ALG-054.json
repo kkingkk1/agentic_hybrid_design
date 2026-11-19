@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-054",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Interroute 2-opt* moves whole route tails between two CVRP routes without internal reversal.",
+  "description": [
+    "Input is a feasible route set and capacity data. The generator enumerates tail exchanges and the best-move wrapper evaluates them with the original distance matrix.\n\n",
+    "Use prefix demands to check the two new loads before materializing a move. Omit empty routes and skip a full swap of both routes or an exchange of two empty tails. A wrapper keeps one strict distance improvement. Each route pair contributes up to the product of its cut counts."
+  ],
+  "code": {
+    "entry": "two_opt_star",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "two_opt_star.py",
+        "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722"
+      }
+    ]
+  }
+}

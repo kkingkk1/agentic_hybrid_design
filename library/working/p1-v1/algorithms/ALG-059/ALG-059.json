@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-059",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Uniform destroy samples distinct assigned CVRP customers without replacement for later repair.",
+  "description": [
+    "Input is a route set without duplicated customers, a valid removal count and a random generator. Return a partial route set and the removed customers in sampled order.\n\n",
+    "Remove exactly the sampled customers without changing the remaining relative order. Omit empty routes. Work is linear in the number of customers plus sampling. This component does not repair or score the result."
+  ],
+  "code": {
+    "entry": "uniform_remove",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "random_removal.py",
+        "sha256_lf": "c3e80ebafdd0617643c26e411e1370085fcaa5f37ba2c5ecfbf888e0f1ef99ac"
+      }
+    ]
+  }
+}

@@ -2,8 +2,9 @@
 
 import base64
 import json
+import threading
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, call, patch
 
 from scripts import p0_model_runtime as model
 from scripts import p0_task4 as task
@@ -70,6 +71,163 @@ class ModelEventTests(unittest.TestCase):
         self.assertIn("model_providers.p0_chatgpt_https.request_max_retries=0", command)
         self.assertIn("model_providers.p0_chatgpt_https.stream_max_retries=0", command)
         self.assertNotIn("OPENAI_API_KEY", model.child_environment())
+
+
+class PreflightTests(unittest.TestCase):
+    @staticmethod
+    def inputs():
+        names = [f"profile-{i}" for i in range(16)]
+        workers = [{"logical_processor": i} for i in range(16)]
+        return names, workers
+
+    def test_all_profiles_are_verified_concurrently_on_distinct_slots(self):
+        names, workers = self.inputs()
+        barrier = threading.Barrier(16)
+        seen = []
+        lock = threading.Lock()
+
+        def verify(plan, name, logical, stop):
+            barrier.wait(timeout=10)
+            with lock:
+                seen.append((name, logical))
+
+        with patch.object(task, "_preflight_profile", side_effect=verify):
+            task._preflight_profiles({}, names, workers)
+        self.assertCountEqual(seen, zip(names, range(16), strict=True))
+
+    def test_preflight_failure_prevents_batch_and_model_call(self):
+        names, workers = self.inputs()
+
+        def verify(plan, name, logical, stop):
+            if name == names[7]:
+                raise OSError("preflight failure")
+
+        with patch.object(task.sandbox, "_require_gate", return_value={}), \
+                patch.object(task, "_instances", return_value=({"workers": workers}, [], {})), \
+                patch.object(task, "_fresh_profiles", return_value=names), \
+                patch.object(task, "_preflight_profile", side_effect=verify), \
+                patch.object(task, "_new_batch") as new_batch, \
+                patch.object(task, "_model_response") as model_response:
+            with self.assertRaisesRegex(OSError, "preflight failure"):
+                task._run_locked()
+        new_batch.assert_not_called()
+        model_response.assert_not_called()
+
+    def test_failure_interrupts_a_resource_wait(self):
+        names, workers = self.inputs()
+        waiting = threading.Event()
+        interrupted = []
+
+        def verify(plan, name, logical, stop):
+            if name == names[0]:
+                waiting.set()
+                interrupted.append(stop.wait(2))
+            elif name == names[1]:
+                self.assertTrue(waiting.wait(1))
+                raise OSError("preflight failure")
+
+        with patch.object(task, "_preflight_profile", side_effect=verify):
+            with self.assertRaisesRegex(OSError, "preflight failure"):
+                task._preflight_profiles({}, names, workers)
+        self.assertEqual(interrupted, [True])
+
+    def test_rejects_duplicate_slots_before_starting_checks(self):
+        names, workers = self.inputs()
+        workers[-1]["logical_processor"] = workers[0]["logical_processor"]
+        with patch.object(task, "_preflight_profile") as verify:
+            with self.assertRaises(ValueError):
+                task._preflight_profiles({}, names, workers)
+        verify.assert_not_called()
+
+    def test_main_thread_interrupt_signals_waiting_workers(self):
+        names, workers = self.inputs()
+        waiting = threading.Event()
+        interrupted = []
+
+        def verify(plan, name, logical, stop):
+            waiting.set()
+            interrupted.append(stop.wait(2))
+
+        class InterruptingPool:
+            def __init__(self, **kwargs):
+                self.worker = None
+
+            def __enter__(self):
+                return self
+
+            def map(self, function, jobs):
+                self.worker = threading.Thread(target=function, args=(jobs[0],))
+                self.worker.start()
+                if not waiting.wait(1):
+                    raise AssertionError("worker did not start")
+                raise KeyboardInterrupt
+
+            def __exit__(self, *args):
+                self.worker.join(timeout=2)
+                if self.worker.is_alive():
+                    raise AssertionError("worker did not stop")
+
+        with patch.object(task, "_preflight_profile", side_effect=verify), \
+                patch.object(task.concurrent.futures, "ThreadPoolExecutor", InterruptingPool):
+            with self.assertRaises(KeyboardInterrupt):
+                task._preflight_profiles({}, names, workers)
+        self.assertEqual(interrupted, [True])
+
+    def test_resource_wait_and_thread_affinity_are_restored(self):
+        kernel = Mock()
+        kernel.GetCurrentThread.return_value = 123
+        kernel.SetThreadAffinityMask.side_effect = [0b1111, 1]
+        stop = Mock()
+        stop.is_set.return_value = False
+        stop.wait.return_value = False
+        with patch.object(task.ctypes, "WinDLL", return_value=kernel), \
+                patch.object(task.sandbox.job, "_resource_gate", side_effect=[
+                    OSError("资源检查不满足 P0 条件"), {}
+                ]) as gate, \
+                patch.object(task.sandbox, "_profile") as profile:
+            task._preflight_profile({}, "profile", 3, stop)
+        self.assertEqual(kernel.SetThreadAffinityMask.call_args_list, [call(123, 8), call(123, 15)])
+        self.assertEqual(gate.call_count, 2)
+        stop.wait.assert_called_once_with(5)
+        profile.assert_called_once_with({}, "profile")
+
+    def test_cancelled_resource_wait_does_not_start_verification(self):
+        kernel = Mock()
+        kernel.GetCurrentThread.return_value = 123
+        kernel.SetThreadAffinityMask.side_effect = [0b1111, 1]
+        stop = Mock()
+        stop.is_set.return_value = False
+        stop.wait.return_value = True
+        with patch.object(task.ctypes, "WinDLL", return_value=kernel), \
+                patch.object(task.sandbox.job, "_resource_gate", side_effect=OSError("可用内存低于 16 GiB")), \
+                patch.object(task.sandbox, "_profile") as profile:
+            task._preflight_profile({}, "profile", 3, stop)
+        profile.assert_not_called()
+        self.assertEqual(kernel.SetThreadAffinityMask.call_args_list, [call(123, 8), call(123, 15)])
+
+    def test_unexpected_resource_error_stops_verification(self):
+        kernel = Mock()
+        kernel.GetCurrentThread.return_value = 123
+        kernel.SetThreadAffinityMask.side_effect = [0b1111, 1]
+        with patch.object(task.ctypes, "WinDLL", return_value=kernel), \
+                patch.object(task.sandbox.job, "_resource_gate", side_effect=OSError("resource query failed")), \
+                patch.object(task.sandbox, "_profile") as profile:
+            with self.assertRaisesRegex(OSError, "resource query failed"):
+                task._preflight_profile({}, "profile", 3, threading.Event())
+        profile.assert_not_called()
+        self.assertEqual(kernel.SetThreadAffinityMask.call_args_list, [call(123, 8), call(123, 15)])
+
+    def test_thread_affinity_is_restored_when_verification_fails(self):
+        kernel = Mock()
+        kernel.GetCurrentThread.return_value = 123
+        kernel.SetThreadAffinityMask.side_effect = [0b1111, 1]
+        stop = threading.Event()
+        with patch.object(task.ctypes, "WinDLL", return_value=kernel), \
+                patch.object(task.sandbox.job, "_resource_gate", return_value={}), \
+                patch.object(task.sandbox, "_profile", side_effect=OSError("invalid runtime")):
+            with self.assertRaisesRegex(OSError, "invalid runtime"):
+                task._preflight_profile({}, "profile", 3, stop)
+        self.assertEqual(kernel.SetThreadAffinityMask.call_args_list, [call(123, 8), call(123, 15)])
 
 
 class EvaluationTests(unittest.TestCase):

@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-025",
+  "category": "cvrp_rotated_sweep_and_exact_routes",
+  "description": [
+    "**CVRP rotated sweep and exact ordering of small route clusters.** Use planar coordinates, distances, demands and capacity with one depot. For four fixed starting angles, form a polar order and make consecutive capacity-feasible groups.\n\n",
+    "Pass each group of at most eight customers to exact depot-to-depot ordering. Keep the original angular order of larger groups. Compare complete solutions by total travel distance after routing and return the least-cost one.\n\n",
+    "The interface separates cluster construction from routing. Rotation changes the boundaries of the candidate groupings. The original sweep paper also considers constraints and iterative refinements omitted from this small CVRP reference."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "ca9b23e79716bcfb005271f7c07b9cee4ca7f69e9228a71791e4f7d87b4887d6",
+      "marker": "#"
+    },
+    {
+      "name": "sweep_order.py",
+      "path": "sweep_order.py",
+      "algorithm_id": "ALG-050",
+      "sha256_lf": "abb1c39c439b802c1a64b1b51e254ae40cc6e7404119355849336e9494545895",
+      "marker": "#"
+    },
+    {
+      "name": "capacity_split.py",
+      "path": "capacity_split.py",
+      "algorithm_id": "ALG-051",
+      "sha256_lf": "a4e9a6e28de57b5dd107c5b551b26656c8ce8cf38af5e0295390dabadd9cebf6",
+      "marker": "#"
+    },
+    {
+      "name": "fixed_path.py",
+      "path": "fixed_path.py",
+      "algorithm_id": "ALG-061",
+      "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

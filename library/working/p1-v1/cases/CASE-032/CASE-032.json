@@ -1,0 +1,52 @@
+{
+  "case_id": "CASE-032",
+  "category": "cvrp_fleet_elimination_then_distance",
+  "description": [
+    "**CVRP fleet reduction by route elimination and subsequent distance refinement.** Use homogeneous capacity and a symmetric matrix. Rank final alternatives by number of routes and then distance for this reference case. Savings supplies a feasible starting point.\n\n",
+    "Try deleting each whole route and pass its customers to an existing-routes-only insertion. Insert heavier demands first. Retain the shortest complete repair with one fewer route and repeat while deletion succeeds.\n\n",
+    "Pass the reduced solution to 2-opt* and keep further lexicographic improvement. This adapts the separation of fleet reduction and refinement to CVRP without ejection chains. Transfer to a distance-only objective requires adapting the acceptance rule."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "f990420b98a8702f28bcacee2816586980c48ba531db8427a306a4c7da09a398",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "route_elimination.py",
+      "path": "route_elimination.py",
+      "algorithm_id": "ALG-056",
+      "sha256_lf": "6bbe9c4c40d88feeed00b4d949286ed1c721286b3bda020b15682d3557e09b61",
+      "marker": "#"
+    },
+    {
+      "name": "greedy_insertion.py",
+      "path": "greedy_insertion.py",
+      "algorithm_id": "ALG-058",
+      "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt_star.py",
+      "path": "two_opt_star.py",
+      "algorithm_id": "ALG-054",
+      "sha256_lf": "3a72f4b41654c138f218d27b7ccadcd0f3a407e065bac3da4ed1ebf4b770d722",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}

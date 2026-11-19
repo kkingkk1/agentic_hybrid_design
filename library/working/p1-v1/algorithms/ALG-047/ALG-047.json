@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-047",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Ant System constructs TSP tours with pheromone-weighted sampling and reinforces the tours after optional improvement.",
+  "description": [
+    "Input is a nonnegative symmetric distance matrix, numbers of rounds and ants, a random generator and an optional permutation-preserving local search callback. Return the best open tour seen.\n\n",
+    "Each step weights unused vertices by edge pheromone divided by the square of one plus distance. Each round evaporates pheromone and deposits symmetric reinforcement proportional to the inverse of one plus the final tour cost. This reference uses a small pheromone floor and fixed evaporation.\n\n",
+    "Construction takes quadratic time per ant, plus the callback cost. Distances and accumulated costs must stay within the numeric range. The module implements no local search on its own."
+  ],
+  "code": {
+    "entry": "ant_system",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "ant_system.py",
+        "sha256_lf": "f1d3b622b0403b256427d2280d7b7b65db8e400cc7a398f7cf62bd72b873efbb"
+      }
+    ]
+  }
+}

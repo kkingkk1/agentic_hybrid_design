@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-044",
+  "category": [
+    "Heuristics and metaheuristics",
+    "Graph algorithms"
+  ],
+  "summary": "Cycle patching converts a successor assignment into one TSP tour by swapping successors across disjoint cycles.",
+  "description": [
+    "Input is a finite complete cost matrix and a valid successor permutation. Output is one open tour. The separate decomposition function identifies the cycles of the assignment.\n\n",
+    "Choose the cross-cycle swap with the smallest cost increase and recompute cycles until only one remains. This direct greedy patching uses at most cubic time, may break a low-cost assignment and makes no optimality claim."
+  ],
+  "code": {
+    "entry": "patch_cycles",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "cycle_patching.py",
+        "sha256_lf": "ededd5922b5c55dcf6ff0763e5343f0bf1aacb9205d71110b959298db7b8849c"
+      }
+    ]
+  }
+}

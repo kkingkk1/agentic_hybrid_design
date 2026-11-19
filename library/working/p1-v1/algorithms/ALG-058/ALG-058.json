@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-058",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Least-cost feasible insertion repairs a partial CVRP solution while maintaining capacity.",
+  "description": [
+    "Input is a full distance matrix, demands, capacity, partial routes and an ordered list of distinct unserved customers. Return routes omitting depot markers, or None if existing-only repair fails.\n\n",
+    "For each pending customer find the minimum marginal-cost position among routes with room. Open a singleton only if no current route can receive that customer and opening is allowed. The single-route insertion callback supports regret insertion and works within one route. Each greedy insertion scans the current routes and their insertion positions once."
+  ],
+  "code": {
+    "entry": "greedy_insert",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "greedy_insertion.py",
+        "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783"
+      }
+    ]
+  }
+}

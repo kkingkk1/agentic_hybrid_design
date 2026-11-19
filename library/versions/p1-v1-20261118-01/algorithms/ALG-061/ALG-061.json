@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-061",
+  "category": [
+    "Dynamic programming"
+  ],
+  "summary": "Fixed-boundary subset dynamic programming reorders a small route segment while keeping its incident vertices fixed.",
+  "description": [
+    "Input is a complete matrix, distinct interior vertices, and fixed entry and exit vertices outside the block. The endpoints may coincide at a depot. Return the optimal internal order with fixed boundary arcs.\n\n",
+    "Memoize the best suffix by the current vertex and remaining mask. One helper enumerates feasible CVRP subsets and calls the same solver with depot at both ends. Single-block work is exponential in block size. The subset helper is intended only for small CVRP examples."
+  ],
+  "code": {
+    "entry": "fixed_path",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "fixed_path.py",
+        "sha256_lf": "7f808cd69226d26bc2b2aa298f66e2ee023c2a2e6dd392ecf79b4fc56620f4c7"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "algorithm_id": "ALG-002",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "CVRP inter-route SWAP*: find the best strictly improving exchange for two specified customer routes, returning the new route pair and objective change; it neither scans a complete solution nor checks additional constraints such as time windows.",
+  "description": [
+    "**Level:** Component (local-search operator).\n\n",
+    "**Responsibility and interface:** `swap_star_pair` accepts two customer routes selected by the caller, a distance matrix, customer demands, vehicle capacity, and an optional capacity-penalty coefficient. It returns two new routes and the objective change when it finds a strict improvement; it returns `None` if there is no improvement or either route is empty. Inputs are not modified. The caller selects and traverses route pairs.\n\n",
+    "**Mechanism:** For each pair of customers on different routes, compare the cost before and after exchanging them and find insertion positions in their respective destination routes. The source theorem uses the three best insertion positions precomputed before removing the other customer: invalidated positions are excluded after removal and compared with the newly created position. Algorithm 2 in the paper selects the best improving move for each route pair and updates the routes. Precomputed results are valid only while the relevant routes remain unchanged.\n\n",
+    "**Applicability and limits:** Routes list customers only, with depot index 0. Customer indices must be non-depot matrix indices, and the two input routes must not repeat customers. Distances and demands must be finite and nonnegative, with zero depot self-distance and demand. In the default hard-capacity mode, input routes must be feasible and over-capacity exchanges are excluded. With a nonnegative penalty coefficient, the objective is distance plus the excess-capacity penalty, so output may exceed capacity. This function checks neither time windows nor route duration or other constraints, and does not use the paper's polar-sector route filter. The source filter restricts the explored moves, so finding no improvement after filtering does not establish optimality over the complete neighborhood.\n\n",
+    "**Cost:** Let $N$ be the number of nodes in the distance matrix, and $a$ and $b$ the customer counts of the two routes. Each call validates and copies the entire distance matrix before searching the specified route pair, requiring $O(N^2+ab)$ basic operations and $O(N^2+a+b)$ auxiliary space, excluding exact-rational arithmetic costs. The paper uses $n$ for the total customer count, describes direct enumeration as $\\Theta(n^3)$, and gives $O(n^2)$ for a complete neighborhood pass of its Algorithm 2 with optional route filtering. Those bounds concern the source method, not automatically this function or repeated searches.\n\n",
+    "**Relation to the case:** The author implementation in [CASE-001](../../cases/CASE-001/CASE-001.md) embeds SWAP* moves in offspring local search but does not call this project implementation. This entry supplies a related move for a specified route pair; the case describes its coupling with crossover, decoding, and population management.\n\n",
+    "**Reference implementation:** The project independently implements `swap_star_pair`, using the three precomputed insertion positions and the new position created by removal to find the best strictly improving exchange for a specified route pair. It is not the paper authors' code. Floating-point inputs are treated as their exact binary values in rational arithmetic; floating-point outputs may round or overflow. See the accompanying record for sources, licensing, and validation scope."
+  ],
+  "code": {
+    "entry": "swap_star_pair",
+    "language": "Python 3.13",
+    "origin": "Independent project implementation based on the SWAP* neighborhood in the HGS-CVRP paper.",
+    "files": [
+      {
+        "path": "swap_star.py",
+        "sha256_lf": "f268786d390c04fbe8fec9b4e81cc2e2e0acb800c309510e971e979f40a66bf7"
+      }
+    ]
+  }
+}

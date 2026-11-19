@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-019",
+  "category": "tsp_general_vns",
+  "description": [
+    "**TSP general variable neighborhood search.** Use a symmetric complete matrix. Initialize by cheapest insertion and descend using 2-opt and Or-opt. Both moves operate on complete permutations.\n\n",
+    "Shake the incumbent by a cyclic permutation of customers at a sampled group of positions. The group size starts at two and climbs to at most four on unsuccessful trials, with wraparound. Apply variable-neighborhood descent to the whole shaken order.\n\n",
+    "A strict improvement updates both tour and score and resets the shake strength. Otherwise the paired incumbent tour and value are retained. The changed shake size and the nested local descent have separate roles."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "e0598c3240cca2c6958c6173d5bf302b8fe15a03678ac80dc7ad6b4ccd3ca176",
+      "marker": "#"
+    },
+    {
+      "name": "cheapest_insertion.py",
+      "path": "cheapest_insertion.py",
+      "algorithm_id": "ALG-035",
+      "sha256_lf": "f9a96d453b4e47e43aa74be1e2d7beb559ca6aa003959cb1b57fa464f80298e9",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    },
+    {
+      "name": "or_opt.py",
+      "path": "or_opt.py",
+      "algorithm_id": "ALG-042",
+      "sha256_lf": "ef52ac54f32d060cc0cc784a0cb4ef0caf2b15ea6550ef79b1513b9439972c06",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    }
+  ]
+}

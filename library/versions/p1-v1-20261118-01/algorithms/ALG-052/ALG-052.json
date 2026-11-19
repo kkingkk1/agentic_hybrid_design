@@ -1,0 +1,24 @@
+{
+  "algorithm_id": "ALG-052",
+  "category": [
+    "Dynamic programming",
+    "Mathematical programming and relaxation"
+  ],
+  "summary": "Fixed-seed generalized assignment makes small CVRP route groups using exact capacity-state search.",
+  "description": [
+    "Input is depot distances, nonnegative demands, a capacity and distinct customer seeds. Output is one group per seed or None if assignment under those seeds is infeasible.\n\n",
+    "Estimate each customer's extra cost as its least increase to a depot-seed-depot tour. Memoize the best remaining assignment by the customer index and the vector of unused vehicle capacities. A separate routine must order each assigned group.\n\n",
+    "This search minimizes the assignment surrogate and can be exponential in the number of customers and seeds. An infeasible seeded assignment does not establish that CVRP itself is infeasible."
+  ],
+  "code": {
+    "entry": "seeded_assignment",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "seeded_assignment.py",
+        "sha256_lf": "918899bbc60b233a702e2033d84820a2fe34bf9e44e947fab073b8f192625d57"
+      }
+    ]
+  }
+}

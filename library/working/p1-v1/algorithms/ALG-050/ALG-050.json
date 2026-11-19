@@ -1,0 +1,23 @@
+{
+  "algorithm_id": "ALG-050",
+  "category": [
+    "Heuristics and metaheuristics",
+    "Graph algorithms"
+  ],
+  "summary": "Polar sweep ordering gives an angular sequence of CVRP customers around the depot.",
+  "description": [
+    "Input is a list of planar coordinates with depot index zero and a start angle in radians. Return every customer in angular order relative to that cut.\n\n",
+    "Sort by wrapped polar angle and by customer index at ties. The result is a geometric ordering component. Capacity splitting and routing are separate operations. Sorting takes O(n log n) time."
+  ],
+  "code": {
+    "entry": "sweep_order",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "sweep_order.py",
+        "sha256_lf": "abb1c39c439b802c1a64b1b51e254ae40cc6e7404119355849336e9494545895"
+      }
+    ]
+  }
+}

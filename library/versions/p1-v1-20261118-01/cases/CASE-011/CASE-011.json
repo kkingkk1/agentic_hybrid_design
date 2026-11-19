@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-011",
+  "category": "tsp_iterated_local_search",
+  "description": [
+    "**TSP iterated local search with double-bridge perturbation.** The input is a symmetric complete distance matrix. The result is an open tour with the closing edge implicit. Nearest-neighbor construction supplies the first tour to best-improvement 2-opt.\n\n",
+    "Each iteration applies a double-bridge perturbation to the incumbent and passes the entire perturbed order to 2-opt. Replace the incumbent only when the locally improved cost is lower. A seeded generator and a finite round count control perturbations.\n\n",
+    "The combination revisits local optima using four changed edges, without a cached position array from the earlier tour. Below eight vertices the perturbation returns a copy. The loop is an independent small ILS variant with strict improvement acceptance."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "73b1b51c5c128ddec25b97ebc7f782090152c526727522d311b9cfa45a27633f",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    },
+    {
+      "name": "double_bridge.py",
+      "path": "double_bridge.py",
+      "algorithm_id": "ALG-043",
+      "sha256_lf": "58b48266da8d4cb0fdfcfc6890db3607d3cb0e09af5d07fedbc48da4e3415e01",
+      "marker": "#"
+    }
+  ]
+}

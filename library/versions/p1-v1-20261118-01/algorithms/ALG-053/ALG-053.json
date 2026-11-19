@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-053",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Capacity-feasible interroute relocate moves one customer between two existing CVRP routes.",
+  "description": [
+    "Input is a feasible set of nondepot routes, indexed demands and capacity. The generator emits each trial and its moved customer. The best-move wrapper also needs the complete distance matrix.\n\n",
+    "Try all different destination routes and every insertion position within capacity. If the source becomes empty, omit it. The best-move wrapper compares full depot-to-depot distance and returns only a strict improvement. Its metrics helpers retain integer cost precision and use a stable sum for floating-point costs. At most quadratically many placements are visited and each candidate copies the route set."
+  ],
+  "code": {
+    "entry": "best_relocate",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "relocate.py",
+        "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a"
+      }
+    ]
+  }
+}

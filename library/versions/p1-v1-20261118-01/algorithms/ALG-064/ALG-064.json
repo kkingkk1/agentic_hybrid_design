@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-064",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Fixed-tenure tabu memory excludes recent move attributes unless a candidate improves the incumbent record.",
+  "description": [
+    "Input is a nonnegative tenure and an attribute supplied by a search driver. The driver queries permission by iteration and candidate cost, then records an executed move.\n\n",
+    "Store the last forbidden iteration for each attribute. Admit an otherwise tabu move when it strictly improves the all-time best cost. No neighborhood or route constraints are assumed. Query and update take constant expected time."
+  ],
+  "code": {
+    "entry": "TabuMemory",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "tabu_memory.py",
+        "sha256_lf": "f33f5a7a4c9ead0855c11a6b8a905decb108b2f5e08f3144ba6d07e5948a8a5f"
+      }
+    ]
+  }
+}

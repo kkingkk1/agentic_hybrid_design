@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-013",
+  "category": "tsp_christofides",
+  "description": [
+    "**Metric TSP Christofides construction.** The input is a complete symmetric metric distance matrix. Kruskal returns a minimum spanning tree. Its degrees identify the vertices passed to an exact minimum-weight matching over that subset.\n\n",
+    "Merge the tree and matching edges with multiplicity. The degrees become even and the combined graph stays connected. Compute an Euler walk and keep first visits to produce a Hamiltonian order.\n\n",
+    "The Python subset matching is limited to 16 odd-degree vertices in this case. The usual approximation argument applies under metric distances and exact matching. This reference does not use a general Blossom implementation."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "06cfb39a07bcc95a826eeecbc280a743198cfd9f442afe8c2b8db8e25f7b733b",
+      "marker": "#"
+    },
+    {
+      "name": "kruskal.py",
+      "path": "kruskal.py",
+      "algorithm_id": "ALG-031",
+      "sha256_lf": "ca8ff8df6329b43a0625ef15da81200b356c78649d2defbd9b4fbf26c28a1877",
+      "marker": "#"
+    },
+    {
+      "name": "perfect_matching.py",
+      "path": "perfect_matching.py",
+      "algorithm_id": "ALG-040",
+      "sha256_lf": "68a917a889fde3d0e43f049c2ed7e449abf369f4ef9aac55c1354de2dd40b188",
+      "marker": "#"
+    },
+    {
+      "name": "euler_shortcut.py",
+      "path": "euler_shortcut.py",
+      "algorithm_id": "ALG-039",
+      "sha256_lf": "f6d4708587e230b459fb2430a514450ac635406a429cb5cc5b03ac5088032911",
+      "marker": "#"
+    }
+  ]
+}

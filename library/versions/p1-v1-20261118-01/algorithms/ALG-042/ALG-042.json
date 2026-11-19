@@ -1,0 +1,22 @@
+{
+  "algorithm_id": "ALG-042",
+  "category": [
+    "Heuristics and metaheuristics"
+  ],
+  "summary": "Or-opt relocates a consecutive cyclic block without changing its internal order.",
+  "description": [
+    "Input is a complete matrix and an open tour. Search blocks up to the specified positive length and return a strict best move or a copy. It can also evaluate directional costs because orientation is preserved.\n\n",
+    "Remove each cyclic block and try reinserting it between other vertices. Keep the rest of the order unchanged. Full tour evaluation costs cubic time in the number of vertices per allowed block length."
+  ],
+  "code": {
+    "entry": "or_opt",
+    "language": "Python 3.13",
+    "origin": "Independent project reference with the documented source basis and adaptations.",
+    "files": [
+      {
+        "path": "or_opt.py",
+        "sha256_lf": "ef52ac54f32d060cc0cc784a0cb4ef0caf2b15ea6550ef79b1513b9439972c06"
+      }
+    ]
+  }
+}

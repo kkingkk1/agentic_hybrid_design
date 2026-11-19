@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-022",
+  "category": "tsp_anneal_and_polish",
+  "description": [
+    "**TSP annealed reversal moves followed by Or-opt.** Use a complete symmetric matrix. Farthest insertion supplies the first order and its cost determines an initial positive temperature.\n\n",
+    "Generate a random reversed segment and apply simulated-annealing acceptance to the original tour costs. Cool geometrically with a positive lower limit. Keep the best visited order separately from the accepted current order.\n\n",
+    "Pass that best order to one best-improvement Or-opt scan before returning. This combines stochastic acceptance over reversals with deterministic final relocation. Annealing schedules and the finite budget are project choices."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "e6395f4c04a1c4782fb979afa71694d8cbc5fced10dbe03c5214a24226d0dbe0",
+      "marker": "#"
+    },
+    {
+      "name": "farthest_insertion.py",
+      "path": "farthest_insertion.py",
+      "algorithm_id": "ALG-036",
+      "sha256_lf": "a5eb2935e33ac37c92748b2f1aa1f000738be179399f7616165e425c58bcb185",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "annealing_acceptance.py",
+      "path": "annealing_acceptance.py",
+      "algorithm_id": "ALG-007",
+      "sha256_lf": "17960988368b02b2b6b0146f43c3928759f10911351b3077ccfa2111cfc6c865",
+      "marker": "#"
+    },
+    {
+      "name": "or_opt.py",
+      "path": "or_opt.py",
+      "algorithm_id": "ALG-042",
+      "sha256_lf": "ef52ac54f32d060cc0cc784a0cb4ef0caf2b15ea6550ef79b1513b9439972c06",
+      "marker": "#"
+    }
+  ]
+}

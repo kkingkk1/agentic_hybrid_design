@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-021",
+  "category": "tsp_guided_local_search",
+  "description": [
+    "**TSP guided local search with edge-feature penalties.** Use a symmetric nonnegative matrix. A cheapest-insertion tour supplies the first 2-opt starting point. Store the best solution using original distance.\n\n",
+    "Apply 2-opt to an augmented symmetric matrix formed from distance and feature penalties. At each resulting local optimum, increase penalties on the used edges attaining the largest ratio of edge cost to one plus its penalty. Pass the augmented matrix and the new starting tour into the next descent.\n\n",
+    "The penalty feedback alters which local moves look attractive. The reference uses a fixed iteration count and a scale derived from initial tour length. Final selection uses the original objective."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "eea48db31e33e4470c2f2c1ea7f4756c17dfa5c375f68101a029580ff7daa472",
+      "marker": "#"
+    },
+    {
+      "name": "cheapest_insertion.py",
+      "path": "cheapest_insertion.py",
+      "algorithm_id": "ALG-035",
+      "sha256_lf": "f9a96d453b4e47e43aa74be1e2d7beb559ca6aa003959cb1b57fa464f80298e9",
+      "marker": "#"
+    },
+    {
+      "name": "nearest_tour.py",
+      "path": "nearest_tour.py",
+      "algorithm_id": "ALG-034",
+      "sha256_lf": "703a3c10e137e2346a336c07eaf86c396bf4367e9ceb33dadfd18421c50ea17d",
+      "marker": "#"
+    },
+    {
+      "name": "two_opt.py",
+      "path": "two_opt.py",
+      "algorithm_id": "ALG-005",
+      "sha256_lf": "43ffef9e9f3cab889ad7cdc44a235412703ca26f9a4c9c749d3596dd785bc26d",
+      "marker": "#"
+    }
+  ]
+}

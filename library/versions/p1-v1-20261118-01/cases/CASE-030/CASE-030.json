@@ -1,0 +1,73 @@
+{
+  "case_id": "CASE-030",
+  "category": "cvrp_adaptive_destroy_repair",
+  "description": [
+    "**CVRP adaptive large-neighborhood search with independent operator weights.** Use a symmetric matrix, a single depot and hard vehicle capacity. Begin from savings routes. At each iteration sample a destroy and a repair index independently.\n\n",
+    "Destroy by uniform or related customer removal. Repair by greedy capacity-aware insertion or Regret-2 followed by completion of unassigned customers. Accept feasible full candidates using simulated annealing, while maintaining separate best and current route sets.\n\n",
+    "Assign outcome rewards to both selected indices and update their two weight vectors each four attempts. Cooling shares those boundaries. The PDPTW source is adapted to one-node CVRP customers, with no CP-SAT route-refinement stage."
+  ],
+  "code": [
+    {
+      "name": "solver.py",
+      "path": "solver.py",
+      "sha256_lf": "fa1acc019e4bd4b47218779dfe3e50bd9d330ddfc36ae7e132e4414a5d9b4865",
+      "marker": "#"
+    },
+    {
+      "name": "savings.py",
+      "path": "savings.py",
+      "algorithm_id": "ALG-049",
+      "sha256_lf": "4b738d09beee29e5022c3995916ee75684aba650e1364cda0b915bff502aa7df",
+      "marker": "#"
+    },
+    {
+      "name": "random_removal.py",
+      "path": "random_removal.py",
+      "algorithm_id": "ALG-059",
+      "sha256_lf": "c3e80ebafdd0617643c26e411e1370085fcaa5f37ba2c5ecfbf888e0f1ef99ac",
+      "marker": "#"
+    },
+    {
+      "name": "shaw_removal.py",
+      "path": "shaw_removal.py",
+      "algorithm_id": "ALG-008",
+      "sha256_lf": "c321777aecdb9c99741fd5a0cb6a4d3d6ed05c63ecb7380438a65ced7ee78d83",
+      "marker": "#"
+    },
+    {
+      "name": "greedy_insertion.py",
+      "path": "greedy_insertion.py",
+      "algorithm_id": "ALG-058",
+      "sha256_lf": "37d8e5ded34e3057b93db4315a25e48937db346657436df15d97a22c2bf54783",
+      "marker": "#"
+    },
+    {
+      "name": "regret_k.py",
+      "path": "regret_k.py",
+      "algorithm_id": "ALG-004",
+      "sha256_lf": "23e59431bf6e0438dcfc26903949690561576f8de49c3565f1b7c22d4d086a50",
+      "marker": "#"
+    },
+    {
+      "name": "adaptive_operators.py",
+      "path": "adaptive_operators.py",
+      "algorithm_id": "ALG-003",
+      "sha256_lf": "de28aa02e4f045fb13d3c3eedea53d75ae2d11526987ee85e634ced404534409",
+      "marker": "#"
+    },
+    {
+      "name": "annealing_acceptance.py",
+      "path": "annealing_acceptance.py",
+      "algorithm_id": "ALG-007",
+      "sha256_lf": "17960988368b02b2b6b0146f43c3928759f10911351b3077ccfa2111cfc6c865",
+      "marker": "#"
+    },
+    {
+      "name": "relocate.py",
+      "path": "relocate.py",
+      "algorithm_id": "ALG-053",
+      "sha256_lf": "ac85480311147f3cd948a34f4a284b5c581539793b3005a6be376b27a450d96a",
+      "marker": "#"
+    }
+  ]
+}
