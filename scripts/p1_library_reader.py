@@ -7,8 +7,10 @@ import hashlib
 import json
 import re
 import sys
+from collections.abc import Callable
+from functools import partial
 from pathlib import Path, PureWindowsPath
-from typing import Any
+from typing import Any, TypeVar
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -19,10 +21,17 @@ DEFAULT_ROOT = LIBRARY_ROOT / "versions" / "calibration-20261114-03-en"
 DEFAULT_MANIFEST = FROZEN_DIR / (
     "manifest-6e20a83e63570d7f9ae40ddfece9cc86c63e73b5db8078b7a987a562d00f2d26.json"
 )
+FORMAL_SNAPSHOT_ID = "p1-v1-20261118-01"
+FORMAL_ROOT = LIBRARY_ROOT / "versions" / FORMAL_SNAPSHOT_ID
+FORMAL_MANIFEST = LIBRARY_ROOT / "manifests" / FORMAL_SNAPSHOT_ID / (
+    "manifest-960b1399bb1ff65b51d8817d9b701e7e733bffd0fb865750c57f61ab5448a5e5.json"
+)
 ID_PATTERN = re.compile(r"(?:ALG|CASE)-[0-9]{3}\Z")
 HASH_PATTERN = re.compile(r"[0-9a-fA-F]{64}\Z")
 CASE_HASH_PATTERN = re.compile(r"SHA-256\s*(?:为|is)\s*`([0-9a-fA-F]{64})`")
 MANIFEST_NAME_PATTERN = re.compile(r"manifest-([0-9a-f]{64})\.json\Z")
+_ReadMaterial = Callable[[Path, Path], bytes]
+_Result = TypeVar("_Result")
 
 
 class LibraryError(Exception):
@@ -62,7 +71,7 @@ def _code_path(directory: Path, value: Any) -> Path:
     parts = re.split(r"[/\\]", value)
     if windows.drive or windows.root or any(part in ("", ".", "..") for part in parts):
         raise LibraryError(f"代码路径必须位于条目目录内: {value!r}")
-    return _inside(directory.joinpath(*parts), directory)
+    return directory.joinpath(*parts)
 
 
 def _string(value: Any, label: str) -> str:
@@ -75,6 +84,15 @@ def _strings(value: Any, label: str) -> list[str]:
     if not isinstance(value, list) or not value or any(not isinstance(x, str) for x in value):
         raise LibraryError(f"{label} 必须是非空字符串数组")
     return value
+
+
+def _validate_ids(ids: list[str]) -> None:
+    if not isinstance(ids, list) or any(
+        not isinstance(value, str) or not ID_PATTERN.fullmatch(value) for value in ids
+    ):
+        raise LibraryError("ID 必须是 ALG- 或 CASE- 加三位数字")
+    if len(ids) != len(set(ids)):
+        raise LibraryError("所选 ID 存在重复")
 
 
 class LibraryReader:
@@ -114,20 +132,25 @@ class LibraryReader:
                 raise LibraryError(f"冻结文件记录无效: {path!r}")
         return manifest
 
-    def _read_material(self, path: Path, manifest: dict[str, Any] | None) -> bytes:
-        raw = _read_bytes(path)
+    def _read_material(self, path: Path, resolved: Path, manifest: dict[str, Any] | None, *,
+                       versions: dict[str, str] | None = None) -> bytes:
         if manifest is None:
-            return raw
+            return _read_bytes(resolved)
+        if versions is not None and resolved != path:
+            raise LibraryError(f"冻结快照包含路径重定向: {path}")
         try:
-            relative = path.relative_to(self.root.resolve(strict=True)).as_posix()
+            relative = resolved.relative_to(self.root.resolve(strict=True)).as_posix()
         except (ValueError, OSError, RuntimeError) as exc:
             raise LibraryError(f"冻结文件路径不在知识库内: {path}") from exc
         expected = manifest["files"].get(relative)
         if expected is None:
             raise LibraryError(f"文件未登记在冻结清单中: {relative}")
-        if (len(raw) != expected["size"]
-                or hashlib.sha256(raw).hexdigest() != expected["sha256"].lower()):
+        raw = _read_bytes(resolved)
+        digest = hashlib.sha256(raw).hexdigest()
+        if len(raw) != expected["size"] or digest != expected["sha256"].lower():
             raise LibraryError(f"冻结文件 SHA-256 不一致: {relative}")
+        if versions is not None:
+            versions[relative] = digest
         return raw
 
     def _index(self, manifest: dict[str, Any] | None = None) -> dict[str, Path]:
@@ -162,9 +185,9 @@ class LibraryReader:
         return index
 
     def _record(self, entry_id: str, directory: Path,
-                manifest: dict[str, Any] | None) -> tuple[dict[str, Any], bytes]:
-        path = _inside(directory / f"{entry_id}.json", directory)
-        raw = self._read_material(path, manifest)
+                read_material: _ReadMaterial) -> tuple[dict[str, Any], bytes]:
+        path = directory / f"{entry_id}.json"
+        raw = read_material(path, _inside(path, directory))
         try:
             record = json.loads(_decode(raw, path))
         except json.JSONDecodeError as exc:
@@ -195,10 +218,15 @@ class LibraryReader:
 
     def catalog(self) -> dict[str, list[dict[str, Any]]]:
         """返回全部候选；冻结模式校验条目集合和候选 JSON。"""
-        result: dict[str, list[dict[str, Any]]] = {"algorithms": [], "cases": []}
         manifest = self._manifest()
-        for entry_id, directory in self._index(manifest).items():
-            record, _ = self._record(entry_id, directory, manifest)
+        return self._catalog(self._index(manifest), partial(self._read_material, manifest=manifest))
+
+    def _catalog(
+        self, index: dict[str, Path], read_material: _ReadMaterial,
+    ) -> dict[str, list[dict[str, Any]]]:
+        result: dict[str, list[dict[str, Any]]] = {"algorithms": [], "cases": []}
+        for entry_id, directory in index.items():
+            record, _ = self._record(entry_id, directory, read_material)
             if entry_id.startswith("ALG-"):
                 keys = ("algorithm_id", "category", "function", "summary") if "function" in record else (
                     "algorithm_id", "category", "summary"
@@ -214,14 +242,12 @@ class LibraryReader:
 
     def load(self, ids: list[str]) -> list[dict[str, Any]]:
         """按请求顺序加载完整描述、代码及来源，任何一条失败即报错。"""
-        if not isinstance(ids, list) or any(
-            not isinstance(value, str) or not ID_PATTERN.fullmatch(value) for value in ids
-        ):
-            raise LibraryError("ID 必须是 ALG- 或 CASE- 加三位数字")
-        if len(ids) != len(set(ids)):
-            raise LibraryError("所选 ID 存在重复")
+        _validate_ids(ids)
         manifest = self._manifest()
-        index = self._index(manifest)
+        return self._load(ids, self._index(manifest), partial(self._read_material, manifest=manifest))
+
+    def _load(self, ids: list[str], index: dict[str, Path],
+              read_material: _ReadMaterial) -> list[dict[str, Any]]:
         missing = [entry_id for entry_id in ids if entry_id not in index]
         if missing:
             raise LibraryError(f"找不到条目: {', '.join(missing)}")
@@ -229,14 +255,14 @@ class LibraryReader:
         loaded = []
         for entry_id in ids:
             directory = index[entry_id]
-            record, raw = self._record(entry_id, directory, manifest)
-            source_path = _inside(directory / f"{entry_id}.md", directory)
-            source_raw = self._read_material(source_path, manifest)
+            record, raw = self._record(entry_id, directory, read_material)
+            source_path = directory / f"{entry_id}.md"
+            source_raw = read_material(source_path, _inside(source_path, directory))
             source_text = _decode(source_raw, source_path)
             record["description"] = "".join(record["description"])
 
             if entry_id.startswith("ALG-"):
-                self._load_algorithm_code(entry_id, directory, record, manifest)
+                self._load_algorithm_code(entry_id, directory, record, read_material)
             else:
                 hashes = CASE_HASH_PATTERN.findall(source_text)
                 if len(hashes) != 1:
@@ -246,7 +272,9 @@ class LibraryReader:
                 if isinstance(record["code"][0], str):
                     record["code"] = "\n".join(record["code"])
                 else:
-                    record["code"] = self._load_case_code(entry_id, directory, record["code"], index, manifest)
+                    record["code"] = self._load_case_code(
+                        entry_id, directory, record["code"], index, read_material,
+                    )
 
             loaded.append({
                 "entry": record,
@@ -264,7 +292,7 @@ class LibraryReader:
 
     def _load_case_code(
         self, entry_id: str, directory: Path, files: list[dict[str, Any]], index: dict[str, Path],
-        manifest: dict[str, Any] | None,
+        read_material: _ReadMaterial,
     ) -> str:
         """按清单组装案例；跨条目引用只能指向已登记的算法文件。"""
         result: list[str] = []
@@ -301,8 +329,8 @@ class LibraryReader:
                         or algorithm_id not in index):
                     raise LibraryError(f"{entry_id} 引用的算法 ID 无效: {algorithm_id!r}")
                 if algorithm_id not in algorithms:
-                    algorithm, _ = self._record(algorithm_id, index[algorithm_id], manifest)
-                    self._load_algorithm_code(algorithm_id, index[algorithm_id], algorithm, manifest)
+                    algorithm, _ = self._record(algorithm_id, index[algorithm_id], read_material)
+                    self._load_algorithm_code(algorithm_id, index[algorithm_id], algorithm, read_material)
                     algorithms[algorithm_id] = algorithm
                 candidates = [f for f in algorithms[algorithm_id]["code"]["files"]
                               if f["path"] == item["path"]]
@@ -314,7 +342,7 @@ class LibraryReader:
                 content = source["content"]
             else:
                 path = _code_path(directory, item.get("path"))
-                raw = self._read_material(path, manifest)
+                raw = read_material(path, _inside(path, directory))
                 if hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest() != expected.lower():
                     raise LibraryError(f"{entry_id} 案例文件 SHA-256 不一致: {name}")
                 content = _decode(raw, path)
@@ -322,7 +350,7 @@ class LibraryReader:
         return "\n".join(result)
 
     def _load_algorithm_code(self, entry_id: str, directory: Path, record: dict[str, Any],
-                             manifest: dict[str, Any] | None) -> None:
+                             read_material: _ReadMaterial) -> None:
         code = record.get("code")
         if not isinstance(code, dict):
             raise LibraryError(f"{entry_id}.code 必须是对象")
@@ -336,17 +364,115 @@ class LibraryReader:
             if not isinstance(item, dict):
                 raise LibraryError(f"{entry_id} 代码文件记录必须是对象")
             path = _code_path(directory, item.get("path"))
-            if path in paths:
+            resolved = _inside(path, directory)
+            if resolved in paths:
                 raise LibraryError(f"{entry_id} 代码文件重复: {item['path']}")
-            paths.add(path)
+            paths.add(resolved)
             expected = item.get("sha256_lf")
             if not isinstance(expected, str) or not HASH_PATTERN.fullmatch(expected):
                 raise LibraryError(f"{entry_id} 的 sha256_lf 无效: {item['path']}")
-            raw = self._read_material(path, manifest)
+            raw = read_material(path, resolved)
             actual = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
             if actual != expected.lower():
                 raise LibraryError(f"{entry_id} 代码 SHA-256 不一致: {item['path']}")
             item["content"] = _decode(raw, path)
+
+
+def _snapshot_scan_error(exc: OSError) -> None:
+    raise LibraryError(f"无法枚举冻结快照: {exc}") from exc
+
+
+class RetrievalSnapshot:
+    """一轮串行检索的固定快照。通过 record 交付可序列化的版本与错误记录。"""
+
+    def __init__(self, root: str | Path = FORMAL_ROOT, *, manifest: str | Path = FORMAL_MANIFEST,
+                 record: Callable[[dict[str, Any]], None]):
+        self._record_event = record
+        self._version: dict[str, str] = {}
+        self._failure: str | None = None
+        self._catalog_ready = False
+        try:
+            self._manifest_path = Path(manifest).resolve(strict=True)
+            self._reader = LibraryReader(Path(root).resolve(strict=True), manifest=self._manifest_path)
+            self._verify()
+        except (LibraryError, OSError, RuntimeError) as exc:
+            self._stop("pin", exc)
+            raise LibraryError(f"无法固定两库快照: {exc}") from exc
+        self._emit("pin", status="ok")
+
+    def catalog(self) -> dict[str, list[dict[str, Any]]]:
+        """读取两个库的候选，供本轮初选使用。"""
+        result = self._read("catalog", self._reader._catalog)
+        self._catalog_ready = True
+        return result
+
+    def load(self, ids: list[str]) -> list[dict[str, Any]]:
+        """按 ID 加载本轮初选或补读材料。"""
+        _validate_ids(ids)
+        requested = ids.copy()
+        return self._read(
+            "load", lambda index, read: self._reader._load(requested, index, read), ids=requested,
+        )
+
+    def _verify(self) -> tuple[dict[str, Any], dict[str, Path]]:
+        manifest = self._reader._manifest()
+        if manifest is None:
+            raise LibraryError("检索须使用冻结清单")
+        version = {
+            "snapshot_id": _string(manifest.get("snapshot_id"), "冻结清单 snapshot_id"),
+            "manifest_sha256": self._manifest_path.stem.removeprefix("manifest-"),
+        }
+        if self._version and version != self._version:
+            raise LibraryError("冻结清单与本轮固定版本不一致")
+        self._version = version
+
+        root = self._reader.root
+        if root.resolve(strict=True) != root:
+            raise LibraryError(f"固定快照根目录指向已变化: {root}")
+        index = self._reader._index(manifest)
+        paths: dict[str, Path] = {}
+        for directory, subdirs, files in root.walk(on_error=_snapshot_scan_error):
+            for name in subdirs + files:
+                path = directory / name
+                if _inside(path, root) != path:
+                    raise LibraryError(f"冻结快照包含路径重定向: {path}")
+            for name in files:
+                path = directory / name
+                if not path.is_file():
+                    raise LibraryError(f"冻结文件类型无效: {path}")
+                paths[path.relative_to(root).as_posix()] = path
+
+        expected = manifest["files"].keys()
+        if paths.keys() != expected:
+            missing = sorted(expected - paths.keys())
+            extra = sorted(paths.keys() - expected)
+            raise LibraryError(f"文件集合与冻结清单不一致: 缺失={missing}, 新增={extra}")
+        for path in paths.values():
+            self._reader._read_material(path, path, manifest)
+        return manifest, index
+
+    def _read(self, operation: str, read: Callable[[dict[str, Path], _ReadMaterial], _Result],
+              **details: Any) -> _Result:
+        if self._failure is not None:
+            raise LibraryError(f"本轮检索已停止: {self._failure}")
+        if operation == "load" and not self._catalog_ready:
+            raise LibraryError("本轮检索须先读取候选供初选")
+        versions: dict[str, str] = {}
+        try:
+            manifest, index = self._verify()
+            result = read(index, partial(self._reader._read_material, manifest=manifest, versions=versions))
+        except (LibraryError, OSError, RuntimeError) as exc:
+            self._stop(operation, exc, **details)
+            raise LibraryError(f"本轮检索已停止: {exc}") from exc
+        self._emit(operation, status="ok", files=versions, **details)
+        return result
+
+    def _emit(self, operation: str, **details: Any) -> None:
+        self._record_event({"operation": operation, **self._version, **details})
+
+    def _stop(self, operation: str, exc: Exception, **details: Any) -> None:
+        self._failure = str(exc)
+        self._emit(operation, status="error", reason=self._failure, **details)
 
 
 def main(argv: list[str] | None = None) -> int:
