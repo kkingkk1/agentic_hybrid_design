@@ -16,6 +16,8 @@
 - P1 正式首版包含65条算法和35条案例。[正式快照](library/versions/p1-v1-20261118-01/) · [冻结清单](library/manifests/p1-v1-20261118-01/manifest-960b1399bb1ff65b51d8817d9b701e7e733bffd0fb865750c57f61ab5448a5e5.json)
 - [入库口径与校准记录](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md)包含正式首版的覆盖、验证和沿用记录。
 - [P1只读读取器](scripts/p1_library_reader.py)在固定快照内列出候选，按ID加载说明、代码与来源。
+- [Retriever 初选](scripts/p1_retriever.py)使用英文提示词从两库完整目录选择候选，交付校验后的 ID 和理由。
+- [Retriever 全文与补读](scripts/p1_full_retrieval.py)从同一快照读取初选及补读材料，预检完整请求并核对引用与支撑结论。
 - [正式工作库](library/working/p1-v1/)供后续修订。[校准工作库](library/working/calibration/)和[校准快照](library/versions/calibration-20261114-03-en/)保留校准样例。
 - [校准样例审阅资料](vault/Knowledge/P1-只读知识库校准/审阅资料入口.md)：查看样例对应的论文全文入口，以及 PaperBanana 本地参考数据的公开副本。
 - [P0阶段计划](vault/Plan/P0-TSP最简工程链路.md)：首批TSP实例、求解接口与工程链路任务。
@@ -46,7 +48,9 @@ python -B scripts/p1_library_reader.py --root $p1LibraryPath --manifest $p1Libra
 python -B scripts/p1_library_reader.py --root $p1LibraryPath --manifest $p1LibraryManifest load ALG-061 CASE-037
 ```
 
-默认参数用于回读校准快照。查看正式工作库时使用 `--root library/working/p1-v1 --draft`。正式检索的模型交接和预算检查待接入。[格式与校验规则](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md#读取器使用)
+默认参数用于回读校准快照。查看正式工作库时使用 `--root library/working/p1-v1 --draft`。[格式与校验规则](vault/Knowledge/P1-只读知识库校准/入库口径与校准说明.md#读取器使用)
+
+任务 3 接入统一预算账本，并用[初选计划中的 CVRP 样例](vault/Plan/P1-任务2.2-接入Retriever初选.md)进行真实模型试跑。
 
 ## 来源与历史
 
